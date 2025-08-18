@@ -14,7 +14,7 @@ const AboutSection = () => {
   }, {
     icon: Calendar,
     label: "Experience",
-    value: "5+ Years"
+    value: "2+ Years"
   }, {
     icon: Award,
     label: "Professional Service",
