@@ -7,39 +7,30 @@ import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "Real Estate Agent",
-    company: "Luxury Homes LA",
-    content: "The aerial footage completely transformed our property listings. We've seen a 40% increase in viewings since working with AeroVision. The quality is simply outstanding.",
+    name: "JD",
+    role: "MTB Rider",
+    company: "",
+    content: "The drone footage made my jumps look amazing. Every jump and turn was captured perfectly!",
     rating: 5,
-    avatar: "SJ"
+    avatar: "JD"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Event Coordinator", 
-    company: "Elite Events",
-    content: "Absolutely phenomenal work! The drone coverage of our corporate event captured angles we never thought possible. Professional, punctual, and exceeded all expectations.",
+    name: "Maria",
+    role: "Homeowner",
+    company: "",
+    content: "The aerial shots of our house were stunning.",
     rating: 5,
-    avatar: "MC"
+    avatar: "M"
   },
   {
     id: 3,
-    name: "David Rodriguez",
-    role: "Marketing Director",
-    company: "SkyTech Industries",
-    content: "The FPV tour of our facility was a game-changer for our marketing campaigns. Creative, smooth, and incredibly engaging. Highly recommend for any business.",
+    name: "Leonardo R",
+    role: "Homeowner", 
+    company: "",
+    content: "Loved the smooth drone shots. Showed our home from angles we never imagined.",
     rating: 5,
-    avatar: "DR"
-  },
-  {
-    id: 4,
-    name: "Emma Thompson",
-    role: "Wedding Planner",
-    company: "Dreamy Weddings",
-    content: "The aerial shots from our beach wedding were breathtaking. Every couple asks about drone photography now. AeroVision captures pure magic.",
-    rating: 5,
-    avatar: "ET"
+    avatar: "LR"
   }
 ];
 
