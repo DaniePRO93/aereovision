@@ -165,24 +165,34 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Options Page CTA */}
+        {/* Custom Packages CTA */}
         <div className="mt-16 text-center">
-          <Card className="card-glass p-8 max-w-3xl mx-auto hover:scale-105 transition-transform duration-300">
-            <h3 className="text-3xl font-bold mb-4">
-              <span className="text-glow">Compare & Customize</span>
-            </h3>
-            <p className="text-muted-foreground mb-6 text-lg">
-              Want to see detailed comparisons between starting and standard packages? 
-              Need to add specific extras to your shoot? Check out our options page!
-            </p>
+          <Card className="card-neon p-12 max-w-4xl mx-auto hover:scale-105 transition-transform duration-300 relative overflow-hidden">
+            {/* Animated background glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-neon-green/10 to-primary/10 animate-pulse-glow" />
             
-            <Button 
-              className="btn-hero text-lg px-8 py-4"
-              onClick={() => window.location.href = '/options'}
-            >
-              View All Options & Extras
-              <Settings className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="relative z-10">
+              <h3 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="text-gradient-hero">✨ Custom Packages</span>
+              </h3>
+              <p className="text-muted-foreground mb-8 text-xl leading-relaxed max-w-3xl mx-auto">
+                Mix and match services, compare starting vs premium packages, and add custom extras 
+                to create your perfect drone photography experience!
+              </p>
+              
+              <Button 
+                className="btn-hero text-xl px-12 py-6 text-primary-foreground shadow-[0_0_40px_hsl(var(--primary)/0.6),0_15px_50px_hsl(0_0%_0%/0.4)] hover:shadow-[0_0_60px_hsl(var(--primary)/0.8),0_20px_60px_hsl(0_0%_0%/0.5)] transform hover:scale-110 transition-all duration-500 relative overflow-hidden group"
+                onClick={() => window.location.href = '/options'}
+              >
+                <span className="relative z-10 flex items-center">
+                  🎯 Build Your Custom Package
+                  <Sparkles className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
+                </span>
+                
+                {/* Shiny effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </Button>
+            </div>
           </Card>
         </div>
 

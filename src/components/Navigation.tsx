@@ -29,7 +29,7 @@ const Navigation = () => {
     { name: "Home", href: "home" },
     { name: "Portfolio", href: "portfolio" },
     { name: "Services", href: "services" },
-    { name: "Options", href: "/options", isExternal: true },
+    { name: "Custom Packages", href: "/options", isExternal: true },
     { name: "About", href: "about" },
     { name: "Contact", href: "contact" },
   ];
