@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
@@ -6,8 +5,9 @@ import {
   Video, 
   Zap, 
   MapPin, 
-  ArrowRight,
-  Check
+  Check, 
+  Sparkles,
+  MessageCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,33 +15,37 @@ const services = [
   {
     icon: Camera,
     title: "Aerial Photography",
-    description: "High-resolution aerial photography for real estate, events, and marketing campaigns.",
-    features: ["4K+ Resolution", "RAW Format", "Multiple Angles", "Quick Turnaround"],
-    price: "From $299",
+    description: "High-resolution aerial shots perfect for real estate, events, and marketing campaigns.",
+    features: ["10–20 high-res aerial shots", "Basic editing & color correction", "JPEG/RAW format delivery", "Up to 5 min flight time"],
+    price: "From $150",
+    extra: "+$20 per extra minute",
     popular: false
   },
   {
     icon: Video,
     title: "Cinematic Videography", 
-    description: "Professional drone videography with cinematic quality and smooth movements.",
-    features: ["4K 60fps", "Color Grading", "Music & SFX", "Multiple Cuts"],
-    price: "From $599",
+    description: "Professional 4K drone footage with smooth cinematic movements and color grading.",
+    features: ["4K drone footage", "Basic color grading", "Royalty-free music overlay", "1–2 edited clips (up to 3 min each)"],
+    price: "From $180",
+    extra: "+$30 per extra minute",
     popular: true
   },
   {
     icon: Zap,
     title: "FPV Drone Tours",
-    description: "Dynamic FPV drone flights through buildings, venues, and tight spaces.",
-    features: ["Indoor Flying", "Smooth Tracking", "Immersive POV", "Creative Routes"],
-    price: "From $799",
+    description: "Dynamic FPV drone flights through tight spaces with creative routing and post-processing.",
+    features: ["FPV footage through tight spaces", "4K resolution, smooth tracking", "Creative route planning", "Professional post-processing"],
+    price: "From $240",
+    extra: "+$30 per extra minute",
     popular: false
   },
   {
     icon: MapPin,
     title: "Ground Photography",
-    description: "Professional ground-level photography and videography services.",
-    features: ["Portrait & Landscape", "Event Coverage", "Product Shoots", "Creative Direction"],
-    price: "From $199",
+    description: "Professional ground-level photography for events, portraits, and product shoots.",
+    features: ["Event coverage & portraits", "Product photography", "Basic editing & correction", "20–40 high-res photos"],
+    price: "From $100",
+    extra: "+$10 per 10 edited photos",
     popular: false
   }
 ];
@@ -70,11 +74,11 @@ const ServicesSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-metallic">Professional</span> <span className="text-glow">Services</span>
+            💰 <span className="text-glow">AeroVision</span> <span className="text-metallic">Pricing Packages</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive drone and photography services tailored to capture your vision 
-            with cutting-edge technology and creative expertise.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+            Professional aerial and ground cinematography services starting at $30 per minute of flight. 
+            Choose the package that fits your project, or contact us for a custom solution.
           </p>
         </div>
 
@@ -83,7 +87,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              className={`relative overflow-hidden group hover-lift ${
+              className={`relative overflow-hidden group hover-lift hover:scale-105 transition-all duration-300 ${
                 service.popular ? 'card-neon' : 'card-glass'
               }`}
             >
@@ -127,9 +131,14 @@ const ServicesSection = () => {
                 </ul>
 
                 {/* Price */}
-                <div className="mb-6">
-                  <span className="text-2xl font-bold text-glow">{service.price}</span>
+                <div className="mb-4">
+                  <span className="text-2xl font-bold" style={{ color: '#FFD700' }}>{service.price}</span>
                   <span className="text-muted-foreground ml-1">/project</span>
+                </div>
+
+                {/* Extra pricing */}
+                <div className="mb-6">
+                  <span className="text-sm text-muted-foreground">{service.extra}</span>
                 </div>
 
                 {/* CTA Button */}
@@ -139,31 +148,46 @@ const ServicesSection = () => {
                   }`}
                   onClick={() => handleServiceInquiry(service.title)}
                 >
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  Book a Shoot
+                  <Sparkles className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                 </Button>
               </div>
             </Card>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="card-glass inline-block p-8 rounded-2xl">
+        {/* Custom Package Section */}
+        <div className="mt-16">
+          <Card className="card-glass p-8 text-center max-w-4xl mx-auto hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-bold mb-4">
-              Need a <span className="text-glow">Custom Package</span>?
+              <span className="text-glow">Custom Package</span>
             </h3>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Let's discuss your specific requirements and create a tailored solution 
-              that fits your project perfectly.
+            <p className="text-muted-foreground mb-6 text-lg">
+              Combine aerial + ground photography or request extra post-production. 
+              Pricing based on flight minutes + photos + editing.
             </p>
-            <Button 
-              className="btn-hero"
-              onClick={scrollToContact}
-            >
-              Contact for Custom Quote
-            </Button>
-          </div>
+            <p className="text-primary font-semibold mb-8" style={{ color: '#FFD700' }}>
+              Example: Drone + Ground + Edited Video (10 min) → $300–$400
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                className="btn-hero"
+                onClick={scrollToContact}
+              >
+                Book a Shoot
+                <Camera className="ml-2 h-4 w-4" />
+              </Button>
+              
+              <Button 
+                className="btn-secondary-hero"
+                onClick={() => window.open('https://wa.me/50258221477?text=Hi! I need a custom quote for my project.', '_blank')}
+              >
+                Contact for Custom Quote
+                <MessageCircle className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
