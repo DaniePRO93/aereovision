@@ -96,12 +96,12 @@
            hover:shadow-[0_0_40px_hsl(var(--primary)/0.6),0_12px_40px_hsl(0_0%_0%/0.4)]
            border border-primary/30 backdrop-blur-md rounded-2xl
            transition-all duration-500 hover:scale-[1.02] active:scale-95
-           relative overflow-hidden group;
+           relative overflow-hidden;
   }
 
   .btn-hero::before {
     @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent
-           -translate-x-full group-hover:translate-x-full transition-transform duration-700;
+           -translate-x-full transition-transform duration-700;
   }
 
   .btn-secondary-hero {

@@ -75,6 +75,7 @@ const HeroSection = () => {
           >
             <span className="relative z-10">BOOK A FLIGHT</span>
             <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </Button>
           
           <Button 
