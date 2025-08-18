@@ -23,7 +23,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Cinematic Video Background */}
       <div className="absolute inset-0">
         <video
@@ -51,13 +51,13 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <motion.div 
-        className="relative z-10 text-center max-w-7xl mx-auto px-6"
+        className="relative z-10 text-center max-w-7xl mx-auto px-6 py-8"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <motion.h1 
-          className="font-display text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem] font-black mb-8 leading-[0.8] tracking-tighter"
+          className="font-display text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black mb-8 leading-[0.8] tracking-tighter"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
