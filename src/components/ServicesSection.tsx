@@ -16,17 +16,19 @@ const services = [
     icon: Camera,
     title: "Aerial Photography",
     description: "High-resolution aerial shots perfect for real estate, events, and marketing campaigns.",
-    features: ["10–20 high-res aerial shots", "Basic editing & color correction", "JPEG/RAW format delivery", "Up to 5 min flight time"],
-    price: "From $150",
-    extra: "+$20 per extra minute",
+    features: ["10–20 high-res photos", "Basic editing & color correction", "5–10 min flight time", "JPEG/RAW format delivery"],
+    price: "From $50",
+    standardPrice: "$80–$150",
+    extra: "+$10–$15 per extra minute",
     popular: false
   },
   {
     icon: Video,
     title: "Cinematic Videography", 
     description: "Professional 4K drone footage with smooth cinematic movements and color grading.",
-    features: ["4K drone footage", "Basic color grading", "Royalty-free music overlay", "1–2 edited clips (up to 3 min each)"],
-    price: "From $180",
+    features: ["4K drone footage", "Smooth cinematic movements", "Basic color grading", "Royalty-free music overlay", "1–2 edited clips (up to 3 min each)"],
+    price: "From $60",
+    standardPrice: "$180 for 6 min",
     extra: "+$30 per extra minute",
     popular: true
   },
@@ -34,8 +36,9 @@ const services = [
     icon: Zap,
     title: "FPV Drone Tours",
     description: "Dynamic FPV drone flights through tight spaces with creative routing and post-processing.",
-    features: ["FPV footage through tight spaces", "4K resolution, smooth tracking", "Creative route planning", "Professional post-processing"],
-    price: "From $240",
+    features: ["FPV footage through tight spaces", "Smooth tracking & creative routes", "4K resolution + post-processing", "4–5 min starting flight time"],
+    price: "From $80",
+    standardPrice: "$240 for 8 min",
     extra: "+$30 per extra minute",
     popular: false
   },
@@ -43,9 +46,10 @@ const services = [
     icon: MapPin,
     title: "Ground Photography",
     description: "Professional ground-level photography for events, portraits, and product shoots.",
-    features: ["Event coverage & portraits", "Product photography", "Basic editing & correction", "20–40 high-res photos"],
-    price: "From $100",
-    extra: "+$10 per 10 edited photos",
+    features: ["Full event coverage", "20–40 high-res photos", "Basic editing & correction", "Professional session"],
+    price: "From $40",
+    standardPrice: "$100 per session",
+    extra: "+$10 per extra 10 photos",
     popular: false
   }
 ];
@@ -78,8 +82,8 @@ const ServicesSection = () => {
             <span className="block text-metallic">Pricing Packages</span>
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
-            Professional aerial and ground cinematography services starting at $30 per minute of flight. 
-            Choose the package that fits your project, or contact us for a custom solution.
+            Professional aerial and ground cinematography services. Starting prices are school-friendly, 
+            with full professional packages available. Prices are based on flight time, complexity, and editing.
           </p>
         </div>
 
@@ -132,9 +136,12 @@ const ServicesSection = () => {
                 </ul>
 
                 {/* Price */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <span className="text-2xl font-bold" style={{ color: '#FFD700' }}>{service.price}</span>
-                  <span className="text-muted-foreground ml-1">/project</span>
+                </div>
+                <div className="mb-4">
+                  <span className="text-lg font-semibold" style={{ color: '#FFD700' }}>{service.standardPrice}</span>
+                  <span className="text-muted-foreground ml-1">/standard</span>
                 </div>
 
                 {/* Extra pricing */}
@@ -164,11 +171,11 @@ const ServicesSection = () => {
               <span className="text-glow">Custom Package</span>
             </h3>
             <p className="text-muted-foreground mb-6 text-lg">
-              Combine aerial + ground photography or request extra post-production. 
-              Pricing based on flight minutes + photos + editing.
+              Flexible pricing for combined aerial + ground projects or special requests. 
+              Starting at ~$120 for small school projects.
             </p>
             <p className="text-primary font-semibold mb-8" style={{ color: '#FFD700' }}>
-              Example: Drone + Ground + Edited Video (10 min) → $300–$400
+              Full Project Example: Drone + Ground + Edited Video (6–8 min) → ~$300–$400
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
