@@ -1,37 +1,33 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Award, 
-  Users, 
-  Calendar,
-  Target,
-  ArrowRight
-} from "lucide-react";
-
+import { Award, Users, Calendar, Target, ArrowRight } from "lucide-react";
 const AboutSection = () => {
-  const achievements = [
-    { icon: Target, label: "Projects Completed", value: "50" },
-    { icon: Users, label: "Happy Clients", value: "20+" },
-    { icon: Calendar, label: "Experience", value: "5+ Years" },
-    { icon: Award, label: "Professional Service", value: "100%" }
-  ];
-
-  const skills = [
-    "Aerial Cinematography",
-    "FPV Drone Operations", 
-    "Real Estate Photography",
-    "Event Documentation",
-    "Post-Production",
-    "Color Grading"
-  ];
-
-  return (
-    <section id="about" className="py-20 px-6 relative overflow-hidden">
+  const achievements = [{
+    icon: Target,
+    label: "Projects Completed",
+    value: "50"
+  }, {
+    icon: Users,
+    label: "Happy Clients",
+    value: "20+"
+  }, {
+    icon: Calendar,
+    label: "Experience",
+    value: "5+ Years"
+  }, {
+    icon: Award,
+    label: "Professional Service",
+    value: "100%"
+  }];
+  const skills = ["Aerial Cinematography", "FPV Drone Operations", "Real Estate Photography", "Event Documentation", "Post-Production", "Color Grading"];
+  return <section id="about" className="py-20 px-6 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-64 h-64 border border-primary rounded-full animate-float" />
-        <div className="absolute bottom-20 right-10 w-48 h-48 border border-accent rounded-full animate-float" style={{animationDelay: '2s'}} />
+        <div className="absolute bottom-20 right-10 w-48 h-48 border border-accent rounded-full animate-float" style={{
+        animationDelay: '2s'
+      }} />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
@@ -53,31 +49,18 @@ const AboutSection = () => {
               <h3 className="text-2xl font-semibold mb-4 text-glow">
                 Cinematic Vision Meets Technical Precision
               </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                With over 5 years of experience in aerial cinematography, I specialize in 
-                creating breathtaking visual content that tells compelling stories from 
-                unique perspectives. From luxury real estate showcases to dynamic FPV tours, 
-                every project is approached with meticulous attention to detail and creative innovation.
-              </p>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6"> With over 2 years of experience experience in aerial cinematography, I specialize in creating breathtaking visual content that tells compelling stories from unique perspectives. From luxury real estate showcases to dynamic FPV tours, every project is approached with meticulous attention to detail and creative innovation.</p>
               
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                As a licensed FAA Part 107 pilot, I ensure all operations meet the highest 
-                safety and legal standards while delivering exceptional results that exceed expectations.
-              </p>
+              
             </div>
 
             {/* Skills */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Specializations</h4>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => (
-                  <Badge 
-                    key={index} 
-                    className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
-                  >
+                {skills.map((skill, index) => <Badge key={index} className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
                     {skill}
-                  </Badge>
-                ))}
+                  </Badge>)}
               </div>
             </div>
 
@@ -92,8 +75,7 @@ const AboutSection = () => {
           <div className="space-y-6">
             {/* Achievement Cards */}
             <div className="grid grid-cols-2 gap-4">
-              {achievements.map((achievement, index) => (
-                <Card key={index} className="card-glass p-6 text-center hover-lift">
+              {achievements.map((achievement, index) => <Card key={index} className="card-glass p-6 text-center hover-lift">
                   <achievement.icon className="h-8 w-8 text-primary mx-auto mb-3" />
                   <div className="text-2xl font-bold text-glow mb-1">
                     {achievement.value}
@@ -101,8 +83,7 @@ const AboutSection = () => {
                   <div className="text-sm text-muted-foreground">
                     {achievement.label}
                   </div>
-                </Card>
-              ))}
+                </Card>)}
             </div>
 
             {/* Mission Statement */}
@@ -140,8 +121,6 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
