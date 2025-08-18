@@ -7,7 +7,8 @@ import {
   MapPin, 
   Check, 
   Sparkles,
-  MessageCircle
+  MessageCircle,
+  Settings
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -185,6 +186,14 @@ const ServicesSection = () => {
               >
                 Book a Shoot
                 <Camera className="ml-2 h-4 w-4" />
+              </Button>
+              
+              <Button 
+                className="btn-secondary-hero"
+                onClick={() => window.location.href = '/options'}
+              >
+                Compare Options & Extras
+                <Settings className="ml-2 h-4 w-4" />
               </Button>
               
               <Button 
