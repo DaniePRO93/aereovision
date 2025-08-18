@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { 
@@ -10,10 +11,49 @@ import {
   MessageCircle,
   ArrowUp
 } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNewsletterSubmit = () => {
+    if (email) {
+      toast({
+        title: "Subscribed!",
+        description: "Thank you for subscribing to our newsletter.",
+      });
+      setEmail("");
+    }
+  };
+
+  const openSocialLink = (platform: string) => {
+    const links = {
+      instagram: "https://instagram.com/aerovision",
+      youtube: "https://youtube.com/aerovision",
+      whatsapp: "https://wa.me/1234567890"
+    };
+    window.open(links[platform as keyof typeof links], '_blank');
+  };
+
+  const openEmail = () => {
+    window.location.href = "mailto:hello@aerovision.com";
+  };
+
+  const openPhone = () => {
+    window.location.href = "tel:+15551234567";
   };
 
   return (
@@ -22,7 +62,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand & Contact */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex items-center space-x-3 mb-6 cursor-pointer" onClick={scrollToTop}>
               <div className="p-2 bg-gradient-to-r from-primary to-primary-glow rounded-lg">
                 <Camera className="h-6 w-6 text-primary-foreground" />
               </div>
@@ -35,11 +75,11 @@ const Footer = () => {
             </p>
 
             <div className="space-y-3">
-              <div className="flex items-center text-sm">
+              <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openEmail}>
                 <Mail className="h-4 w-4 text-primary mr-3" />
                 <span>hello@aerovision.com</span>
               </div>
-              <div className="flex items-center text-sm">
+              <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openPhone}>
                 <Phone className="h-4 w-4 text-primary mr-3" />
                 <span>+1 (555) 123-4567</span>
               </div>
@@ -55,19 +95,19 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6 text-glow">Quick Links</h3>
             <ul className="space-y-3">
               {[
-                { name: "Home", href: "#home" },
-                { name: "Portfolio", href: "#portfolio" },
-                { name: "Services", href: "#services" },
-                { name: "About", href: "#about" },
-                { name: "Contact", href: "#contact" }
+                { name: "Home", href: "home" },
+                { name: "Portfolio", href: "portfolio" },
+                { name: "Services", href: "services" },
+                { name: "About", href: "about" },
+                { name: "Contact", href: "contact" }
               ].map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                  <button 
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-left"
                   >
                     {link.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -86,9 +126,12 @@ const Footer = () => {
                 "Event Coverage"
               ].map((service) => (
                 <li key={service}>
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
+                  <button 
+                    onClick={() => scrollToSection('services')}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer text-left"
+                  >
                     {service}
-                  </span>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -105,9 +148,15 @@ const Footer = () => {
             <div className="flex space-x-2 mb-6">
               <Input 
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-input/50 border-border/50 focus:border-primary"
+                onKeyPress={(e) => e.key === 'Enter' && handleNewsletterSubmit()}
               />
-              <Button className="btn-hero px-4">
+              <Button 
+                className="btn-hero px-4"
+                onClick={handleNewsletterSubmit}
+              >
                 <Mail className="h-4 w-4" />
               </Button>
             </div>
@@ -116,13 +165,28 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="font-medium">Follow Our Work</h4>
               <div className="flex space-x-3">
-                <Button variant="ghost" size="sm" className="p-2 hover:bg-primary/10">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 hover:bg-primary/10"
+                  onClick={() => openSocialLink('instagram')}
+                >
                   <Instagram className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="sm" className="p-2 hover:bg-primary/10">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 hover:bg-primary/10"
+                  onClick={() => openSocialLink('youtube')}
+                >
                   <Youtube className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="sm" className="p-2 hover:bg-primary/10">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 hover:bg-primary/10"
+                  onClick={() => openSocialLink('whatsapp')}
+                >
                   <MessageCircle className="h-5 w-5" />
                 </Button>
               </div>
@@ -137,12 +201,12 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <button className="text-muted-foreground hover:text-primary transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            </button>
+            <button className="text-muted-foreground hover:text-primary transition-colors">
               Terms of Service
-            </a>
+            </button>
             <Button 
               variant="ghost" 
               size="sm" 

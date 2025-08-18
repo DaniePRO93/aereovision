@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Camera } from "lucide-react";
@@ -15,12 +16,20 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
+
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Services", href: "#services" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "home" },
+    { name: "Portfolio", href: "portfolio" },
+    { name: "Services", href: "services" },
+    { name: "About", href: "about" },
+    { name: "Contact", href: "contact" },
   ];
 
   return (
@@ -33,30 +42,39 @@ const Navigation = () => {
         }`}>
           {/* Premium Logo */}
           <div className="flex items-center space-x-4">
-            <div className="relative p-3 bg-gradient-to-br from-primary/20 to-neon-green/20 rounded-2xl border border-primary/30 hover:scale-110 transition-transform duration-300">
+            <div className="relative p-3 bg-gradient-to-br from-primary/20 to-neon-green/20 rounded-2xl border border-primary/30 hover:scale-110 transition-transform duration-300 cursor-pointer"
+                 onClick={() => scrollToSection('home')}>
               <Camera className="h-7 w-7 text-primary" />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-neon-green/10 rounded-2xl animate-pulse-subtle" />
             </div>
-            <span className="font-display text-2xl font-bold text-gradient-hero tracking-wider">AEROVISION</span>
+            <span 
+              className="font-display text-2xl font-bold text-gradient-hero tracking-wider cursor-pointer"
+              onClick={() => scrollToSection('home')}
+            >
+              AEROVISION
+            </span>
           </div>
 
           {/* Premium Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-10">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={() => scrollToSection(item.href)}
                 className="font-body text-foreground hover:text-primary hover-glow transition-all duration-300 relative group font-medium tracking-wide"
               >
                 {item.name}
                 <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-neon-green transition-all duration-300 group-hover:w-full" />
-              </a>
+              </button>
             ))}
           </div>
 
           {/* Premium CTA Button */}
           <div className="hidden md:block">
-            <Button className="btn-hero font-body font-bold tracking-wide">
+            <Button 
+              className="btn-hero font-body font-bold tracking-wide"
+              onClick={() => scrollToSection('contact')}
+            >
               GET QUOTE
             </Button>
           </div>
@@ -75,16 +93,18 @@ const Navigation = () => {
           <div className="md:hidden py-6 border-t border-border/30 bg-gradient-to-b from-card/50 to-card/30 backdrop-blur-xl">
             <div className="flex flex-col space-y-6">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
-                  className="font-body text-foreground hover:text-primary hover-glow transition-all duration-300 py-3 font-medium tracking-wide"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => scrollToSection(item.href)}
+                  className="font-body text-foreground hover:text-primary hover-glow transition-all duration-300 py-3 font-medium tracking-wide text-left"
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
-              <Button className="btn-hero mt-6 self-start font-body font-bold tracking-wide">
+              <Button 
+                className="btn-hero mt-6 self-start font-body font-bold tracking-wide"
+                onClick={() => scrollToSection('contact')}
+              >
                 GET QUOTE
               </Button>
             </div>

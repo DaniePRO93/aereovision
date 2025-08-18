@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Award, Users, Zap } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -13,6 +14,13 @@ const HeroSection = () => {
       videoRef.current.play();
     }
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -72,6 +80,7 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="btn-hero px-12 py-8 text-xl font-bold group relative"
+            onClick={() => scrollToSection('contact')}
           >
             <span className="relative z-10">BOOK A FLIGHT</span>
             <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
@@ -82,6 +91,7 @@ const HeroSection = () => {
             size="lg" 
             variant="outline"
             className="btn-secondary-hero px-12 py-8 text-xl font-bold group"
+            onClick={() => scrollToSection('portfolio')}
           >
             <Play className="mr-3 h-6 w-6 group-hover:scale-125 transition-transform duration-300" />
             <span>VIEW PORTFOLIO</span>
@@ -90,7 +100,7 @@ const HeroSection = () => {
 
         {/* Premium Stats with Icons */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-          <div className="text-center group cursor-pointer">
+          <div className="text-center group cursor-pointer" onClick={() => scrollToSection('portfolio')}>
             <div className="mb-4 flex justify-center">
               <div className="p-4 bg-gradient-to-br from-primary/20 to-primary-glow/20 rounded-2xl border border-primary/30 group-hover:scale-110 transition-transform duration-300">
                 <Award className="h-8 w-8 text-primary" />
@@ -99,7 +109,7 @@ const HeroSection = () => {
             <div className="font-display text-4xl font-black text-gradient-hero mb-3">500+</div>
             <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Projects Completed</div>
           </div>
-          <div className="text-center group cursor-pointer">
+          <div className="text-center group cursor-pointer" onClick={() => scrollToSection('about')}>
             <div className="mb-4 flex justify-center">
               <div className="p-4 bg-gradient-to-br from-neon-green/20 to-neon-green-glow/20 rounded-2xl border border-neon-green/30 group-hover:scale-110 transition-transform duration-300">
                 <Users className="h-8 w-8 text-neon-green" />
@@ -108,7 +118,7 @@ const HeroSection = () => {
             <div className="font-display text-4xl font-black text-gradient-hero mb-3">50+</div>
             <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Happy Clients</div>
           </div>
-          <div className="text-center group cursor-pointer">
+          <div className="text-center group cursor-pointer" onClick={() => scrollToSection('services')}>
             <div className="mb-4 flex justify-center">
               <div className="p-4 bg-gradient-to-br from-primary/20 to-neon-green/20 rounded-2xl border border-primary/30 group-hover:scale-110 transition-transform duration-300">
                 <Zap className="h-8 w-8 text-primary-glow" />
@@ -121,7 +131,10 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+        onClick={() => scrollToSection('portfolio')}
+      >
         <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
         </div>

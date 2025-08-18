@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
@@ -8,6 +9,7 @@ import {
   ArrowRight,
   Check
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const services = [
   {
@@ -45,6 +47,23 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const { toast } = useToast();
+
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleServiceInquiry = (serviceName: string) => {
+    scrollToContact();
+    toast({
+      title: "Service Selected",
+      description: `Redirecting to contact form for ${serviceName}`,
+    });
+  };
+
   return (
     <section id="services" className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
       <div className="max-w-7xl mx-auto">
@@ -80,7 +99,7 @@ const ServicesSection = () => {
               <div className="p-6">
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className={`inline-flex p-3 rounded-lg ${
+                  <div className={`inline-flex p-3 rounded-lg cursor-pointer hover:scale-110 transition-transform ${
                     service.popular 
                       ? 'bg-primary/20 text-primary' 
                       : 'bg-secondary/20 text-secondary-bright'
@@ -118,6 +137,7 @@ const ServicesSection = () => {
                   className={`w-full group ${
                     service.popular ? 'btn-hero' : 'btn-secondary-hero'
                   }`}
+                  onClick={() => handleServiceInquiry(service.title)}
                 >
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -137,7 +157,10 @@ const ServicesSection = () => {
               Let's discuss your specific requirements and create a tailored solution 
               that fits your project perfectly.
             </p>
-            <Button className="btn-hero">
+            <Button 
+              className="btn-hero"
+              onClick={scrollToContact}
+            >
               Contact for Custom Quote
             </Button>
           </div>
