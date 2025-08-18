@@ -16,7 +16,7 @@ const portfolioItems = [
     type: "video",
     image: realEstateImage,
     description: "Cinematic aerial tour showcasing premium property features",
-    url: "https://example.com/luxury-tour"
+    url: "https://instagram.com/aerovisiongt"
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const portfolioItems = [
     type: "photo",
     image: landscapeImage,
     description: "Breathtaking aerial photography of natural landscapes",
-    url: "https://example.com/mountain-landscapes"
+    url: "https://instagram.com/aerovisiongt"
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const portfolioItems = [
     type: "video",
     image: fpvImage,
     description: "High-speed FPV drone racing with dynamic cinematography",
-    url: "https://example.com/fpv-racing"
+    url: "https://instagram.com/aerovisiongt"
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const portfolioItems = [
     type: "video",
     image: realEstateImage,
     description: "Professional event documentation from unique perspectives",
-    url: "https://example.com/corporate-event"
+    url: "https://instagram.com/aerovisiongt"
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ const portfolioItems = [
     type: "photo",
     image: fpvImage,
     description: "Modern architecture captured with precision and style",
-    url: "https://example.com/architecture"
+    url: "https://instagram.com/aerovisiongt"
   },
   {
     id: 6,
@@ -61,7 +61,7 @@ const portfolioItems = [
     type: "photo",
     image: landscapeImage,
     description: "Stunning coastal views and seascapes from above",
-    url: "https://example.com/coastal-aerials"
+    url: "https://instagram.com/aerovisiongt"
   }
 ];
 

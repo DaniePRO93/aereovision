@@ -11,10 +11,10 @@ import {
 
 const AboutSection = () => {
   const achievements = [
-    { icon: Award, label: "Licensed Pilot", value: "FAA Part 107" },
-    { icon: Users, label: "Happy Clients", value: "50+" },
+    { icon: Target, label: "Projects Completed", value: "50" },
+    { icon: Users, label: "Happy Clients", value: "20+" },
     { icon: Calendar, label: "Experience", value: "5+ Years" },
-    { icon: Target, label: "Projects", value: "500+" }
+    { icon: Award, label: "Professional Service", value: "100%" }
   ];
 
   const skills = [
