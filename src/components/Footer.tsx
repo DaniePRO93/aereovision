@@ -43,17 +43,17 @@ const Footer = () => {
     const links = {
       instagram: "https://instagram.com/aerovision",
       youtube: "https://youtube.com/aerovision",
-      whatsapp: "https://wa.me/1234567890"
+      whatsapp: "https://wa.me/50258221477"
     };
     window.open(links[platform as keyof typeof links], '_blank');
   };
 
   const openEmail = () => {
-    window.location.href = "mailto:hello@aerovision.com";
+    window.location.href = "mailto:danielrosalesdestaracacton@gmail.com";
   };
 
   const openPhone = () => {
-    window.location.href = "tel:+15551234567";
+    window.location.href = "tel:+50258221477";
   };
 
   return (
@@ -77,15 +77,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openEmail}>
                 <Mail className="h-4 w-4 text-primary mr-3" />
-                <span>hello@aerovision.com</span>
+                <span>danielrosalesdestaracacton@gmail.com</span>
               </div>
               <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openPhone}>
                 <Phone className="h-4 w-4 text-primary mr-3" />
-                <span>+1 (555) 123-4567</span>
+                <span>+502 5822-1477</span>
               </div>
               <div className="flex items-center text-sm">
                 <MapPin className="h-4 w-4 text-primary mr-3" />
-                <span>Los Angeles, CA</span>
+                <span>Guatemala City</span>
               </div>
             </div>
           </div>
@@ -197,7 +197,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © 2024 AeroVision. All rights reserved. | Licensed FAA Part 107 Pilot
+            © 2024 AeroVision. All rights reserved. | Professional Drone Photography
           </div>
           
           <div className="flex items-center space-x-6 text-sm">

@@ -42,7 +42,7 @@ const ContactSection = () => {
 Project Type: ${formData.projectType || "General Inquiry"}
 Message: ${formData.message || "Please contact me for more information."}`;
     
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/50258221477?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -165,17 +165,17 @@ Message: ${formData.message || "Please contact me for more information."}`;
               <div className="space-y-4">
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-primary mr-3" />
-                  <span>hello@aerovision.com</span>
+                  <span>danielrosalesdestaracacton@gmail.com</span>
                 </div>
                 
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-primary mr-3" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+502 5822-1477</span>
                 </div>
                 
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 text-primary mr-3" />
-                  <span>Los Angeles, CA & Surrounding Areas</span>
+                  <span>Guatemala City & Surrounding Areas</span>
                 </div>
               </div>
 
@@ -203,11 +203,11 @@ Message: ${formData.message || "Please contact me for more information."}`;
                 <div className="text-center text-muted-foreground">
                   <MapPin className="h-8 w-8 mx-auto mb-2 text-primary" />
                   <p className="text-sm">Interactive Map</p>
-                  <p className="text-xs">Los Angeles Metro Area</p>
+                  <p className="text-xs">Guatemala City Area</p>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mt-4">
-                We serve the greater Los Angeles area and surrounding regions. 
+                We serve Guatemala City and surrounding regions. 
                 Long-distance projects available upon request.
               </p>
             </Card>
