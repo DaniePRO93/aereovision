@@ -31,6 +31,7 @@ const servicePackages = [
     description: "High-resolution aerial shots perfect for real estate, events, and marketing campaigns.",
     startingPrice: 50,
     standardPrice: 150,
+    proPrice: 250,
     startingFeatures: [
       "5-10 high-res photos",
       "Basic editing",
@@ -44,6 +45,17 @@ const servicePackages = [
       "JPEG + RAW format delivery",
       "Multiple angles & compositions",
       "Property highlight shots"
+    ],
+    proFeatures: [
+      "50+ high-res photos",
+      "Premium editing & advanced color grading",
+      "20-25 min flight time",
+      "JPEG + RAW + edited formats",
+      "Multiple angles & artistic compositions",
+      "Property highlight + lifestyle shots",
+      "Drone + ground photography combo",
+      "Same-day preview delivery",
+      "Commercial usage rights"
     ],
     extras: [
       { name: "Extra flight time (per min)", price: 15 },
@@ -60,6 +72,7 @@ const servicePackages = [
     description: "Professional 4K drone footage with smooth cinematic movements and color grading.",
     startingPrice: 60,
     standardPrice: 180,
+    proPrice: 350,
     startingFeatures: [
       "Basic 4K drone footage",
       "3 min edited clip",
@@ -73,6 +86,17 @@ const servicePackages = [
       "Professional color grading",
       "Royalty-free music overlay",
       "Motion graphics & titles"
+    ],
+    proFeatures: [
+      "Premium 4K/6K drone footage",
+      "12 min edited clips (4x 3min)",
+      "Advanced cinematic movements & transitions",
+      "Hollywood-grade color grading",
+      "Custom music composition",
+      "Advanced motion graphics & VFX",
+      "Drone + ground video combo",
+      "Multiple camera angles",
+      "Commercial license included"
     ],
     extras: [
       { name: "Extra footage (per min)", price: 30 },
@@ -89,6 +113,7 @@ const servicePackages = [
     description: "Dynamic FPV drone flights through tight spaces with creative routing and post-processing.",
     startingPrice: 80,
     standardPrice: 240,
+    proPrice: 450,
     startingFeatures: [
       "Basic FPV footage",
       "4 min flight time",
@@ -102,6 +127,17 @@ const servicePackages = [
       "4K resolution + advanced post-processing",
       "Multiple creative angles",
       "Smooth transitions & cuts"
+    ],
+    proFeatures: [
+      "Premium FPV + cinematic drone combo",
+      "15 min total flight time",
+      "Complex multi-path routes",
+      "6K resolution + cinematic post-processing",
+      "Interior & exterior seamless transitions",
+      "Advanced VFX & speed ramping",
+      "Custom choreographed movements",
+      "Music synchronization",
+      "Professional commercial delivery"
     ],
     extras: [
       { name: "Extra complex routes", price: 40 },
@@ -118,6 +154,7 @@ const servicePackages = [
     description: "Professional ground-level photography for events, portraits, and product shoots.",
     startingPrice: 40,
     standardPrice: 100,
+    proPrice: 200,
     startingFeatures: [
       "1 hour session",
       "15-20 photos",
@@ -132,6 +169,17 @@ const servicePackages = [
       "Digital gallery + prints option",
       "Location scouting included"
     ],
+    proFeatures: [
+      "4-5 hour premium session",
+      "100+ high-res photos",
+      "Advanced editing & artistic processing",
+      "Multiple locations & setups",
+      "Premium digital gallery + print packages",
+      "Professional styling consultation",
+      "Behind-the-scenes video",
+      "Commercial usage rights",
+      "Same-day preview delivery"
+    ],
     extras: [
       { name: "Extra hour of shooting", price: 25 },
       { name: "Additional photo edits (per 10)", price: 15 },
@@ -145,7 +193,7 @@ const servicePackages = [
 const Options = () => {
   const { toast } = useToast();
   const [selectedPackages, setSelectedPackages] = useState<{[key: string]: {
-    tier: 'starting' | 'standard',
+    tier: 'starting' | 'standard' | 'pro',
     extras: string[]
   }}>({});
 
@@ -161,7 +209,7 @@ const Options = () => {
     }
   }, []);
 
-  const handlePackageSelect = (packageId: string, tier: 'starting' | 'standard') => {
+  const handlePackageSelect = (packageId: string, tier: 'starting' | 'standard' | 'pro') => {
     setSelectedPackages(prev => ({
       ...prev,
       [packageId]: {
@@ -189,7 +237,8 @@ const Options = () => {
       const pkg = servicePackages.find(p => p.id === packageId);
       if (!pkg) return total;
       
-      const basePrice = selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
+      const basePrice = selection.tier === 'pro' ? pkg.proPrice : 
+                        selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
       const extrasPrice = selection.extras.reduce((extrasTotal, extraName) => {
         const extra = pkg.extras.find(e => e.name === extraName);
         return extrasTotal + (extra?.price || 0);
@@ -272,8 +321,8 @@ const Options = () => {
                       </div>
                     </div>
 
-                    {/* Pricing Comparison */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    {/* Pricing Comparison - Now 3 columns */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                       {/* Starting Package */}
                       <div className={`relative rounded-2xl border-2 p-6 transition-all duration-300 ${
                         selection?.tier === 'starting' 
@@ -341,6 +390,44 @@ const Options = () => {
                           <Sparkles className="ml-2 h-4 w-4" />
                         </Button>
                       </div>
+
+                      {/* Pro Package */}
+                      <div className={`relative rounded-2xl border-2 p-6 transition-all duration-300 ${
+                        selection?.tier === 'pro' 
+                          ? 'border-neon-green bg-neon-green/5' 
+                          : 'border-border hover:border-neon-green/50'
+                      }`}>
+                        <div className="flex justify-between items-center mb-4">
+                          <h3 className="text-xl font-semibold">Pro Package</h3>
+                          <Badge className="bg-gradient-to-r from-neon-green to-primary text-black">Premium</Badge>
+                        </div>
+                        
+                        <div className="mb-6">
+                          <span className="text-4xl font-bold" style={{color: 'hsl(var(--neon-green))'}}>${pkg.proPrice}</span>
+                          <span className="text-muted-foreground ml-2">premium</span>
+                        </div>
+
+                        <ul className="space-y-3 mb-6">
+                          {pkg.proFeatures.map((feature, index) => (
+                            <li key={index} className="flex items-center text-sm">
+                              <Check className="h-4 w-4 mr-3 flex-shrink-0" style={{color: 'hsl(var(--neon-green))'}} />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <Button 
+                          className={`w-full ${
+                            selection?.tier === 'pro' 
+                              ? 'bg-gradient-to-r from-neon-green to-primary text-black hover:scale-105' 
+                              : 'btn-secondary-hero'
+                          }`}
+                          onClick={() => handlePackageSelect(pkg.id, 'pro')}
+                        >
+                          {selection?.tier === 'pro' ? 'Selected' : 'Select Pro'}
+                          <Sparkles className="ml-2 h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
 
                     {/* Add-on Extras */}
@@ -399,7 +486,8 @@ const Options = () => {
                     const pkg = servicePackages.find(p => p.id === packageId);
                     if (!pkg) return null;
                     
-                    const basePrice = selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
+                    const basePrice = selection.tier === 'pro' ? pkg.proPrice : 
+                                      selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
                     const extrasPrice = selection.extras.reduce((total, extraName) => {
                       const extra = pkg.extras.find(e => e.name === extraName);
                       return total + (extra?.price || 0);
