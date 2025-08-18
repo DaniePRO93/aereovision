@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const servicePackages = [
   {
@@ -248,7 +249,7 @@ const Options = () => {
     }, 0);
   };
 
-  const handleBookSelected = () => {
+  const handleBookSelected = async () => {
     const selectedCount = Object.keys(selectedPackages).length;
     if (selectedCount === 0) {
       toast({
@@ -259,15 +260,77 @@ const Options = () => {
       return;
     }
 
-    toast({
-      title: "Booking Request Prepared",
-      description: `${selectedCount} service(s) selected. Total: $${calculateTotal()}. Redirecting to contact...`,
-    });
+    // Prepare booking summary
+    const packagesSummary = Object.entries(selectedPackages).map(([packageId, selection]) => {
+      const pkg = servicePackages.find(p => p.id === packageId);
+      if (!pkg) return '';
+      
+      const tierPrice = selection.tier === 'pro' ? pkg.proPrice : 
+                       selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
+      
+      let summary = `${pkg.title} (${selection.tier.toUpperCase()}) - $${tierPrice}`;
+      
+      if (selection.extras.length > 0) {
+        summary += '\nExtras:\n';
+        selection.extras.forEach(extraName => {
+          const extra = pkg.extras.find(e => e.name === extraName);
+          if (extra) summary += `  - ${extra.name} (+$${extra.price})\n`;
+        });
+      }
+      
+      return summary;
+    }).join('\n\n');
 
-    // Scroll to contact or redirect
-    setTimeout(() => {
-      window.location.href = "/#contact";
-    }, 1500);
+    const totalAmount = calculateTotal();
+
+    // Prompt for contact details
+    const name = prompt("Please enter your name:");
+    if (!name) return;
+    
+    const email = prompt("Please enter your email address:");
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const phone = prompt("Please enter your phone number (optional):") || "";
+    const message = prompt("Any additional details or special requirements?") || "No additional requirements specified.";
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name,
+          email,
+          phone,
+          message,
+          type: 'booking',
+          packages: packagesSummary,
+          total: totalAmount
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Booking Request Sent!",
+        description: `Your booking request for $${totalAmount} has been sent. We'll contact you within 24 hours.`,
+      });
+
+      // Clear selections after successful booking
+      setSelectedPackages({});
+      
+    } catch (error) {
+      console.error('Error sending booking request:', error);
+      toast({
+        title: "Error Sending Booking",
+        description: "Please try again or contact us directly at danielrosalesdestaracacton@gmail.com",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
