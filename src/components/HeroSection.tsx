@@ -115,7 +115,7 @@ const HeroSection = () => {
                 <Users className="h-8 w-8 text-neon-green" />
               </div>
             </div>
-            <div className="font-display text-4xl font-black text-gradient-hero mb-3">50+</div>
+            <div className="font-display text-4xl font-black text-gradient-hero mb-3">20+</div>
             <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Happy Clients</div>
           </div>
           <div className="text-center group cursor-pointer" onClick={() => scrollToSection('services')}>
