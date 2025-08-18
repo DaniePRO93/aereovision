@@ -29,6 +29,7 @@ const Navigation = () => {
     { name: "Home", href: "home" },
     { name: "Portfolio", href: "portfolio" },
     { name: "Services", href: "services" },
+    { name: "Options", href: "/options", isExternal: true },
     { name: "About", href: "about" },
     { name: "Contact", href: "contact" },
   ];
@@ -61,7 +62,7 @@ const Navigation = () => {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => item.isExternal ? window.location.href = item.href : scrollToSection(item.href)}
                 className="font-body text-foreground hover:text-primary hover-glow transition-all duration-300 relative group font-medium tracking-wide"
               >
                 {item.name}
@@ -96,7 +97,7 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => item.isExternal ? window.location.href = item.href : scrollToSection(item.href)}
                   className="font-body text-foreground hover:text-primary hover-glow transition-all duration-300 py-3 font-medium tracking-wide text-left"
                 >
                   {item.name}
