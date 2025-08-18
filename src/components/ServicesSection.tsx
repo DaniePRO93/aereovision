@@ -165,6 +165,27 @@ const ServicesSection = () => {
           ))}
         </div>
 
+        {/* Options Page CTA */}
+        <div className="mt-16 text-center">
+          <Card className="card-glass p-8 max-w-3xl mx-auto hover:scale-105 transition-transform duration-300">
+            <h3 className="text-3xl font-bold mb-4">
+              <span className="text-glow">Compare & Customize</span>
+            </h3>
+            <p className="text-muted-foreground mb-6 text-lg">
+              Want to see detailed comparisons between starting and standard packages? 
+              Need to add specific extras to your shoot? Check out our options page!
+            </p>
+            
+            <Button 
+              className="btn-hero text-lg px-8 py-4"
+              onClick={() => window.location.href = '/options'}
+            >
+              View All Options & Extras
+              <Settings className="ml-2 h-5 w-5" />
+            </Button>
+          </Card>
+        </div>
+
         {/* Custom Package Section */}
         <div className="mt-16">
           <Card className="card-glass p-8 text-center max-w-4xl mx-auto hover:scale-105 transition-transform duration-300">
