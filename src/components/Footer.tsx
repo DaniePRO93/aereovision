@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { 
-  Camera, 
   Mail, 
   Phone, 
   MapPin,
@@ -11,6 +10,7 @@ import {
   MessageCircle,
   ArrowUp
 } from "lucide-react";
+import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -62,9 +62,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand & Contact */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6 cursor-pointer" onClick={scrollToTop}>
+            <div className="flex items-center space-x-3 mb-6 cursor-pointer group" onClick={scrollToTop}>
               <div className="p-2 bg-gradient-to-r from-primary to-primary-glow rounded-lg">
-                <Camera className="h-6 w-6 text-primary-foreground" />
+                <AeroVisionLogo size="small" animated />
               </div>
               <span className="text-xl font-bold text-metallic">AeroVision</span>
             </div>

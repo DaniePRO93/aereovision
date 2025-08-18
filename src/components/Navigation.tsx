@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Camera } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,9 +43,9 @@ const Navigation = () => {
         }`}>
           {/* Premium Logo */}
           <div className="flex items-center space-x-4">
-            <div className="relative p-3 bg-gradient-to-br from-primary/20 to-neon-green/20 rounded-2xl border border-primary/30 hover:scale-110 transition-transform duration-300 cursor-pointer"
+            <div className="relative p-3 bg-gradient-to-br from-primary/20 to-neon-green/20 rounded-2xl border border-primary/30 hover:scale-110 transition-transform duration-300 cursor-pointer group"
                  onClick={() => scrollToSection('home')}>
-              <Camera className="h-7 w-7 text-primary" />
+              <AeroVisionLogo size="medium" animated />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-neon-green/10 rounded-2xl animate-pulse-subtle" />
             </div>
             <span 
