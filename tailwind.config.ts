@@ -34,6 +34,10 @@ export default {
 					foreground: 'hsl(var(--secondary-foreground))',
 					bright: 'hsl(var(--secondary-bright))'
 				},
+				'neon-green': {
+					DEFAULT: 'hsl(var(--neon-green))',
+					glow: 'hsl(var(--neon-green-glow))'
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
@@ -71,8 +75,9 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'heading': ['Inter', 'system-ui', 'sans-serif'],
-				'body': ['Inter', 'system-ui', 'sans-serif']
+				'heading': ['Orbitron', 'system-ui', 'sans-serif'],
+				'body': ['Inter', 'system-ui', 'sans-serif'],
+				'display': ['Orbitron', 'system-ui', 'sans-serif']
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
