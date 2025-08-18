@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Play, ExternalLink, Eye } from "lucide-react";
 import fpvImage from "@/assets/fpv-drone-action.jpg";
 import realEstateImage from "@/assets/real-estate-aerial.jpg";
-import landscapeImage from "@/assets/landscape-aerial.jpg";
+import landscapeImage from "@/assets/mountain-lake-aerial.jpg";
 
 const portfolioItems = [
   {
