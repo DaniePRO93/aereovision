@@ -106,7 +106,7 @@ const HeroSection = () => {
                 <Award className="h-8 w-8 text-primary" />
               </div>
             </div>
-            <div className="font-display text-4xl font-black text-gradient-hero mb-3">500+</div>
+            <div className="font-display text-4xl font-black text-gradient-hero mb-3">50+</div>
             <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Projects Completed</div>
           </div>
           <div className="text-center group cursor-pointer" onClick={() => scrollToSection('about')}>
