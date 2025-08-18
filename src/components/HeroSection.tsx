@@ -57,13 +57,13 @@ const HeroSection = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <motion.h1 
-          className="font-display text-7xl md:text-8xl lg:text-9xl font-black mb-8 leading-[0.85] tracking-tight"
+          className="font-display text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem] font-black mb-8 leading-[0.8] tracking-tighter"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
         >
-          <span className="text-gradient-hero block">CINEMATIC</span>
-          <span className="text-metallic block">AERIALS</span>
+          <span className="text-gradient-hero block drop-shadow-2xl">CINEMATIC</span>
+          <span className="text-metallic block drop-shadow-2xl">AERIALS</span>
         </motion.h1>
         
         <p className="font-display text-2xl md:text-3xl text-primary-glow font-medium mb-6 max-w-3xl mx-auto tracking-wide">

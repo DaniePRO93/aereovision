@@ -72,11 +72,12 @@ const ServicesSection = () => {
     <section id="services" className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            💰 <span className="text-glow">AeroVision</span> <span className="text-metallic">Pricing Packages</span>
+        <div className="text-center mb-16 space-y-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            <span className="block">💰 <span className="text-glow">AeroVision</span></span>
+            <span className="block text-metallic">Pricing Packages</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
             Professional aerial and ground cinematography services starting at $30 per minute of flight. 
             Choose the package that fits your project, or contact us for a custom solution.
           </p>
