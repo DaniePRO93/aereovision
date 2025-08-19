@@ -1,241 +1,302 @@
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { 
   Camera, 
   Video, 
   Zap, 
   MapPin, 
-  Check, 
-  Sparkles,
-  MessageCircle,
+  Star,
+  ArrowRight,
   Settings
 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const services = [
+const serviceData = [
   {
+    id: "aerial-photography",
     icon: Camera,
     title: "Aerial Photography",
     description: "High-resolution aerial shots perfect for real estate, events, and marketing campaigns.",
-    features: ["10–20 high-res photos", "Basic editing & color correction", "5–10 min flight time", "JPEG/RAW format delivery"],
-    price: "From $50",
-    standardPrice: "$80–$150",
-    extra: "+$10–$15 per extra minute",
-    popular: false
+    startingPrice: 50,
+    standardPrice: 150,
+    proPrice: 250,
+    features: ["High-resolution photos", "Professional editing", "Multiple angles", "Fast delivery"],
+    popular: false,
+    startingFeatures: [
+      "5-10 high-res photos",
+      "Basic editing",
+      "5 min flight time",
+      "JPEG format delivery"
+    ],
+    standardFeatures: [
+      "20-30 high-res photos",
+      "Professional editing & color correction",
+      "10-15 min flight time",
+      "JPEG + RAW format delivery",
+      "Multiple angles & compositions",
+      "Property highlight shots"
+    ],
+    proFeatures: [
+      "50+ high-res photos",
+      "Premium editing & advanced color grading",
+      "20-25 min flight time",
+      "JPEG + RAW + edited formats",
+      "Multiple angles & artistic compositions",
+      "Property highlight + lifestyle shots",
+      "Drone + ground photography combo",
+      "Same-day preview delivery",
+      "Commercial usage rights"
+    ],
+    extras: [
+      { name: "Extra flight time (per min)", price: 15 },
+      { name: "Rush delivery (24hrs)", price: 25 },
+      { name: "Additional editing requests", price: 20 },
+      { name: "Sunset/Golden hour timing", price: 30 },
+      { name: "360° panoramic shots", price: 40 }
+    ]
   },
   {
+    id: "cinematic-videography",
     icon: Video,
-    title: "Cinematic Videography", 
+    title: "Cinematic Videography",
     description: "Professional 4K drone footage with smooth cinematic movements and color grading.",
-    features: ["4K drone footage", "Smooth cinematic movements", "Basic color grading", "Royalty-free music overlay", "1–2 edited clips (up to 3 min each)"],
-    price: "From $60",
-    standardPrice: "$180 for 6 min",
-    extra: "+$30 per extra minute",
-    popular: true
+    startingPrice: 60,
+    standardPrice: 180,
+    proPrice: 350,
+    features: ["4K video quality", "Cinematic movements", "Professional editing", "Music overlay"],
+    popular: true,
+    startingFeatures: [
+      "Basic 4K drone footage",
+      "3 min edited clip",
+      "Basic stabilization",
+      "Standard delivery (7 days)"
+    ],
+    standardFeatures: [
+      "Professional 4K drone footage",
+      "6 min edited clips (2x 3min)",
+      "Smooth cinematic movements",
+      "Professional color grading",
+      "Royalty-free music overlay",
+      "Motion graphics & titles"
+    ],
+    proFeatures: [
+      "Premium 4K/6K drone footage",
+      "12 min edited clips (4x 3min)",
+      "Advanced cinematic movements & transitions",
+      "Hollywood-grade color grading",
+      "Custom music composition",
+      "Advanced motion graphics & VFX",
+      "Drone + ground video combo",
+      "Multiple camera angles",
+      "Commercial license included"
+    ],
+    extras: [
+      { name: "Extra footage (per min)", price: 30 },
+      { name: "Custom music licensing", price: 50 },
+      { name: "Advanced VFX effects", price: 75 },
+      { name: "Drone + ground combo", price: 100 },
+      { name: "Multiple location shoots", price: 80 }
+    ]
   },
   {
+    id: "fpv-drone-tours",
     icon: Zap,
     title: "FPV Drone Tours",
     description: "Dynamic FPV drone flights through tight spaces with creative routing and post-processing.",
-    features: ["FPV footage through tight spaces", "Smooth tracking & creative routes", "4K resolution + post-processing", "4–5 min starting flight time"],
-    price: "From $80",
-    standardPrice: "$240 for 8 min",
-    extra: "+$30 per extra minute",
-    popular: false
+    startingPrice: 80,
+    standardPrice: 240,
+    proPrice: 450,
+    features: ["FPV immersive experience", "Creative flight paths", "Advanced post-processing", "Unique perspectives"],
+    popular: false,
+    startingFeatures: [
+      "Basic FPV footage",
+      "4 min flight time",
+      "Standard post-processing",
+      "Single route/path"
+    ],
+    standardFeatures: [
+      "Professional FPV footage",
+      "8 min total flight time",
+      "Creative routes & tracking",
+      "4K resolution + advanced post-processing",
+      "Multiple creative angles",
+      "Smooth transitions & cuts"
+    ],
+    proFeatures: [
+      "Premium FPV + cinematic drone combo",
+      "15 min total flight time",
+      "Complex multi-path routes",
+      "6K resolution + cinematic post-processing",
+      "Interior & exterior seamless transitions",
+      "Advanced VFX & speed ramping",
+      "Custom choreographed movements",
+      "Music synchronization",
+      "Professional commercial delivery"
+    ],
+    extras: [
+      { name: "Extra complex routes", price: 40 },
+      { name: "Interior + exterior combo", price: 60 },
+      { name: "Slow-motion sequences", price: 35 },
+      { name: "Custom flight patterns", price: 50 },
+      { name: "Night/low-light FPV", price: 70 }
+    ]
   },
   {
+    id: "ground-photography",
     icon: MapPin,
     title: "Ground Photography",
     description: "Professional ground-level photography for events, portraits, and product shoots.",
-    features: ["Full event coverage", "20–40 high-res photos", "Basic editing & correction", "Professional session"],
-    price: "From $40",
-    standardPrice: "$100 per session",
-    extra: "+$10 per extra 10 photos",
-    popular: false
+    startingPrice: 40,
+    standardPrice: 100,
+    proPrice: 200,
+    features: ["Professional photography", "Multiple setups", "High-resolution images", "Digital gallery"],
+    popular: false,
+    startingFeatures: [
+      "1 hour session",
+      "15-20 photos",
+      "Basic editing",
+      "Digital delivery only"
+    ],
+    standardFeatures: [
+      "2-3 hour session",
+      "40-60 high-res photos",
+      "Professional editing & correction",
+      "Multiple outfit/setup changes",
+      "Digital gallery + prints option",
+      "Location scouting included"
+    ],
+    proFeatures: [
+      "4-5 hour premium session",
+      "100+ high-res photos",
+      "Advanced editing & artistic processing",
+      "Multiple locations & setups",
+      "Premium digital gallery + print packages",
+      "Professional styling consultation",
+      "Behind-the-scenes video",
+      "Commercial usage rights",
+      "Same-day preview delivery"
+    ],
+    extras: [
+      { name: "Extra hour of shooting", price: 25 },
+      { name: "Additional photo edits (per 10)", price: 15 },
+      { name: "Print package (20 photos)", price: 45 },
+      { name: "Same-day preview delivery", price: 20 },
+      { name: "Professional makeup artist", price: 80 }
+    ]
   }
 ];
 
-const ServicesSection = () => {
-  const { toast } = useToast();
+interface ServicesSectionProps {
+  onPackageSelect?: (pkg: typeof serviceData[0]) => void;
+}
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleServiceInquiry = (serviceName: string) => {
-    scrollToContact();
-    toast({
-      title: "Service Selected",
-      description: `Redirecting to contact form for ${serviceName}`,
-    });
-  };
+const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
+  const [elementRef] = useScrollAnimation();
 
   return (
-    <section id="services" className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="py-24 bg-gradient-to-b from-background to-muted/20">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16 space-y-6">
+        <div className="text-center mb-16 space-y-6" ref={elementRef}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-            <span className="block">💰 <span className="text-glow">AeroVision</span></span>
-            <span className="block text-metallic">Pricing Packages</span>
+            <span className="block">🚁 <span className="text-glow">Professional</span></span>
+            <span className="block text-metallic">Drone Services</span>
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
-            Professional aerial and ground cinematography services. Starting prices are school-friendly, 
-            with full professional packages available. Prices are based on flight time, complexity, and editing.
+            From budget-friendly starting packages to premium professional services. 
+            Each service offers multiple tiers with customizable extras.
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+          {serviceData.map((service, index) => (
             <Card 
-              key={index}
-              className={`relative overflow-hidden group hover-lift hover:scale-105 transition-all duration-300 ${
+              key={service.id}
+              className={`group hover-lift transition-all duration-500 cursor-pointer ${
                 service.popular ? 'card-neon' : 'card-glass'
               }`}
             >
-              {/* Popular Badge */}
-              {service.popular && (
-                <div className="absolute top-4 right-4 z-10">
-                  <div className="bg-primary px-3 py-1 rounded-full text-xs font-semibold text-primary-foreground">
-                    Popular
+              <CardContent className="p-0">
+                <div className="p-6">
+                  {/* Icon & Badge */}
+                  <div className="flex justify-between items-start mb-6">
+                    <div className={`inline-flex p-4 rounded-xl ${
+                      service.popular 
+                        ? 'bg-primary/20 text-primary animate-glow' 
+                        : 'bg-secondary/20 text-secondary-bright'
+                    }`}>
+                      <service.icon className="h-8 w-8" />
+                    </div>
+                    
+                    {service.popular && (
+                      <Badge className="bg-gradient-to-r from-primary to-neon-green text-white animate-pulse">
+                        <Star className="w-3 h-3 mr-1" />
+                        Most Popular
+                      </Badge>
+                    )}
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  <div className="space-y-6">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl font-bold text-primary">From ${service.startingPrice}</span>
+                        {service.popular && (
+                          <Badge className="bg-gradient-to-r from-primary to-neon-green text-white">
+                            <Star className="w-3 h-3 mr-1" />
+                            Most Popular
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground">Starting package price</p>
+                    </div>
+
+                    <ul className="space-y-3">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="pt-6 space-y-3">
+                      <Button 
+                        className="w-full btn-hero group"
+                        onClick={() => onPackageSelect?.(service)}
+                      >
+                        <Settings className="w-4 h-4 mr-2" />
+                        Customize Package
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                      
+                      <Button 
+                        variant="outline" 
+                        className="w-full btn-secondary-hero"
+                        onClick={() => {
+                          const element = document.getElementById('contact');
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                      >
+                        Get Quick Quote
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              )}
-
-              <div className="p-6">
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className={`inline-flex p-3 rounded-lg cursor-pointer hover:scale-110 transition-transform ${
-                    service.popular 
-                      ? 'bg-primary/20 text-primary' 
-                      : 'bg-secondary/20 text-secondary-bright'
-                  }`}>
-                    <service.icon className="h-8 w-8" />
-                  </div>
-                </div>
-
-                {/* Title & Description */}
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm">
-                      <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Price */}
-                <div className="mb-2">
-                  <span className="text-2xl font-bold" style={{ color: '#FFD700' }}>{service.price}</span>
-                </div>
-                <div className="mb-4">
-                  <span className="text-lg font-semibold" style={{ color: '#FFD700' }}>{service.standardPrice}</span>
-                  <span className="text-muted-foreground ml-1">/standard</span>
-                </div>
-
-                {/* Extra pricing */}
-                <div className="mb-6">
-                  <span className="text-sm text-muted-foreground">{service.extra}</span>
-                </div>
-
-                {/* CTA Button */}
-                <Button 
-                  className={`w-full group ${
-                    service.popular ? 'btn-hero' : 'btn-secondary-hero'
-                  }`}
-                  onClick={() => handleServiceInquiry(service.title)}
-                >
-                  Book a Shoot
-                  <Sparkles className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                </Button>
-              </div>
+              </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Custom Packages CTA */}
-        <div className="mt-16 text-center">
-          <Card className="card-neon p-12 max-w-4xl mx-auto hover:scale-105 transition-transform duration-300 relative overflow-hidden">
-            {/* Animated background glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-neon-green/10 to-primary/10 animate-pulse-glow" />
-            
-            <div className="relative z-10">
-              <h3 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="text-gradient-hero">✨ Custom Packages</span>
-              </h3>
-              <p className="text-muted-foreground mb-8 text-xl leading-relaxed max-w-3xl mx-auto">
-                Mix and match services, compare starting vs premium packages, and add custom extras 
-                to create your perfect drone photography experience!
-              </p>
-              
-              <Button 
-                className="btn-hero text-xl px-12 py-6 text-primary-foreground shadow-[0_0_40px_hsl(var(--primary)/0.6),0_15px_50px_hsl(0_0%_0%/0.4)] hover:shadow-[0_0_60px_hsl(var(--primary)/0.8),0_20px_60px_hsl(0_0%_0%/0.5)] transform hover:scale-110 transition-all duration-500 relative overflow-hidden group"
-                onClick={() => window.location.href = '/options'}
-              >
-                <span className="relative z-10 flex items-center">
-                  🎯 Build Your Custom Package
-                  <Sparkles className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
-                </span>
-                
-                {/* Shiny effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              </Button>
-            </div>
-          </Card>
-        </div>
-
-        {/* Custom Package Section */}
-        <div className="mt-16">
-          <Card className="card-glass p-8 text-center max-w-4xl mx-auto hover:scale-105 transition-transform duration-300">
-            <h3 className="text-2xl font-bold mb-4">
-              <span className="text-glow">Custom Package</span>
-            </h3>
-            <p className="text-muted-foreground mb-6 text-lg">
-              Flexible pricing for combined aerial + ground projects or special requests. 
-              Starting at ~$120 for small school projects.
-            </p>
-            <p className="text-primary font-semibold mb-8" style={{ color: '#FFD700' }}>
-              Full Project Example: Drone + Ground + Edited Video (6–8 min) → ~$300–$400
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                className="btn-hero"
-                onClick={scrollToContact}
-              >
-                Book a Shoot
-                <Camera className="ml-2 h-4 w-4" />
-              </Button>
-              
-              <Button 
-                className="btn-secondary-hero"
-                onClick={() => window.location.href = '/options'}
-              >
-                Compare Options & Extras
-                <Settings className="ml-2 h-4 w-4" />
-              </Button>
-              
-              <Button 
-                className="btn-secondary-hero"
-                onClick={() => window.open('https://wa.me/50258221477?text=Hi! I need a custom quote for my project.', '_blank')}
-              >
-                Contact for Custom Quote
-                <MessageCircle className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
         </div>
       </div>
     </section>

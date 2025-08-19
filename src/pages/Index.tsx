@@ -7,21 +7,12 @@ import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import { BookingModal } from "@/components/BookingModal";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useToast } from "@/hooks/use-toast";
+import { ServicePackageModal } from "@/components/ServicePackageModal";
 import { 
   Camera, 
   Video, 
   Zap, 
-  MapPin, 
-  Check, 
-  X,
-  Sparkles,
-  ShoppingCart
+  MapPin
 } from "lucide-react";
 
 // Service packages data
@@ -193,12 +184,8 @@ const servicePackages = [
 ];
 
 const Index = () => {
-  const { toast } = useToast();
-  const [selectedPackages, setSelectedPackages] = useState<{[key: string]: {
-    tier: 'starting' | 'standard' | 'pro',
-    extras: string[]
-  }}>({});
-  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<typeof servicePackages[0] | null>(null);
+  const [showPackageModal, setShowPackageModal] = useState(false);
 
   useEffect(() => {
     // SEO Meta Tags
@@ -225,83 +212,9 @@ const Index = () => {
     }
   }, []);
 
-  const handlePackageSelect = (packageId: string, tier: 'starting' | 'standard' | 'pro') => {
-    setSelectedPackages(prev => ({
-      ...prev,
-      [packageId]: {
-        tier,
-        extras: prev[packageId]?.extras || []
-      }
-    }));
-  };
-
-  const handleExtraToggle = (packageId: string, extraName: string) => {
-    setSelectedPackages(prev => ({
-      ...prev,
-      [packageId]: {
-        ...prev[packageId],
-        tier: prev[packageId]?.tier || 'starting',
-        extras: prev[packageId]?.extras?.includes(extraName)
-          ? prev[packageId].extras.filter(e => e !== extraName)
-          : [...(prev[packageId]?.extras || []), extraName]
-      }
-    }));
-  };
-
-  const calculateTotal = () => {
-    return Object.entries(selectedPackages).reduce((total, [packageId, selection]) => {
-      const pkg = servicePackages.find(p => p.id === packageId);
-      if (!pkg) return total;
-      
-      const basePrice = selection.tier === 'pro' ? pkg.proPrice : 
-                        selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
-      const extrasPrice = selection.extras.reduce((extrasTotal, extraName) => {
-        const extra = pkg.extras.find(e => e.name === extraName);
-        return extrasTotal + (extra?.price || 0);
-      }, 0);
-      
-      return total + basePrice + extrasPrice;
-    }, 0);
-  };
-
-  const handleBookSelected = () => {
-    const selectedCount = Object.keys(selectedPackages).length;
-    if (selectedCount === 0) {
-      toast({
-        title: "No Services Selected",
-        description: "Please select at least one service package to proceed.",
-        variant: "destructive"
-      });
-      return;
-    }
-    setShowBookingModal(true);
-  };
-
-  const getSelectedPackagesForModal = () => {
-    return Object.entries(selectedPackages).map(([packageId, selection]) => {
-      const pkg = servicePackages.find(p => p.id === packageId);
-      if (!pkg) return null;
-      
-      const tierPrice = selection.tier === 'pro' ? pkg.proPrice : 
-                       selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
-      
-      const selectedExtras = selection.extras.map(extraName => {
-        const extra = pkg.extras.find(e => e.name === extraName);
-        return extra ? { name: extra.name, price: extra.price } : null;
-      }).filter(Boolean) as Array<{ name: string; price: number }>;
-      
-      return {
-        title: pkg.title,
-        tier: selection.tier,
-        price: tierPrice,
-        extras: selectedExtras
-      };
-    }).filter(Boolean) as Array<{
-      title: string;
-      tier: string;
-      price: number;
-      extras: Array<{ name: string; price: number }>;
-    }>;
+  const handlePackageSelect = (pkg: typeof servicePackages[0]) => {
+    setSelectedPackage(pkg);
+    setShowPackageModal(true);
   };
 
   return (
@@ -314,239 +227,7 @@ const Index = () => {
         </section>
         
         <PortfolioSection />
-        <ServicesSection />
-
-        {/* Service Options & Pricing Section */}
-        <section id="pricing" className="py-24 bg-gradient-to-b from-background to-muted/20">
-          <div className="max-w-7xl mx-auto px-6">
-            {/* Section Header */}
-            <div className="text-center mb-16 space-y-6">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-                <span className="block">⚙️ <span className="text-glow">Service</span></span>
-                <span className="block text-metallic">Options & Pricing</span>
-              </h2>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
-                Compare starting packages vs full professional services. Add extras to customize your perfect shoot package.
-              </p>
-            </div>
-
-            {/* Service Packages */}
-            <div className="space-y-12">
-              {servicePackages.map((pkg) => {
-                const selection = selectedPackages[pkg.id];
-                const isSelected = !!selection;
-                
-                return (
-                  <Card key={pkg.id} className={`card-glass overflow-hidden ${isSelected ? 'card-neon' : ''}`}>
-                    <div className="p-8">
-                      {/* Package Header */}
-                      <div className="flex items-center mb-8">
-                        <div className="inline-flex p-4 rounded-lg bg-primary/20 text-primary mr-6">
-                          <pkg.icon className="h-8 w-8" />
-                        </div>
-                        <div>
-                          <h3 className="text-3xl font-bold mb-2">{pkg.title}</h3>
-                          <p className="text-muted-foreground text-lg">{pkg.description}</p>
-                        </div>
-                      </div>
-
-                      {/* Pricing Comparison - 3 columns */}
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                        {/* Starting Package */}
-                        <div className={`relative rounded-2xl border-2 p-6 transition-all duration-300 ${
-                          selection?.tier === 'starting' 
-                            ? 'border-primary bg-primary/5' 
-                            : 'border-border hover:border-primary/50'
-                        }`}>
-                          <div className="flex justify-between items-center mb-4">
-                            <h4 className="text-xl font-semibold">Starting Package</h4>
-                            <Badge variant="secondary">Budget Friendly</Badge>
-                          </div>
-                          
-                          <div className="mb-6">
-                            <span className="text-4xl font-bold text-primary">${pkg.startingPrice}</span>
-                            <span className="text-muted-foreground ml-2">base price</span>
-                          </div>
-
-                          <ul className="space-y-3 mb-6">
-                            {pkg.startingFeatures.map((feature, index) => (
-                              <li key={index} className="flex items-center text-sm">
-                                <Check className="h-4 w-4 text-primary mr-3 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          <Button 
-                            className={`w-full ${selection?.tier === 'starting' ? 'btn-hero' : 'btn-secondary-hero'}`}
-                            onClick={() => handlePackageSelect(pkg.id, 'starting')}
-                          >
-                            {selection?.tier === 'starting' ? 'Selected' : 'Select Starting'}
-                            <Sparkles className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        {/* Standard Package */}
-                        <div className={`relative rounded-2xl border-2 p-6 transition-all duration-300 ${
-                          selection?.tier === 'standard' 
-                            ? 'border-primary bg-primary/5' 
-                            : 'border-border hover:border-primary/50'
-                        }`}>
-                          <div className="flex justify-between items-center mb-4">
-                            <h4 className="text-xl font-semibold">Standard Package</h4>
-                            <Badge className="bg-gradient-to-r from-primary to-primary-glow">Professional</Badge>
-                          </div>
-                          
-                          <div className="mb-6">
-                            <span className="text-4xl font-bold text-primary">${pkg.standardPrice}</span>
-                            <span className="text-muted-foreground ml-2">full service</span>
-                          </div>
-
-                          <ul className="space-y-3 mb-6">
-                            {pkg.standardFeatures.map((feature, index) => (
-                              <li key={index} className="flex items-center text-sm">
-                                <Check className="h-4 w-4 text-primary mr-3 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          <Button 
-                            className={`w-full ${selection?.tier === 'standard' ? 'btn-hero' : 'btn-secondary-hero'}`}
-                            onClick={() => handlePackageSelect(pkg.id, 'standard')}
-                          >
-                            {selection?.tier === 'standard' ? 'Selected' : 'Select Standard'}
-                            <Sparkles className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        {/* Pro Package */}
-                        <div className={`relative rounded-2xl border-2 p-6 transition-all duration-300 ${
-                          selection?.tier === 'pro' 
-                            ? 'border-neon-green bg-neon-green/5' 
-                            : 'border-border hover:border-neon-green/50'
-                        }`}>
-                          <div className="flex justify-between items-center mb-4">
-                            <h4 className="text-xl font-semibold">Pro Package</h4>
-                            <Badge className="bg-gradient-to-r from-neon-green to-primary text-white">Premium</Badge>
-                          </div>
-                          
-                          <div className="mb-6">
-                            <span className="text-4xl font-bold text-neon-green">${pkg.proPrice}</span>
-                            <span className="text-muted-foreground ml-2">premium</span>
-                          </div>
-
-                          <ul className="space-y-3 mb-6">
-                            {pkg.proFeatures.map((feature, index) => (
-                              <li key={index} className="flex items-center text-sm">
-                                <Check className="h-4 w-4 text-neon-green mr-3 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          <Button 
-                            className={`w-full ${selection?.tier === 'pro' ? 'bg-gradient-to-r from-neon-green to-neon-green-glow text-white shadow-[0_0_25px_hsl(var(--neon-green)/0.4)]' : 'btn-secondary-hero'}`}
-                            onClick={() => handlePackageSelect(pkg.id, 'pro')}
-                          >
-                            {selection?.tier === 'pro' ? 'Selected' : 'Select Pro'}
-                            <Sparkles className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-
-                      {/* Extras Section */}
-                      {isSelected && (
-                        <div className="mt-8 p-6 bg-muted/30 rounded-2xl border border-border/50">
-                          <h4 className="text-xl font-semibold mb-4 flex items-center">
-                            <span className="text-neon-green mr-2">+</span>
-                            Add Extras
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {pkg.extras.map((extra, index) => (
-                              <div key={index} className="flex items-center justify-between p-3 bg-background/50 rounded-lg border border-border/30">
-                                <div className="flex items-center">
-                                  <Checkbox
-                                    id={`${pkg.id}-extra-${index}`}
-                                    checked={selection.extras.includes(extra.name)}
-                                    onCheckedChange={() => handleExtraToggle(pkg.id, extra.name)}
-                                    className="mr-3"
-                                  />
-                                  <label htmlFor={`${pkg.id}-extra-${index}`} className="text-sm font-medium cursor-pointer">
-                                    {extra.name}
-                                  </label>
-                                </div>
-                                <span className="text-sm font-bold text-neon-green">+${extra.price}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </Card>
-                );
-              })}
-            </div>
-
-            {/* Booking Summary */}
-            {Object.keys(selectedPackages).length > 0 && (
-              <div className="mt-16">
-                <Card className="card-neon p-8 max-w-4xl mx-auto">
-                  <h3 className="text-3xl font-bold mb-6 text-center">
-                    <span className="text-glow">Booking Summary</span>
-                  </h3>
-                  
-                  <div className="space-y-4 mb-8">
-                    {Object.entries(selectedPackages).map(([packageId, selection]) => {
-                      const pkg = servicePackages.find(p => p.id === packageId);
-                      if (!pkg) return null;
-                      
-                      const basePrice = selection.tier === 'pro' ? pkg.proPrice : 
-                                        selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
-                      const extrasPrice = selection.extras.reduce((total, extraName) => {
-                        const extra = pkg.extras.find(e => e.name === extraName);
-                        return total + (extra?.price || 0);
-                      }, 0);
-                      
-                      return (
-                        <div key={packageId} className="flex justify-between items-center p-4 bg-card/50 rounded-lg">
-                          <div>
-                            <h4 className="font-semibold">{pkg.title}</h4>
-                            <p className="text-sm text-muted-foreground">
-                              {selection.tier} package
-                              {selection.extras.length > 0 && ` + ${selection.extras.length} extras`}
-                            </p>
-                          </div>
-                          <span className="text-xl font-bold text-primary">
-                            ${basePrice + extrasPrice}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <div className="border-t border-border pt-6 mb-8">
-                    <div className="flex justify-between items-center text-2xl font-bold">
-                      <span>Total Cost:</span>
-                      <span className="text-primary">${calculateTotal()}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button 
-                      className="btn-hero text-lg px-8 py-4"
-                      onClick={handleBookSelected}
-                    >
-                      Book Selected Services
-                      <ShoppingCart className="ml-2 h-5 w-5" />
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            )}
-          </div>
-        </section>
-        
+        <ServicesSection onPackageSelect={handlePackageSelect} />
         <AboutSection />
         <TestimonialsSection />
         <ContactSection />
@@ -554,12 +235,11 @@ const Index = () => {
       
       <Footer />
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={showBookingModal}
-        onClose={() => setShowBookingModal(false)}
-        packages={getSelectedPackagesForModal()}
-        total={calculateTotal()}
+      {/* Service Package Modal */}
+      <ServicePackageModal
+        isOpen={showPackageModal}
+        onClose={() => setShowPackageModal(false)}
+        package={selectedPackage}
       />
     </div>
   );
