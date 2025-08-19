@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { BookingModal } from "@/components/BookingModal";
 import { 
   Camera, 
   Video, 
@@ -18,11 +19,11 @@ import {
   Image,
   Music,
   Palette,
-  ArrowLeft
+  ArrowLeft,
+  ShoppingCart
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
 const servicePackages = [
   {
@@ -197,6 +198,7 @@ const Options = () => {
     tier: 'starting' | 'standard' | 'pro',
     extras: string[]
   }}>({});
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
   useEffect(() => {
     // SEO Meta Tags
@@ -249,7 +251,7 @@ const Options = () => {
     }, 0);
   };
 
-  const handleBookSelected = async () => {
+  const handleBookSelected = () => {
     const selectedCount = Object.keys(selectedPackages).length;
     if (selectedCount === 0) {
       toast({
@@ -259,78 +261,39 @@ const Options = () => {
       });
       return;
     }
+    setShowBookingModal(true);
+  };
 
-    // Prepare booking summary
-    const packagesSummary = Object.entries(selectedPackages).map(([packageId, selection]) => {
+  const handleBookingSuccess = () => {
+    setSelectedPackages({});
+    setShowBookingModal(false);
+  };
+
+  const getSelectedPackagesForModal = () => {
+    return Object.entries(selectedPackages).map(([packageId, selection]) => {
       const pkg = servicePackages.find(p => p.id === packageId);
-      if (!pkg) return '';
+      if (!pkg) return null;
       
       const tierPrice = selection.tier === 'pro' ? pkg.proPrice : 
                        selection.tier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
       
-      let summary = `${pkg.title} (${selection.tier.toUpperCase()}) - $${tierPrice}`;
+      const selectedExtras = selection.extras.map(extraName => {
+        const extra = pkg.extras.find(e => e.name === extraName);
+        return extra ? { name: extra.name, price: extra.price } : null;
+      }).filter(Boolean) as Array<{ name: string; price: number }>;
       
-      if (selection.extras.length > 0) {
-        summary += '\nExtras:\n';
-        selection.extras.forEach(extraName => {
-          const extra = pkg.extras.find(e => e.name === extraName);
-          if (extra) summary += `  - ${extra.name} (+$${extra.price})\n`;
-        });
-      }
-      
-      return summary;
-    }).join('\n\n');
-
-    const totalAmount = calculateTotal();
-
-    // Prompt for contact details
-    const name = prompt("Please enter your name:");
-    if (!name) return;
-    
-    const email = prompt("Please enter your email address:");
-    if (!email || !email.includes('@')) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    const phone = prompt("Please enter your phone number (optional):") || "";
-    const message = prompt("Any additional details or special requirements?") || "No additional requirements specified.";
-
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          name,
-          email,
-          phone,
-          message,
-          type: 'booking',
-          packages: packagesSummary,
-          total: totalAmount
-        }
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Booking Request Sent!",
-        description: `Your booking request for $${totalAmount} has been sent. We'll contact you within 24 hours.`,
-      });
-
-      // Clear selections after successful booking
-      setSelectedPackages({});
-      
-    } catch (error) {
-      console.error('Error sending booking request:', error);
-      toast({
-        title: "Error Sending Booking",
-        description: "Please try again or contact us directly at danielrosalesdestaracacton@gmail.com",
-        variant: "destructive"
-      });
-    }
+      return {
+        title: pkg.title,
+        tier: selection.tier,
+        price: tierPrice,
+        extras: selectedExtras
+      };
+    }).filter(Boolean) as Array<{
+      title: string;
+      tier: string;
+      price: number;
+      extras: Array<{ name: string; price: number }>;
+    }>;
   };
 
   return (
@@ -586,7 +549,7 @@ const Options = () => {
                     onClick={handleBookSelected}
                   >
                     Book Selected Services
-                    <Camera className="ml-2 h-5 w-5" />
+                    <ShoppingCart className="ml-2 h-5 w-5" />
                   </Button>
                   
                   <Button 
@@ -600,6 +563,14 @@ const Options = () => {
               </Card>
             </div>
           )}
+
+          {/* Booking Modal */}
+          <BookingModal
+            isOpen={showBookingModal}
+            onClose={() => setShowBookingModal(false)}
+            packages={getSelectedPackagesForModal()}
+            total={calculateTotal()}
+          />
         </div>
       </main>
     </div>

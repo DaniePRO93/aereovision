@@ -19,27 +19,27 @@
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 96%;
 
-    /* Primary Brand Colors - Electric Blue */
-    --primary: 200 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --primary-glow: 200 100% 65%;
+    /* Primary Brand Colors - Deep Professional Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 70%;
 
-    /* Secondary Colors - Silver/Metallic */
-    --secondary: 210 20% 25%;
-    --secondary-foreground: 0 0% 90%;
-    --secondary-bright: 210 25% 80%;
+    /* Secondary Colors - Sophisticated Gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 215 25% 27%;
+    --secondary-bright: 220 14% 90%;
 
-    /* Neon Green Accent */
-    --neon-green: 120 100% 50%;
-    --neon-green-glow: 120 100% 60%;
+    /* Accent Colors - Trust Green */
+    --neon-green: 142 76% 36%;
+    --neon-green-glow: 142 76% 46%;
 
     /* Muted Colors */
     --muted: 0 0% 8%;
     --muted-foreground: 0 0% 65%;
 
-    /* Accent Colors - Neon Blue */
-    --accent: 200 100% 55%;
-    --accent-foreground: 0 0% 5%;
+    /* Accent Colors - Professional Blue */
+    --accent: 217 91% 55%;
+    --accent-foreground: 0 0% 100%;
 
     /* Destructive Colors */
     --destructive: 0 75% 55%;
