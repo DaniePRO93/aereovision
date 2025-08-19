@@ -38,7 +38,7 @@ const handler = async (req: Request): Promise<Response> => {
       total 
     }: ContactEmailRequest = await req.json();
 
-    console.log("Received email request:", { name, email, type, total });
+    console.log("Received email request:", { name, email, type, total, timestamp: new Date().toISOString() });
 
     // Email to the business owner
     const businessEmailResponse = await resend.emails.send({
