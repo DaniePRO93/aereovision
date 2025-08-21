@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,17 +42,14 @@ const Navigation = () => {
         }`}>
           {/* Premium Logo */}
           <div className="flex items-center space-x-4">
-            <div className="relative p-3 bg-gradient-to-br from-primary/20 to-neon-green/20 rounded-2xl border border-primary/30 hover:scale-110 transition-transform duration-300 cursor-pointer group"
+            <div className="relative hover:scale-110 transition-transform duration-300 cursor-pointer group"
                  onClick={() => scrollToSection('home')}>
-              <AeroVisionLogo size="medium" animated />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-neon-green/10 rounded-2xl animate-pulse-subtle" />
+              <img 
+                src="/lovable-uploads/2b7b0ec8-410f-43d4-9938-45825ed770c9.png" 
+                alt="AeroVision Logo" 
+                className="h-12 w-auto object-contain"
+              />
             </div>
-            <span 
-              className="font-display text-2xl font-bold text-gradient-hero tracking-wider cursor-pointer"
-              onClick={() => scrollToSection('home')}
-            >
-              AEROVISION
-            </span>
           </div>
 
           {/* Premium Desktop Navigation */}
