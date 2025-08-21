@@ -1,9 +1,30 @@
 
 import { Button } from "@/components/ui/button";
 import { Instagram, ExternalLink } from "lucide-react";
-import latestPost from "@/assets/latest-instagram-post.jpg";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const PortfolioSection = () => {
+  const [latestPost, setLatestPost] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLatestPost = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('fetch-instagram-posts');
+        if (data && data.length > 0) {
+          setLatestPost(data[0]);
+        }
+      } catch (error) {
+        console.error('Error fetching Instagram posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLatestPost();
+  }, []);
+
   const openInstagram = () => {
     window.location.href = 'https://www.instagram.com/aereovision.gt/';
   };
@@ -25,11 +46,21 @@ const PortfolioSection = () => {
         <div className="text-center">
           <div className="card-glass inline-block p-8 rounded-2xl max-w-lg mx-auto">
             <div className="mb-6">
-              <img 
-                src={latestPost} 
-                alt="Último post de AereVision - Vista aérea de Guatemala" 
-                className="w-full h-64 object-cover rounded-lg mb-4"
-              />
+              {loading ? (
+                <div className="w-full h-64 bg-muted animate-pulse rounded-lg mb-4 flex items-center justify-center">
+                  <Instagram className="h-12 w-12 text-muted-foreground" />
+                </div>
+              ) : latestPost ? (
+                <img 
+                  src={latestPost.imageUrl} 
+                  alt={latestPost.caption || "Último post de AereVision"} 
+                  className="w-full h-64 object-cover rounded-lg mb-4"
+                />
+              ) : (
+                <div className="w-full h-64 bg-muted rounded-lg mb-4 flex items-center justify-center">
+                  <Instagram className="h-12 w-12 text-muted-foreground" />
+                </div>
+              )}
               <Instagram className="h-8 w-8 mx-auto text-pink-500" />
             </div>
             <h3 className="text-2xl font-bold mb-4">
