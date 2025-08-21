@@ -4,11 +4,11 @@ import { Mail, Phone, MapPin, Instagram, MessageCircle, ArrowUp } from "lucide-r
 import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 const Footer = () => {
   const [email, setEmail] = useState("");
-  const {
-    toast
-  } = useToast();
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const { toast } = useToast();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -23,13 +23,41 @@ const Footer = () => {
       });
     }
   };
-  const handleNewsletterSubmit = () => {
-    if (email) {
+  const handleNewsletterSubmit = async () => {
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Error",
+        description: "Por favor ingresa un email válido.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubscribing(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
+        body: { email: email.trim() }
+      });
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "¡Suscrito!",
-        description: "Gracias por suscribirte a nuestro boletín."
+        description: data.message || "Gracias por suscribirte a nuestro boletín."
       });
       setEmail("");
+    } catch (error: any) {
+      console.error('Newsletter subscription error:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Error al procesar la suscripción. Inténtalo de nuevo.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubscribing(false);
     }
   };
   const openSocialLink = (platform: string) => {
@@ -126,8 +154,19 @@ const Footer = () => {
             </p>
             
             <div className="flex space-x-2 mb-6">
-              <Input placeholder="Ingresa tu email" value={email} onChange={e => setEmail(e.target.value)} className="bg-input/50 border-border/50 focus:border-primary" onKeyPress={e => e.key === 'Enter' && handleNewsletterSubmit()} />
-              <Button className="btn-hero px-4" onClick={handleNewsletterSubmit}>
+              <Input 
+                placeholder="Ingresa tu email" 
+                value={email} 
+                onChange={e => setEmail(e.target.value)} 
+                className="bg-input/50 border-border/50 focus:border-primary" 
+                onKeyPress={e => e.key === 'Enter' && !isSubscribing && handleNewsletterSubmit()}
+                disabled={isSubscribing}
+              />
+              <Button 
+                className="btn-hero px-4" 
+                onClick={handleNewsletterSubmit}
+                disabled={isSubscribing}
+              >
                 <Mail className="h-4 w-4" />
               </Button>
             </div>
