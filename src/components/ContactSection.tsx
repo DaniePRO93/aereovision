@@ -5,19 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  MessageCircle,
-  Send,
-  Instagram,
-  Youtube,
-  Camera
-} from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Youtube, Camera } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,11 +16,11 @@ const ContactSection = () => {
     projectType: "",
     message: ""
   });
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Missing Information",
@@ -39,9 +29,11 @@ const ContactSection = () => {
       });
       return;
     }
-
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name: formData.name,
           email: formData.email,
@@ -51,14 +43,18 @@ const ContactSection = () => {
           type: 'contact'
         }
       });
-
       if (error) throw error;
-
       toast({
         title: "Message Sent!",
-        description: "Thank you for your interest. We'll get back to you within 24 hours.",
+        description: "Thank you for your interest. We'll get back to you within 24 hours."
       });
-      setFormData({ name: "", email: "", phone: "", projectType: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        projectType: "",
+        message: ""
+      });
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -68,28 +64,24 @@ const ContactSection = () => {
       });
     }
   };
-
   const handleWhatsApp = () => {
     const message = `Hi! I'm interested in your drone photography services. 
     
 Project Type: ${formData.projectType || "General Inquiry"}
 Message: ${formData.message || "Please contact me for more information."}`;
-    
     const whatsappUrl = `https://wa.me/50258221477?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
-
-  return (
-    <section id="contact" className="py-20 px-6 bg-gradient-to-b from-muted/20 to-background">
+  return <section id="contact" className="py-20 px-6 bg-gradient-to-b from-muted/20 to-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-glow">Creemos</span> <span className="text-metallic">Juntos</span>
+            <span className="text-glow">Let's Create</span> <span className="text-metallic">Together</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            ¿Listo para capturar tu visión desde nuevas perspectivas? Contáctanos y 
-            discutamos cómo podemos dar vida a tu proyecto con cinematografía aérea impresionante.
+            Ready to capture your vision from new perspectives? Get in touch and let's discuss 
+            how we can bring your project to life with stunning aerial cinematography.
           </p>
         </div>
 
@@ -97,90 +89,72 @@ Message: ${formData.message || "Please contact me for more information."}`;
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="card-glass p-8">
-              <h3 className="text-2xl font-semibold mb-6">Envíanos un Mensaje</h3>
+              <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="name" className="text-foreground">Nombre Completo</Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Tu nombre"
-                      required
-                      className="mt-2 bg-input/50 border-border/50 focus:border-primary"
-                    />
+                    <Label htmlFor="name" className="text-foreground">Full Name</Label>
+                    <Input id="name" value={formData.name} onChange={e => setFormData({
+                    ...formData,
+                    name: e.target.value
+                  })} placeholder="Your name" required className="mt-2 bg-input/50 border-border/50 focus:border-primary" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="email" className="text-foreground">Correo Electrónico</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="tu.email@ejemplo.com"
-                      required
-                      className="mt-2 bg-input/50 border-border/50 focus:border-primary"
-                    />
+                    <Label htmlFor="email" className="text-foreground">Email Address</Label>
+                    <Input id="email" type="email" value={formData.email} onChange={e => setFormData({
+                    ...formData,
+                    email: e.target.value
+                  })} placeholder="your.email@example.com" required className="mt-2 bg-input/50 border-border/50 focus:border-primary" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="phone" className="text-foreground">Número de Teléfono</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+502 1234-5678"
-                      className="mt-2 bg-input/50 border-border/50 focus:border-primary"
-                    />
+                    <Label htmlFor="phone" className="text-foreground">Phone Number</Label>
+                    <Input id="phone" type="tel" value={formData.phone} onChange={e => setFormData({
+                    ...formData,
+                    phone: e.target.value
+                  })} placeholder="+1 (555) 123-4567" className="mt-2 bg-input/50 border-border/50 focus:border-primary" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="projectType" className="text-foreground">Tipo de Proyecto</Label>
-                    <Select value={formData.projectType} onValueChange={(value) => setFormData({ ...formData, projectType: value })}>
+                    <Label htmlFor="projectType" className="text-foreground">Project Type</Label>
+                    <Select value={formData.projectType} onValueChange={value => setFormData({
+                    ...formData,
+                    projectType: value
+                  })}>
                       <SelectTrigger className="mt-2 bg-input/50 border-border/50 focus:border-primary">
-                        <SelectValue placeholder="Seleccionar tipo de proyecto" />
+                        <SelectValue placeholder="Select project type" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="real-estate">Bienes Raíces</SelectItem>
-                        <SelectItem value="events">Eventos</SelectItem>
-                        <SelectItem value="landscapes">Paisajes</SelectItem>
-                        <SelectItem value="sports">Deportes</SelectItem>
-                        <SelectItem value="fpv">Tours FPV</SelectItem>
-                        <SelectItem value="other">Otro</SelectItem>
+                        <SelectItem value="real-estate">Real Estate</SelectItem>
+                        <SelectItem value="events">Events</SelectItem>
+                        <SelectItem value="landscapes">Landscapes</SelectItem>
+                        <SelectItem value="sports">Sports</SelectItem>
+                        <SelectItem value="fpv">FPV Tours</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-foreground">Detalles del Proyecto</Label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Cuéntanos sobre tu proyecto, cronograma y cualquier requerimiento específico..."
-                    rows={5}
-                    className="mt-2 bg-input/50 border-border/50 focus:border-primary"
-                  />
+                  <Label htmlFor="message" className="text-foreground">Project Details</Label>
+                  <Textarea id="message" value={formData.message} onChange={e => setFormData({
+                  ...formData,
+                  message: e.target.value
+                })} placeholder="Tell us about your project, timeline, and any specific requirements..." rows={5} className="mt-2 bg-input/50 border-border/50 focus:border-primary" />
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button type="submit" className="btn-hero flex-1">
-                    Enviar Mensaje
+                    Send Message
                     <Send className="ml-2 h-4 w-4" />
                   </Button>
                   
-                  <Button 
-                    type="button" 
-                    onClick={handleWhatsApp}
-                    className="btn-secondary-hero flex-1"
-                  >
+                  <Button type="button" onClick={handleWhatsApp} className="btn-secondary-hero flex-1">
                     WhatsApp
                     <MessageCircle className="ml-2 h-4 w-4" />
                   </Button>
@@ -193,7 +167,7 @@ Message: ${formData.message || "Please contact me for more information."}`;
           <div className="space-y-8">
             {/* Contact Information */}
             <Card className="card-glass p-6">
-              <h3 className="text-xl font-semibold mb-6">Ponte en Contacto</h3>
+              <h3 className="text-xl font-semibold mb-6">Get in Touch</h3>
               
               <div className="space-y-4">
                 <div className="flex items-center">
@@ -231,14 +205,8 @@ Message: ${formData.message || "Please contact me for more information."}`;
 
             {/* Service Area Map */}
             <Card className="card-glass p-6">
-              <h3 className="text-xl font-semibold mb-4">Service Area</h3>
-              <div className="aspect-square bg-muted/30 rounded-lg flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <MapPin className="h-8 w-8 mx-auto mb-2 text-primary" />
-                  <p className="text-sm">Interactive Map</p>
-                  <p className="text-xs">Guatemala City Area</p>
-                </div>
-              </div>
+              
+              
               <p className="text-sm text-muted-foreground mt-4">
                 We serve Guatemala City and surrounding regions. 
                 Long-distance projects available upon request.
@@ -247,8 +215,6 @@ Message: ${formData.message || "Please contact me for more information."}`;
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ContactSection;
