@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Instagram, ExternalLink } from "lucide-react";
+import latestPost from "@/assets/latest-instagram-post.jpg";
 
 const PortfolioSection = () => {
   const openInstagram = () => {
@@ -22,9 +23,16 @@ const PortfolioSection = () => {
 
         {/* Instagram Link Section */}
         <div className="text-center">
-          <div className="card-glass inline-block p-12 rounded-2xl max-w-lg mx-auto">
-            <Instagram className="h-16 w-16 mx-auto mb-6 text-pink-500" />
-            <h3 className="text-3xl font-bold mb-4">
+          <div className="card-glass inline-block p-8 rounded-2xl max-w-lg mx-auto">
+            <div className="mb-6">
+              <img 
+                src={latestPost} 
+                alt="Último post de AereVision - Vista aérea de Guatemala" 
+                className="w-full h-64 object-cover rounded-lg mb-4"
+              />
+              <Instagram className="h-8 w-8 mx-auto text-pink-500" />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">
               Síguenos en <span className="text-glow">Instagram</span>
             </h3>
             <p className="text-muted-foreground mb-8">
