@@ -62,17 +62,17 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
         >
-          <span className="text-gradient-hero block drop-shadow-2xl">CINEMATIC</span>
-          <span className="text-metallic block drop-shadow-2xl">AERIALS</span>
+          <span className="text-gradient-hero block drop-shadow-2xl">TOMAS AÉREAS</span>
+          <span className="text-metallic block drop-shadow-2xl">CINEMÁTICAS</span>
         </motion.h1>
         
         <p className="font-display text-2xl md:text-3xl text-primary-glow font-medium mb-6 max-w-3xl mx-auto tracking-wide">
-          GROUNDBREAKING PERSPECTIVES
+          PERSPECTIVAS REVOLUCIONARIAS
         </p>
         
         <p className="font-body text-xl text-muted-foreground mb-16 max-w-4xl mx-auto leading-relaxed font-light">
-          Professional drone aerial and ground photography services. 
-          Capturing breathtaking moments from angles that inspire and elevate your vision.
+          Servicios profesionales de fotografía aérea y terrestre con drones. 
+          Capturamos momentos impresionantes desde ángulos que inspiran y elevan tu visión.
         </p>
 
         {/* Premium CTA Buttons */}
@@ -82,7 +82,7 @@ const HeroSection = () => {
             className="btn-hero px-12 py-8 text-xl font-bold group relative"
             onClick={() => scrollToSection('contact')}
           >
-            <span className="relative z-10">BOOK A FLIGHT</span>
+            <span className="relative z-10">RESERVAR VUELO</span>
             <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </Button>
@@ -94,7 +94,7 @@ const HeroSection = () => {
             onClick={() => scrollToSection('portfolio')}
           >
             <Play className="mr-3 h-6 w-6 group-hover:scale-125 transition-transform duration-300" />
-            <span>VIEW PORTFOLIO</span>
+            <span>VER PORTAFOLIO</span>
           </Button>
         </div>
 
@@ -107,7 +107,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="font-display text-4xl font-black text-gradient-hero mb-3">50+</div>
-            <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Projects Completed</div>
+            <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Proyectos Completados</div>
           </div>
           <div className="text-center group cursor-pointer" onClick={() => scrollToSection('about')}>
             <div className="mb-4 flex justify-center">
@@ -116,7 +116,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="font-display text-4xl font-black text-gradient-hero mb-3">20+</div>
-            <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Happy Clients</div>
+            <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Clientes Satisfechos</div>
           </div>
           <div className="text-center group cursor-pointer" onClick={() => scrollToSection('services')}>
             <div className="mb-4 flex justify-center">
@@ -125,7 +125,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="font-display text-4xl font-black text-gradient-hero mb-3">4K</div>
-            <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Ultra HD Quality</div>
+            <div className="font-body text-sm text-muted-foreground uppercase tracking-wider">Calidad Ultra HD</div>
           </div>
         </div>
       </motion.div>

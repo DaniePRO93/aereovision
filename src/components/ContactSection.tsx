@@ -85,11 +85,11 @@ Message: ${formData.message || "Please contact me for more information."}`;
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-glow">Let's Create</span> <span className="text-metallic">Together</span>
+            <span className="text-glow">Creemos</span> <span className="text-metallic">Juntos</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to capture your vision from new perspectives? Get in touch and let's discuss 
-            how we can bring your project to life with stunning aerial cinematography.
+            ¿Listo para capturar tu visión desde nuevas perspectivas? Contáctanos y 
+            discutamos cómo podemos dar vida a tu proyecto con cinematografía aérea impresionante.
           </p>
         </div>
 
@@ -97,30 +97,30 @@ Message: ${formData.message || "Please contact me for more information."}`;
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="card-glass p-8">
-              <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
+              <h3 className="text-2xl font-semibold mb-6">Envíanos un Mensaje</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="name" className="text-foreground">Full Name</Label>
+                    <Label htmlFor="name" className="text-foreground">Nombre Completo</Label>
                     <Input
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Your name"
+                      placeholder="Tu nombre"
                       required
                       className="mt-2 bg-input/50 border-border/50 focus:border-primary"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="email" className="text-foreground">Email Address</Label>
+                    <Label htmlFor="email" className="text-foreground">Correo Electrónico</Label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="your.email@example.com"
+                      placeholder="tu.email@ejemplo.com"
                       required
                       className="mt-2 bg-input/50 border-border/50 focus:border-primary"
                     />
@@ -129,42 +129,42 @@ Message: ${formData.message || "Please contact me for more information."}`;
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="phone" className="text-foreground">Phone Number</Label>
+                    <Label htmlFor="phone" className="text-foreground">Número de Teléfono</Label>
                     <Input
                       id="phone"
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+502 1234-5678"
                       className="mt-2 bg-input/50 border-border/50 focus:border-primary"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="projectType" className="text-foreground">Project Type</Label>
+                    <Label htmlFor="projectType" className="text-foreground">Tipo de Proyecto</Label>
                     <Select value={formData.projectType} onValueChange={(value) => setFormData({ ...formData, projectType: value })}>
                       <SelectTrigger className="mt-2 bg-input/50 border-border/50 focus:border-primary">
-                        <SelectValue placeholder="Select project type" />
+                        <SelectValue placeholder="Seleccionar tipo de proyecto" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="real-estate">Real Estate</SelectItem>
-                        <SelectItem value="events">Events</SelectItem>
-                        <SelectItem value="landscapes">Landscapes</SelectItem>
-                        <SelectItem value="sports">Sports</SelectItem>
-                        <SelectItem value="fpv">FPV Tours</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="real-estate">Bienes Raíces</SelectItem>
+                        <SelectItem value="events">Eventos</SelectItem>
+                        <SelectItem value="landscapes">Paisajes</SelectItem>
+                        <SelectItem value="sports">Deportes</SelectItem>
+                        <SelectItem value="fpv">Tours FPV</SelectItem>
+                        <SelectItem value="other">Otro</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-foreground">Project Details</Label>
+                  <Label htmlFor="message" className="text-foreground">Detalles del Proyecto</Label>
                   <Textarea
                     id="message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your project, timeline, and any specific requirements..."
+                    placeholder="Cuéntanos sobre tu proyecto, cronograma y cualquier requerimiento específico..."
                     rows={5}
                     className="mt-2 bg-input/50 border-border/50 focus:border-primary"
                   />
@@ -172,7 +172,7 @@ Message: ${formData.message || "Please contact me for more information."}`;
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button type="submit" className="btn-hero flex-1">
-                    Send Message
+                    Enviar Mensaje
                     <Send className="ml-2 h-4 w-4" />
                   </Button>
                   
@@ -193,7 +193,7 @@ Message: ${formData.message || "Please contact me for more information."}`;
           <div className="space-y-8">
             {/* Contact Information */}
             <Card className="card-glass p-6">
-              <h3 className="text-xl font-semibold mb-6">Get in Touch</h3>
+              <h3 className="text-xl font-semibold mb-6">Ponte en Contacto</h3>
               
               <div className="space-y-4">
                 <div className="flex items-center">

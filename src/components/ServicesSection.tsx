@@ -16,173 +16,173 @@ const serviceData = [
   {
     id: "aerial-photography",
     icon: Camera,
-    title: "Aerial Photography",
-    description: "High-resolution aerial shots perfect for real estate, events, and marketing campaigns.",
+    title: "Fotografía Aérea",
+    description: "Tomas aéreas de alta resolución perfectas para bienes raíces, eventos y campañas de marketing.",
     startingPrice: 50,
     standardPrice: 150,
     proPrice: 250,
-    features: ["High-resolution photos", "Professional editing", "Multiple angles", "Fast delivery"],
+    features: ["Fotos de alta resolución", "Edición profesional", "Múltiples ángulos", "Entrega rápida"],
     popular: false,
     startingFeatures: [
-      "5-10 high-res photos",
-      "Basic editing",
-      "5 min flight time",
-      "JPEG format delivery"
+      "5-10 fotos de alta resolución",
+      "Edición básica",
+      "5 min de tiempo de vuelo",
+      "Entrega en formato JPEG"
     ],
     standardFeatures: [
-      "20-30 high-res photos",
-      "Professional editing & color correction",
-      "10-15 min flight time",
-      "JPEG + RAW format delivery",
-      "Multiple angles & compositions",
-      "Property highlight shots"
+      "20-30 fotos de alta resolución",
+      "Edición profesional y corrección de color",
+      "10-15 min de tiempo de vuelo",
+      "Entrega en formato JPEG + RAW",
+      "Múltiples ángulos y composiciones",
+      "Tomas destacadas de propiedad"
     ],
     proFeatures: [
-      "50+ high-res photos",
-      "Premium editing & advanced color grading",
-      "20-25 min flight time",
-      "JPEG + RAW + edited formats",
-      "Multiple angles & artistic compositions",
-      "Property highlight + lifestyle shots",
-      "Drone + ground photography combo",
-      "Same-day preview delivery",
-      "Commercial usage rights"
+      "50+ fotos de alta resolución",
+      "Edición premium y gradación de color avanzada",
+      "20-25 min de tiempo de vuelo",
+      "Formatos JPEG + RAW + editados",
+      "Múltiples ángulos y composiciones artísticas",
+      "Tomas destacadas de propiedad + estilo de vida",
+      "Combo de fotografía aérea + terrestre",
+      "Entrega de vista previa el mismo día",
+      "Derechos de uso comercial"
     ],
     extras: [
-      { name: "Extra flight time (per min)", price: 15 },
-      { name: "Rush delivery (24hrs)", price: 25 },
-      { name: "Additional editing requests", price: 20 },
-      { name: "Sunset/Golden hour timing", price: 30 },
-      { name: "360° panoramic shots", price: 40 }
+      { name: "Tiempo de vuelo extra (por min)", price: 15 },
+      { name: "Entrega urgente (24hrs)", price: 25 },
+      { name: "Solicitudes de edición adicionales", price: 20 },
+      { name: "Horario de atardecer/hora dorada", price: 30 },
+      { name: "Tomas panorámicas 360°", price: 40 }
     ]
   },
   {
     id: "cinematic-videography",
     icon: Video,
-    title: "Cinematic Videography",
-    description: "Professional 4K drone footage with smooth cinematic movements and color grading.",
+    title: "Videografía Cinemática",
+    description: "Material de drones 4K profesional con movimientos cinemáticos suaves y gradación de color.",
     startingPrice: 60,
     standardPrice: 180,
     proPrice: 350,
-    features: ["4K video quality", "Cinematic movements", "Professional editing", "Music overlay"],
+    features: ["Calidad de video 4K", "Movimientos cinemáticos", "Edición profesional", "Música incluida"],
     popular: true,
     startingFeatures: [
-      "Basic 4K drone footage",
-      "3 min edited clip",
-      "Basic stabilization",
-      "Standard delivery (7 days)"
+      "Material básico de drone 4K",
+      "Clip editado de 3 min",
+      "Estabilización básica",
+      "Entrega estándar (7 días)"
     ],
     standardFeatures: [
-      "Professional 4K drone footage",
-      "6 min edited clips (2x 3min)",
-      "Smooth cinematic movements",
-      "Professional color grading",
-      "Royalty-free music overlay",
-      "Motion graphics & titles"
+      "Material profesional de drone 4K",
+      "Clips editados de 6 min (2x 3min)",
+      "Movimientos cinemáticos suaves",
+      "Gradación de color profesional",
+      "Música libre de derechos incluida",
+      "Motion graphics y títulos"
     ],
     proFeatures: [
-      "Premium 4K/6K drone footage",
-      "12 min edited clips (4x 3min)",
-      "Advanced cinematic movements & transitions",
-      "Hollywood-grade color grading",
-      "Custom music composition",
-      "Advanced motion graphics & VFX",
-      "Drone + ground video combo",
-      "Multiple camera angles",
-      "Commercial license included"
+      "Material premium de drone 4K/6K",
+      "Clips editados de 12 min (4x 3min)",
+      "Movimientos cinemáticos avanzados y transiciones",
+      "Gradación de color nivel Hollywood",
+      "Composición musical personalizada",
+      "Motion graphics avanzados y VFX",
+      "Combo de video aéreo + terrestre",
+      "Múltiples ángulos de cámara",
+      "Licencia comercial incluida"
     ],
     extras: [
-      { name: "Extra footage (per min)", price: 30 },
-      { name: "Custom music licensing", price: 50 },
-      { name: "Advanced VFX effects", price: 75 },
-      { name: "Drone + ground combo", price: 100 },
-      { name: "Multiple location shoots", price: 80 }
+      { name: "Material extra (por min)", price: 30 },
+      { name: "Licencia musical personalizada", price: 50 },
+      { name: "Efectos VFX avanzados", price: 75 },
+      { name: "Combo aéreo + terrestre", price: 100 },
+      { name: "Grabación en múltiples locaciones", price: 80 }
     ]
   },
   {
     id: "fpv-drone-tours",
     icon: Zap,
-    title: "FPV Drone Tours",
-    description: "Dynamic FPV drone flights through tight spaces with creative routing and post-processing.",
+    title: "Tours FPV con Drones",
+    description: "Vuelos FPV dinámicos a través de espacios reducidos con rutas creativas y post-procesamiento.",
     startingPrice: 80,
     standardPrice: 240,
     proPrice: 450,
-    features: ["FPV immersive experience", "Creative flight paths", "Advanced post-processing", "Unique perspectives"],
+    features: ["Experiencia FPV inmersiva", "Rutas de vuelo creativas", "Post-procesamiento avanzado", "Perspectivas únicas"],
     popular: false,
     startingFeatures: [
-      "Basic FPV footage",
-      "4 min flight time",
-      "Standard post-processing",
-      "Single route/path"
+      "Material FPV básico",
+      "4 min de tiempo de vuelo",
+      "Post-procesamiento estándar",
+      "Ruta/camino único"
     ],
     standardFeatures: [
-      "Professional FPV footage",
-      "8 min total flight time",
-      "Creative routes & tracking",
-      "4K resolution + advanced post-processing",
-      "Multiple creative angles",
-      "Smooth transitions & cuts"
+      "Material FPV profesional",
+      "8 min total de tiempo de vuelo",
+      "Rutas creativas y seguimiento",
+      "Resolución 4K + post-procesamiento avanzado",
+      "Múltiples ángulos creativos",
+      "Transiciones y cortes suaves"
     ],
     proFeatures: [
-      "Premium FPV + cinematic drone combo",
-      "15 min total flight time",
-      "Complex multi-path routes",
-      "6K resolution + cinematic post-processing",
-      "Interior & exterior seamless transitions",
-      "Advanced VFX & speed ramping",
-      "Custom choreographed movements",
-      "Music synchronization",
-      "Professional commercial delivery"
+      "Combo premium FPV + drone cinemático",
+      "15 min total de tiempo de vuelo",
+      "Rutas complejas multi-camino",
+      "Resolución 6K + post-procesamiento cinemático",
+      "Transiciones interiores y exteriores fluidas",
+      "VFX avanzados y speed ramping",
+      "Movimientos coreografiados personalizados",
+      "Sincronización musical",
+      "Entrega comercial profesional"
     ],
     extras: [
-      { name: "Extra complex routes", price: 40 },
-      { name: "Interior + exterior combo", price: 60 },
-      { name: "Slow-motion sequences", price: 35 },
-      { name: "Custom flight patterns", price: 50 },
-      { name: "Night/low-light FPV", price: 70 }
+      { name: "Rutas complejas extra", price: 40 },
+      { name: "Combo interior + exterior", price: 60 },
+      { name: "Secuencias en cámara lenta", price: 35 },
+      { name: "Patrones de vuelo personalizados", price: 50 },
+      { name: "FPV nocturno/poca luz", price: 70 }
     ]
   },
   {
     id: "ground-photography",
     icon: MapPin,
-    title: "Ground Photography",
-    description: "Professional ground-level photography for events, portraits, and product shoots.",
+    title: "Fotografía Terrestre",
+    description: "Fotografía profesional a nivel del suelo para eventos, retratos y sesiones de productos.",
     startingPrice: 40,
     standardPrice: 100,
     proPrice: 200,
-    features: ["Professional photography", "Multiple setups", "High-resolution images", "Digital gallery"],
+    features: ["Fotografía profesional", "Múltiples configuraciones", "Imágenes de alta resolución", "Galería digital"],
     popular: false,
     startingFeatures: [
-      "1 hour session",
-      "15-20 photos",
-      "Basic editing",
-      "Digital delivery only"
+      "Sesión de 1 hora",
+      "15-20 fotos",
+      "Edición básica",
+      "Solo entrega digital"
     ],
     standardFeatures: [
-      "2-3 hour session",
-      "40-60 high-res photos",
-      "Professional editing & correction",
-      "Multiple outfit/setup changes",
-      "Digital gallery + prints option",
-      "Location scouting included"
+      "Sesión de 2-3 horas",
+      "40-60 fotos de alta resolución",
+      "Edición profesional y corrección",
+      "Múltiples cambios de vestuario/configuración",
+      "Galería digital + opción de impresiones",
+      "Exploración de locación incluida"
     ],
     proFeatures: [
-      "4-5 hour premium session",
-      "100+ high-res photos",
-      "Advanced editing & artistic processing",
-      "Multiple locations & setups",
-      "Premium digital gallery + print packages",
-      "Professional styling consultation",
-      "Behind-the-scenes video",
-      "Commercial usage rights",
-      "Same-day preview delivery"
+      "Sesión premium de 4-5 horas",
+      "100+ fotos de alta resolución",
+      "Edición avanzada y procesamiento artístico",
+      "Múltiples locaciones y configuraciones",
+      "Galería digital premium + paquetes de impresión",
+      "Consultoría de estilismo profesional",
+      "Video detrás de cámaras",
+      "Derechos de uso comercial",
+      "Entrega de vista previa el mismo día"
     ],
     extras: [
-      { name: "Extra hour of shooting", price: 25 },
-      { name: "Additional photo edits (per 10)", price: 15 },
-      { name: "Print package (20 photos)", price: 45 },
-      { name: "Same-day preview delivery", price: 20 },
-      { name: "Professional makeup artist", price: 80 }
+      { name: "Hora extra de fotografía", price: 25 },
+      { name: "Ediciones adicionales de fotos (por 10)", price: 15 },
+      { name: "Paquete de impresiones (20 fotos)", price: 45 },
+      { name: "Entrega de vista previa el mismo día", price: 20 },
+      { name: "Maquillista profesional", price: 80 }
     ]
   }
 ];
@@ -200,12 +200,12 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
         {/* Section Header */}
         <div className="text-center mb-16 space-y-6" ref={elementRef}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-            <span className="block">🚁 <span className="text-glow">Professional</span></span>
-            <span className="block text-metallic">Drone Services</span>
+            <span className="block">🚁 <span className="text-glow">Servicios</span></span>
+            <span className="block text-metallic">Profesionales de Drones</span>
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
-            From budget-friendly starting packages to premium professional services. 
-            Each service offers multiple tiers with customizable extras.
+            Desde paquetes iniciales económicos hasta servicios profesionales premium. 
+            Cada servicio ofrece múltiples niveles con extras personalizables.
           </p>
         </div>
 
@@ -233,7 +233,7 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
                     {service.popular && (
                       <Badge className="bg-gradient-to-r from-primary to-neon-green text-white animate-pulse">
                         <Star className="w-3 h-3 mr-1" />
-                        Most Popular
+                        Más Popular
                       </Badge>
                     )}
                   </div>
@@ -249,15 +249,15 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
                   <div className="space-y-6">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-2xl font-bold text-primary">From ${service.startingPrice}</span>
+                        <span className="text-2xl font-bold text-primary">Desde ${service.startingPrice}</span>
                         {service.popular && (
                           <Badge className="bg-gradient-to-r from-primary to-neon-green text-white">
                             <Star className="w-3 h-3 mr-1" />
-                            Most Popular
+                            Más Popular
                           </Badge>
                         )}
                       </div>
-                      <p className="text-muted-foreground">Starting package price</p>
+                      <p className="text-muted-foreground">Precio del paquete inicial</p>
                     </div>
 
                     <ul className="space-y-3">
@@ -275,7 +275,7 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
                         onClick={() => onPackageSelect?.(service)}
                       >
                         <Settings className="w-4 h-4 mr-2" />
-                        Customize Package
+                        Personalizar Paquete
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                       
@@ -289,7 +289,7 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
                           }
                         }}
                       >
-                        Get Quick Quote
+                        Cotización Rápida
                       </Button>
                     </div>
                   </div>

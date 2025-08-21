@@ -5,22 +5,22 @@ import { Award, Users, Calendar, Target, ArrowRight } from "lucide-react";
 const AboutSection = () => {
   const achievements = [{
     icon: Target,
-    label: "Projects Completed",
+    label: "Proyectos Completados",
     value: "50"
   }, {
     icon: Users,
-    label: "Happy Clients",
+    label: "Clientes Satisfechos",
     value: "20+"
   }, {
     icon: Calendar,
-    label: "Experience",
-    value: "2+ Years"
+    label: "Experiencia",
+    value: "2+ Años"
   }, {
     icon: Award,
-    label: "Professional Service",
+    label: "Servicio Profesional",
     value: "100%"
   }];
-  const skills = ["Aerial Cinematography", "FPV Drone Operations", "Real Estate Photography", "Event Documentation", "Post-Production", "Color Grading"];
+  const skills = ["Cinematografía Aérea", "Operaciones de Drones FPV", "Fotografía Inmobiliaria", "Documentación de Eventos", "Post-Producción", "Gradación de Color"];
   return <section id="about" className="py-20 px-6 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -34,11 +34,11 @@ const AboutSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-metallic">About</span> <span className="text-glow">AeroVision</span>
+            <span className="text-metallic">Acerca de</span> <span className="text-glow">AeroVision</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Passionate about capturing the world from extraordinary perspectives, 
-            combining cutting-edge technology with creative vision.
+            Apasionados por capturar el mundo desde perspectivas extraordinarias, 
+            combinando tecnología de vanguardia con visión creativa.
           </p>
         </div>
 
@@ -47,16 +47,16 @@ const AboutSection = () => {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-glow">
-                Cinematic Vision Meets Technical Precision
+                Visión Cinemática Encuentra Precisión Técnica
               </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-6"> With over 2 years of experience experience in aerial cinematography, I specialize in creating breathtaking visual content that tells compelling stories from unique perspectives. From luxury real estate showcases to dynamic FPV tours, every project is approached with meticulous attention to detail and creative innovation.</p>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">Con más de 2 años de experiencia en cinematografía aérea, me especializo en crear contenido visual impresionante que cuenta historias convincentes desde perspectivas únicas. Desde exhibiciones inmobiliarias de lujo hasta tours FPV dinámicos, cada proyecto se aborda con atención meticulosa al detalle e innovación creativa.</p>
               
               
             </div>
 
             {/* Skills */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Specializations</h4>
+              <h4 className="text-lg font-semibold mb-4">Especializaciones</h4>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => <Badge key={index} className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
                     {skill}
@@ -66,7 +66,7 @@ const AboutSection = () => {
 
             {/* CTA */}
             <Button className="btn-hero group">
-              View Full Portfolio
+              Ver Portafolio Completo
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
@@ -88,33 +88,33 @@ const AboutSection = () => {
 
             {/* Mission Statement */}
             <Card className="card-neon p-8">
-              <h4 className="text-xl font-semibold mb-4 text-glow">Mission</h4>
+              <h4 className="text-xl font-semibold mb-4 text-glow">Misión</h4>
               <p className="text-muted-foreground leading-relaxed">
-                "To transform ordinary moments into extraordinary visual experiences, 
-                pushing the boundaries of aerial cinematography while maintaining 
-                the highest standards of professionalism and safety."
+                "Transformar momentos ordinarios en experiencias visuales extraordinarias, 
+                empujando los límites de la cinematografía aérea mientras mantenemos 
+                los más altos estándares de profesionalismo y seguridad."
               </p>
             </Card>
 
             {/* Equipment Highlight */}
             <Card className="card-glass p-6">
-              <h4 className="text-lg font-semibold mb-4">Professional Equipment</h4>
+              <h4 className="text-lg font-semibold mb-4">Equipo Profesional</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex justify-between">
-                  <span>Main Camera</span>
+                  <span>Cámara Principal</span>
                   <span className="text-primary">4K 60fps, 10-bit</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Flight Time</span>
-                  <span className="text-primary">Up to 45 minutes</span>
+                  <span>Tiempo de Vuelo</span>
+                  <span className="text-primary">Hasta 45 minutos</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Range</span>
-                  <span className="text-primary">15km transmission</span>
+                  <span>Alcance</span>
+                  <span className="text-primary">Transmisión de 15km</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Safety Features</span>
-                  <span className="text-primary">Full redundancy</span>
+                  <span>Características de Seguridad</span>
+                  <span className="text-primary">Redundancia completa</span>
                 </div>
               </div>
             </Card>

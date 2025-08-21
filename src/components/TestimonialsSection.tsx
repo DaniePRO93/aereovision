@@ -8,27 +8,27 @@ const testimonials = [
   {
     id: 1,
     name: "JD",
-    role: "MTB Rider",
+    role: "Ciclista MTB",
     company: "",
-    content: "The drone footage made my jumps look amazing. Every jump and turn was captured perfectly!",
+    content: "El material del drone hizo que mis saltos se vieran increíbles. ¡Cada salto y curva fue capturado perfectamente!",
     rating: 5,
     avatar: "JD"
   },
   {
     id: 2,
-    name: "Maria",
-    role: "Homeowner",
+    name: "María",
+    role: "Propietaria",
     company: "",
-    content: "The aerial shots of our house were stunning.",
+    content: "Las tomas aéreas de nuestra casa fueron impresionantes.",
     rating: 5,
     avatar: "M"
   },
   {
     id: 3,
     name: "Leonardo R",
-    role: "Homeowner", 
+    role: "Propietario", 
     company: "",
-    content: "Loved the smooth drone shots. Showed our home from angles we never imagined.",
+    content: "Me encantaron las tomas suaves del drone. Mostraron nuestro hogar desde ángulos que nunca imaginamos.",
     rating: 5,
     avatar: "LR"
   }
@@ -87,11 +87,11 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-glow">Client</span> <span className="text-metallic">Testimonials</span>
+            <span className="text-glow">Testimonios</span> <span className="text-metallic">de Clientes</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Hear what our clients say about their experience working with us. 
-            Every project is a partnership in creating something extraordinary.
+            Escucha lo que nuestros clientes dicen sobre su experiencia trabajando con nosotros. 
+            Cada proyecto es una colaboración para crear algo extraordinario.
           </p>
         </div>
 
@@ -177,9 +177,9 @@ const TestimonialsSection = () => {
 
         {/* Client Logos Section */}
         <div className="mt-20">
-          <h3 className="text-center text-lg font-semibold text-muted-foreground mb-8">
-            Trusted by Industry Leaders
-          </h3>
+            <h3 className="text-center text-lg font-semibold text-muted-foreground mb-8">
+              Confiado por Líderes de la Industria
+            </h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-50">
             {['Luxury Homes LA', 'Elite Events', 'SkyTech Industries', 'Dreamy Weddings'].map((company, index) => (
@@ -199,16 +199,16 @@ const TestimonialsSection = () => {
         <div className="text-center mt-16">
           <div className="card-glass inline-block p-8 rounded-2xl">
             <h3 className="text-2xl font-bold mb-4">
-              Ready to join our <span className="text-glow">satisfied clients</span>?
+              ¿Listo para unirte a nuestros <span className="text-glow">clientes satisfechos</span>?
             </h3>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Let's create something amazing together. Contact us today to discuss your project.
+              Creemos algo increíble juntos. Contáctanos hoy para discutir tu proyecto.
             </p>
             <Button 
               className="btn-hero"
               onClick={scrollToContact}
             >
-              Get Your Quote
+              Obtén Tu Cotización
             </Button>
           </div>
         </div>

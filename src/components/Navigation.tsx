@@ -26,11 +26,11 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: "Home", href: "home" },
-    { name: "Portfolio", href: "portfolio" },
-    { name: "Services", href: "services" },
-    { name: "About", href: "about" },
-    { name: "Contact", href: "contact" },
+    { name: "Inicio", href: "home" },
+    { name: "Portafolio", href: "portfolio" },
+    { name: "Servicios", href: "services" },
+    { name: "Nosotros", href: "about" },
+    { name: "Contacto", href: "contact" },
   ];
 
   return (
@@ -76,7 +76,7 @@ const Navigation = () => {
               className="btn-hero font-body font-bold tracking-wide"
               onClick={() => scrollToSection('contact')}
             >
-              GET QUOTE
+              COTIZAR
             </Button>
           </div>
 
@@ -106,7 +106,7 @@ const Navigation = () => {
                 className="btn-hero mt-6 self-start font-body font-bold tracking-wide"
                 onClick={() => scrollToSection('contact')}
               >
-                GET QUOTE
+                COTIZAR
               </Button>
             </div>
           </div>

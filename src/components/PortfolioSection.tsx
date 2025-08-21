@@ -11,67 +11,67 @@ import landscapeImage from "@/assets/mountain-lake-aerial.jpg";
 const portfolioItems = [
   {
     id: 1,
-    title: "Luxury Real Estate Tour",
-    category: "Real Estate",
+    title: "Tour de Inmuebles de Lujo",
+    category: "Bienes Raíces",
     type: "video",
     image: realEstateImage,
-    description: "Cinematic aerial tour showcasing premium property features",
+    description: "Tour aéreo cinemático mostrando características de propiedades premium",
     url: "https://instagram.com/aereovision.gt"
   },
   {
     id: 2,
-    title: "Epic Mountain Landscapes",
-    category: "Landscapes",
+    title: "Paisajes Montañosos Épicos",
+    category: "Paisajes",
     type: "photo",
     image: landscapeImage,
-    description: "Breathtaking aerial photography of natural landscapes",
+    description: "Fotografía aérea impresionante de paisajes naturales",
     url: "https://instagram.com/aereovision.gt"
   },
   {
     id: 3,
-    title: "FPV Racing Action",
-    category: "Sports",
+    title: "Acción de Carreras FPV",
+    category: "Deportes",
     type: "video",
     image: fpvImage,
-    description: "High-speed FPV drone racing with dynamic cinematography",
+    description: "Carreras de drones FPV de alta velocidad con cinematografía dinámica",
     url: "https://instagram.com/aereovision.gt"
   },
   {
     id: 4,
-    title: "Corporate Event Coverage",
-    category: "Events",
+    title: "Cobertura de Eventos Corporativos",
+    category: "Eventos",
     type: "video",
     image: realEstateImage,
-    description: "Professional event documentation from unique perspectives",
+    description: "Documentación profesional de eventos desde perspectivas únicas",
     url: "https://instagram.com/aereovision.gt"
   },
   {
     id: 5,
-    title: "Architectural Showcase",
-    category: "Real Estate",
+    title: "Muestra Arquitectónica",
+    category: "Bienes Raíces",
     type: "photo",
     image: fpvImage,
-    description: "Modern architecture captured with precision and style",
+    description: "Arquitectura moderna capturada con precisión y estilo",
     url: "https://instagram.com/aereovision.gt"
   },
   {
     id: 6,
-    title: "Coastal Aerials",
-    category: "Landscapes",
+    title: "Vistas Aéreas Costeras",
+    category: "Paisajes",
     type: "photo",
     image: landscapeImage,
-    description: "Stunning coastal views and seascapes from above",
+    description: "Impresionantes vistas costeras y marinas desde arriba",
     url: "https://instagram.com/aereovision.gt"
   }
 ];
 
-const categories = ["All", "Real Estate", "Landscapes", "Sports", "Events"];
+const categories = ["Todos", "Bienes Raíces", "Paisajes", "Deportes", "Eventos"];
 
 const PortfolioSection = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("Todos");
   const [visibleItems, setVisibleItems] = useState(6);
 
-  const filteredItems = activeCategory === "All" 
+  const filteredItems = activeCategory === "Todos" 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === activeCategory);
 
@@ -98,11 +98,11 @@ const PortfolioSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-glow">Portfolio</span> & <span className="text-metallic">Showcase</span>
+            <span className="text-glow">Portafolio</span> y <span className="text-metallic">Muestra</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our collection of stunning aerial and ground photography work, 
-            spanning multiple industries and creative projects.
+            Explora nuestra colección de impresionantes trabajos de fotografía aérea y terrestre, 
+            abarcando múltiples industrias y proyectos creativos.
           </p>
         </div>
 
@@ -172,7 +172,7 @@ const PortfolioSection = () => {
                     openProject(item.url);
                   }}
                 >
-                  View Details
+                  Ver Detalles
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -187,7 +187,7 @@ const PortfolioSection = () => {
               className="btn-secondary-hero px-8 py-3"
               onClick={loadMore}
             >
-              Load More Projects
+              Cargar Más Proyectos
             </Button>
           </div>
         )}
@@ -196,16 +196,16 @@ const PortfolioSection = () => {
         <div className="text-center mt-16">
           <div className="card-glass inline-block p-8 rounded-2xl">
             <h3 className="text-2xl font-bold mb-4">
-              Like what you see? <span className="text-glow">Let's work together</span>
+              ¿Te gusta lo que ves? <span className="text-glow">Trabajemos juntos</span>
             </h3>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Ready to create something amazing for your project? Get in touch and let's discuss your vision.
+              ¿Listo para crear algo increíble para tu proyecto? Contáctanos y discutamos tu visión.
             </p>
             <Button 
               className="btn-hero"
               onClick={scrollToContact}
             >
-              Start Your Project
+              Iniciar Tu Proyecto
             </Button>
           </div>
         </div>
