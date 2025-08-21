@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import { ServicePackageModal } from "@/components/ServicePackageModal";
 import { 
   Camera, 
-  Video, 
+  Building, 
   Zap, 
   MapPin
 } from "lucide-react";
@@ -59,44 +59,44 @@ const servicePackages = [
     ]
   },
   {
-    id: "cinematic-videography",
-    icon: Video,
-    title: "Videografía Cinemática",
-    description: "Material de drones 4K profesional con movimientos cinemáticos suaves y gradación de color.",
+    id: "roof-inspections",
+    icon: Building,
+    title: "Inspecciones de Techos",
+    description: "Inspecciones detalladas de techos con drones para identificar daños, desgaste y áreas problemáticas.",
     startingPrice: 60,
     standardPrice: 180,
     proPrice: 350,
     startingFeatures: [
-      "Material básico de drone 4K",
-      "Clip editado de 3 min",
-      "Estabilización básica",
-      "Entrega estándar (7 días)"
+      "Inspección básica de techo",
+      "15-20 fotos de alta resolución",
+      "Reporte básico de condición",
+      "Entrega estándar (5 días)"
     ],
     standardFeatures: [
-      "Material profesional de drone 4K",
-      "Clips editados de 6 min (2x 3min)",
-      "Movimientos cinemáticos suaves",
-      "Gradación de color profesional",
-      "Música libre de derechos incluida",
-      "Motion graphics y títulos"
+      "Inspección completa del techo",
+      "40-60 fotos y videos detallados",
+      "Análisis de daños y desgaste",
+      "Reporte profesional con recomendaciones",
+      "Mapeo térmico básico",
+      "Identificación de áreas problemáticas"
     ],
     proFeatures: [
-      "Material premium de drone 4K/6K",
-      "Clips editados de 12 min (4x 3min)",
-      "Movimientos cinemáticos avanzados y transiciones",
-      "Gradación de color nivel Hollywood",
-      "Composición musical personalizada",
-      "Motion graphics avanzados y VFX",
-      "Combo de video aéreo + terrestre",
-      "Múltiples ángulos de cámara",
-      "Licencia comercial incluida"
+      "Inspección premium multi-espectral",
+      "100+ imágenes y videos 4K",
+      "Análisis térmico avanzado",
+      "Reporte técnico detallado con mediciones",
+      "Mapeo 3D del techo",
+      "Análisis de eficiencia energética",
+      "Seguimiento de múltiples inspecciones",
+      "Consultoría técnica especializada",
+      "Certificación profesional"
     ],
     extras: [
-      { name: "Material extra (por min)", price: 30 },
-      { name: "Licencia musical personalizada", price: 50 },
-      { name: "Efectos VFX avanzados", price: 75 },
-      { name: "Combo aéreo + terrestre", price: 100 },
-      { name: "Grabación en múltiples locaciones", price: 80 }
+      { name: "Análisis térmico adicional", price: 30 },
+      { name: "Mapeo 3D completo", price: 50 },
+      { name: "Reporte urgente (24hrs)", price: 75 },
+      { name: "Inspección de canaletas", price: 40 },
+      { name: "Análisis de paneles solares", price: 60 }
     ]
   },
   {
