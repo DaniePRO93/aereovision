@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Play, ExternalLink, Eye } from "lucide-react";
+import { InstagramCarousel } from "@/components/InstagramCarousel";
 import fpvImage from "@/assets/fpv-drone-action.jpg";
 import realEstateImage from "@/assets/real-estate-aerial.jpg";
 import landscapeImage from "@/assets/mountain-lake-aerial.jpg";
@@ -105,6 +106,9 @@ const PortfolioSection = () => {
             abarcando múltiples industrias y proyectos creativos.
           </p>
         </div>
+
+        {/* Instagram Posts Carousel */}
+        <InstagramCarousel />
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
