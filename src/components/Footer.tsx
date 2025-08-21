@@ -40,7 +40,7 @@ const Footer = () => {
 
   const openSocialLink = (platform: string) => {
     const links = {
-      instagram: "https://www.instagram.com/aereovision.gt?utm_source=ig_web_button_share_sheet&igsh=MTVjb3R4ZWo4ZmJ0bA==",
+      instagram: "https://www.instagram.com/aereovision.gt",
       whatsapp: "https://wa.me/50258221477"
     };
     window.open(links[platform as keyof typeof links], '_blank');
