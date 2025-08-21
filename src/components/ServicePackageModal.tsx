@@ -5,8 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { BookingModal } from "@/components/BookingModal";
-import { Check, Sparkles, ShoppingCart, X } from "lucide-react";
+import { Check, Sparkles, MessageSquare, X } from "lucide-react";
 interface ServicePackage {
   id: string;
   icon: any;
@@ -33,16 +32,16 @@ export const ServicePackageModal = ({
   onClose,
   package: pkg
 }: ServicePackageModalProps) => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [selectedTier, setSelectedTier] = useState<'starting' | 'standard' | 'pro' | null>(null);
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
-  const [showBookingModal, setShowBookingModal] = useState(false);
+
   if (!pkg) return null;
+
   const handleExtraToggle = (extraName: string) => {
     setSelectedExtras(prev => prev.includes(extraName) ? prev.filter(e => e !== extraName) : [...prev, extraName]);
   };
+
   const calculateTotal = () => {
     if (!selectedTier) return 0;
     const basePrice = selectedTier === 'pro' ? pkg.proPrice : selectedTier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
@@ -52,7 +51,8 @@ export const ServicePackageModal = ({
     }, 0);
     return basePrice + extrasPrice;
   };
-  const handleBookNow = () => {
+
+  const handleWhatsAppClick = () => {
     if (!selectedTier) {
       toast({
         title: "Select a Package",
@@ -61,34 +61,20 @@ export const ServicePackageModal = ({
       });
       return;
     }
-    setShowBookingModal(true);
+    
+    const whatsappUrl = "https://wa.me/50250221477";
+    window.location.href = whatsappUrl;
+    handleModalClose();
   };
-  const getPackageForBooking = () => {
-    if (!selectedTier) return [];
-    const tierPrice = selectedTier === 'pro' ? pkg.proPrice : selectedTier === 'standard' ? pkg.standardPrice : pkg.startingPrice;
-    const selectedExtrasData = selectedExtras.map(extraName => {
-      const extra = pkg.extras.find(e => e.name === extraName);
-      return extra ? {
-        name: extra.name,
-        price: extra.price
-      } : null;
-    }).filter(Boolean) as Array<{
-      name: string;
-      price: number;
-    }>;
-    return [{
-      title: pkg.title,
-      tier: selectedTier,
-      price: tierPrice,
-      extras: selectedExtrasData
-    }];
-  };
+
   const handleModalClose = () => {
     setSelectedTier(null);
     setSelectedExtras([]);
     onClose();
   };
-  return <>
+
+  return (
+    <>
       <Dialog open={isOpen} onOpenChange={handleModalClose}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-card/95 to-card/85 backdrop-blur-xl border border-primary/20">
           <DialogHeader className="space-y-4 pb-6 border-b border-border/50">
@@ -208,19 +194,14 @@ export const ServicePackageModal = ({
                   Cancel
                 </Button>
                 
-                <Button onClick={handleBookNow} className="btn-hero px-8">
-                  <ShoppingCart className="h-5 w-5 mr-2" />
-                  Book This Package
+                <Button onClick={handleWhatsAppClick} className="btn-hero px-8">
+                  <MessageSquare className="h-5 w-5 mr-2" />
+                  Contact via WhatsApp
                 </Button>
               </div>
             </div>}
         </DialogContent>
       </Dialog>
-
-      {/* Booking Modal */}
-      <BookingModal isOpen={showBookingModal} onClose={() => {
-      setShowBookingModal(false);
-      handleModalClose();
-    }} packages={getPackageForBooking()} total={calculateTotal()} />
-    </>;
+    </>
+  );
 };
