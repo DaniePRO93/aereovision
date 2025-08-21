@@ -78,7 +78,7 @@ export const InstagramCarousel = () => {
         </div>
         <div className="text-center py-12">
           <p className="text-muted-foreground mb-4">No se pudieron cargar los posts</p>
-          <Button onClick={() => window.open('https://www.instagram.com/aereovision.gt/', '_blank')}>
+          <Button onClick={() => window.location.href = 'https://www.instagram.com/aereovision.gt/'}>
             Ver en Instagram
           </Button>
         </div>

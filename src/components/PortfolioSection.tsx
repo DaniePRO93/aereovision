@@ -4,7 +4,7 @@ import { Instagram, ExternalLink } from "lucide-react";
 
 const PortfolioSection = () => {
   const openInstagram = () => {
-    window.open('https://www.instagram.com/aereovision.gt/', '_blank');
+    window.location.href = 'https://www.instagram.com/aereovision.gt/';
   };
 
   return (

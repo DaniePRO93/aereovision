@@ -67,7 +67,7 @@ const Footer = () => {
       instagram: "https://www.instagram.com/aereovision.gt/",
       whatsapp: "https://wa.me/50250221477"
     };
-    window.open(links[platform as keyof typeof links], '_blank');
+    window.location.href = links[platform as keyof typeof links];
   };
   const openEmail = () => {
     window.location.href = "mailto:danielrosalesdestaracacton@gmail.com";
