@@ -5,10 +5,12 @@ import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -194,7 +196,10 @@ const Footer = () => {
           
           <div className="flex items-center space-x-6 text-sm">
             
-            <button className="text-muted-foreground hover:text-primary transition-colors">
+            <button 
+              className="text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => navigate('/terms-of-service')}
+            >
               Términos de Servicio
             </button>
             <Button variant="ghost" size="sm" onClick={scrollToTop} className="p-2 hover:bg-primary/10">
