@@ -143,46 +143,46 @@ const serviceData = [
     ]
   },
   {
-    id: "ground-photography",
+    id: "drone-videos",
     icon: MapPin,
-    title: "Fotografía Terrestre",
-    description: "Fotografía profesional a nivel del suelo para eventos, retratos y sesiones de productos.",
+    title: "Videos de Dron",
+    description: "Videos aéreos cinemáticos profesionales para eventos, bienes raíces y promociones comerciales.",
     startingPrice: 40,
     standardPrice: 100,
     proPrice: 200,
-    features: ["Fotografía profesional", "Múltiples configuraciones", "Imágenes de alta resolución", "Galería digital"],
+    features: ["Videos en 4K", "Edición cinematográfica", "Múltiples ángulos aéreos", "Entrega digital"],
     popular: false,
     startingFeatures: [
-      "Sesión de 1 hora",
-      "15-20 fotos",
-      "Edición básica",
+      "Video de 1-2 minutos",
+      "Grabación en 4K",
+      "Edición básica con música",
       "Solo entrega digital"
     ],
     standardFeatures: [
-      "Sesión de 2-3 horas",
-      "40-60 fotos de alta resolución",
-      "Edición profesional y corrección",
-      "Múltiples cambios de vestuario/configuración",
-      "Galería digital + opción de impresiones",
-      "Exploración de locación incluida"
+      "Video de 3-5 minutos",
+      "Grabación en 4K con estabilización",
+      "Edición profesional con efectos",
+      "Múltiples tomas aéreas y ángulos",
+      "Música de fondo profesional",
+      "Entrega en múltiples formatos"
     ],
     proFeatures: [
-      "Sesión premium de 4-5 horas",
-      "100+ fotos de alta resolución",
-      "Edición avanzada y procesamiento artístico",
-      "Múltiples locaciones y configuraciones",
-      "Galería digital premium + paquetes de impresión",
-      "Consultoría de estilismo profesional",
-      "Video detrás de cámaras",
-      "Derechos de uso comercial",
+      "Video premium de 5-10 minutos",
+      "Grabación en 6K con múltiples drones",
+      "Edición cinemática avanzada con color grading",
+      "Tomas aéreas complejas y movimientos coreografiados",
+      "Banda sonora personalizada",
+      "Efectos visuales y transiciones avanzadas",
+      "Versión extendida + cortes para redes sociales",
+      "Derechos de uso comercial completos",
       "Entrega de vista previa el mismo día"
     ],
     extras: [
-      { name: "Hora extra de fotografía", price: 25 },
-      { name: "Ediciones adicionales de fotos (por 10)", price: 15 },
-      { name: "Paquete de impresiones (20 fotos)", price: 45 },
-      { name: "Entrega de vista previa el mismo día", price: 20 },
-      { name: "Maquillista profesional", price: 80 }
+      { name: "Minuto extra de video", price: 25 },
+      { name: "Tomas adicionales complejas", price: 30 },
+      { name: "Versión corta para redes sociales", price: 20 },
+      { name: "Grabación en horario dorado", price: 35 },
+      { name: "Música personalizada", price: 50 }
     ]
   }
 ];
