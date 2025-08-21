@@ -40,10 +40,9 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
   });
 
   const handleWhatsAppBooking = () => {
-    // Simple WhatsApp redirect with standard message
-    const message = "Hola! Estoy interesado en sus servicios de fotografía aérea. ¿Podrían darme más información?";
+    // Simple WhatsApp redirect without message
     const phoneNumber = "50258221477";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}`;
     
     window.open(whatsappUrl, '_blank');
     onClose();
