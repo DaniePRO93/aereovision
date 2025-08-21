@@ -39,70 +39,13 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
     message: ""
   });
 
-  const handleWhatsAppBooking = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.name.trim()) {
-      toast({
-        title: "Missing Information",
-        description: "Please enter your name to continue.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Build the WhatsApp message
-    let message = `¡Hola AeroVision! 👋\n\n`;
-    message += `Mi nombre es *${formData.name}*\n`;
-    
-    if (formData.email) {
-      message += `📧 Email: ${formData.email}\n`;
-    }
-    
-    if (formData.phone) {
-      message += `📱 Teléfono: ${formData.phone}\n`;
-    }
-    
-    message += `\n🎬 *SOLICITUD DE RESERVA*\n\n`;
-    
-    // Add package details
-    packages.forEach((pkg, index) => {
-      message += `📦 *Paquete ${index + 1}:*\n`;
-      message += `• ${pkg.title} (${pkg.tier.toUpperCase()})\n`;
-      message += `• Precio: $${pkg.price}\n`;
-      
-      if (pkg.extras.length > 0) {
-        message += `• *Extras seleccionados:*\n`;
-        pkg.extras.forEach(extra => {
-          message += `  - ${extra.name} (+$${extra.price})\n`;
-        });
-      }
-      message += `\n`;
-    });
-    
-    message += `💰 *TOTAL: $${total}*\n\n`;
-    
-    if (formData.message) {
-      message += `📝 *Detalles adicionales:*\n${formData.message}\n\n`;
-    }
-    
-    message += `Estoy interesado/a en reservar estos servicios. ¿Podrían confirmar disponibilidad? ✈️📸`;
-
-    // Create WhatsApp URL
-    const phoneNumber = "50258221477"; // AeroVision phone number
+  const handleWhatsAppBooking = () => {
+    // Simple WhatsApp redirect with standard message
+    const message = "Hola! Estoy interesado en sus servicios de fotografía aérea. ¿Podrían darme más información?";
+    const phoneNumber = "50258221477";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
-    
-    // Show success message and close modal
-    toast({
-      title: "¡Redirigiendo a WhatsApp!",
-      description: "Se abrirá WhatsApp con tu solicitud de reserva lista para enviar.",
-    });
-    
-    // Reset form and close modal
-    setFormData({ name: "", email: "", phone: "", message: "" });
     onClose();
   };
 
@@ -162,104 +105,24 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
           </div>
         </Card>
 
-        {/* Booking Form */}
-        <form onSubmit={handleWhatsAppBooking} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Full Name */}
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-sm font-medium flex items-center">
-                <User className="h-4 w-4 mr-2 text-primary" />
-                Full Name *
-              </Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                placeholder="Enter your full name"
-                className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20"
-                required
-              />
-            </div>
-
-            {/* Email */}
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-primary" />
-                Email Address
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                placeholder="your.email@example.com"
-                className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20"
-              />
-            </div>
-          </div>
-
-          {/* Phone */}
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="text-sm font-medium flex items-center">
-              <Phone className="h-4 w-4 mr-2 text-primary" />
-              Phone Number
-            </Label>
-            <Input
-              id="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-              placeholder="+502 1234-5678"
-              className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20"
-            />
-          </div>
-
-          {/* Message */}
-          <div className="space-y-2">
-            <Label htmlFor="message" className="text-sm font-medium flex items-center">
-              <MessageSquare className="h-4 w-4 mr-2 text-primary" />
-              Project Details & Special Requirements
-            </Label>
-            <Textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              placeholder="Describe your project, location, timeline, and any special requirements..."
-              rows={4}
-              className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 resize-none"
-            />
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="flex items-center justify-center space-x-6 py-4 border-t border-border/30">
-            <div className="flex items-center text-sm text-muted-foreground">
-              <Shield className="h-4 w-4 mr-2 text-neon-green" />
-              Secure Process
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground">
-              <Check className="h-4 w-4 mr-2 text-neon-green" />
-              24h Response
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground">
-              <MessageCircle className="h-4 w-4 mr-2 text-neon-green" />
-              WhatsApp Direct
-            </div>
-          </div>
-
-          {/* Submit Button */}
+        {/* Contact via WhatsApp */}
+        <div className="text-center space-y-4">
+          <p className="text-muted-foreground">
+            ¿Listo para reservar estos servicios? Contáctanos directamente por WhatsApp para finalizar tu reserva.
+          </p>
+          
           <Button
-            type="submit"
+            onClick={handleWhatsAppBooking}
             className="w-full btn-hero h-14 text-lg font-semibold"
           >
             <MessageCircle className="h-5 w-5 mr-3" />
-            Continue to WhatsApp - ${total}
+            Contactar por WhatsApp
           </Button>
-
-          <p className="text-xs text-center text-muted-foreground">
-            This will open WhatsApp with your booking details pre-filled.
-            No payment is required at this time.
+          
+          <p className="text-xs text-muted-foreground">
+            Te redirigiremos a WhatsApp para que puedas hablar directamente con nuestro equipo.
           </p>
-        </form>
+        </div>
       </DialogContent>
     </Dialog>
   );
