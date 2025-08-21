@@ -138,7 +138,12 @@ export const ServicePackageModal = ({
               </div>
 
               <ul className="space-y-2 mb-6">
-                {pkg.standardFeatures.map((feature, index) => {})}
+                {pkg.standardFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-center text-sm">
+                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
 
               {selectedTier === 'standard' && <div className="mt-4 p-3 bg-primary/10 rounded-lg border border-primary/30">
