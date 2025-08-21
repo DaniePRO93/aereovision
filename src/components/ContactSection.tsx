@@ -44,7 +44,7 @@ const ContactSection = () => {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-primary mr-3" />
-                  <span>danielrosalesdestaracacton@gmail.com</span>
+                  <span>ventas@aerovision.gt</span>
                 </div>
                 
                 <div className="flex items-center">

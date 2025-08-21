@@ -70,7 +70,7 @@ const Footer = () => {
     window.location.href = links[platform as keyof typeof links];
   };
   const openEmail = () => {
-    window.location.href = "mailto:danielrosalesdestaracacton@gmail.com";
+    window.location.href = "mailto:ventas@aerovision.gt";
   };
   const openPhone = () => {
     window.location.href = "tel:+50250221477";
@@ -95,7 +95,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openEmail}>
                 <Mail className="h-4 w-4 text-primary mr-3" />
-                <span>danielrosalesdestaracacton@gmail.com</span>
+                <span>ventas@aerovision.gt</span>
               </div>
               <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openPhone}>
                 <Phone className="h-4 w-4 text-primary mr-3" />
