@@ -94,7 +94,7 @@ export const ServicePackageModal = ({
           <DialogHeader className="space-y-4 pb-6 border-b border-border/50">
             <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-neon-green bg-clip-text text-transparent flex items-center">
               <pkg.icon className="h-8 w-8 mr-4 text-primary" />
-              {pkg.title} Packages
+              Video Aéreo
             </DialogTitle>
             <p className="text-muted-foreground text-lg">{pkg.description}</p>
           </DialogHeader>
