@@ -123,21 +123,31 @@ export const ServicePackageModal = ({ isOpen, onClose, package: pkg }: ServicePa
             }`} onClick={() => setSelectedTier('starting')}>
               <div className="flex justify-between items-center mb-4">
                 <h4 className="text-xl font-semibold">Starting</h4>
-                <Badge variant="secondary">Budget Friendly</Badge>
+                <Badge variant="secondary">Q465</Badge>
               </div>
               
-              <div className="mb-6">
+              <div className="mb-4">
                 <span className="text-3xl font-bold text-primary">${pkg.startingPrice}</span>
-                <span className="text-muted-foreground ml-2">base</span>
+                <span className="text-muted-foreground ml-2">(Q465)</span>
+              </div>
+
+              <div className="mb-4 p-3 bg-primary/10 rounded-lg">
+                <p className="text-sm text-primary font-medium">💡 "Para saber en minutos si todo está en orden sin gastar de más."</p>
               </div>
 
               <ul className="space-y-2 mb-6">
-                {pkg.startingFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center text-sm">
-                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>10 fotos aéreas en alta calidad</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>2 ángulos de inspección (frontal y trasero)</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>Entrega inmediata por WhatsApp</span>
+                </li>
               </ul>
 
               {selectedTier === 'starting' && (
@@ -155,21 +165,35 @@ export const ServicePackageModal = ({ isOpen, onClose, package: pkg }: ServicePa
             }`} onClick={() => setSelectedTier('standard')}>
               <div className="flex justify-between items-center mb-4">
                 <h4 className="text-xl font-semibold">Standard</h4>
-                <Badge className="bg-gradient-to-r from-primary to-primary-glow">Popular</Badge>
+                <Badge className="bg-gradient-to-r from-primary to-primary-glow">Q1,395</Badge>
               </div>
               
-              <div className="mb-6">
+              <div className="mb-4">
                 <span className="text-3xl font-bold text-primary">${pkg.standardPrice}</span>
-                <span className="text-muted-foreground ml-2">professional</span>
+                <span className="text-muted-foreground ml-2">(Q1,395)</span>
+              </div>
+
+              <div className="mb-4 p-3 bg-primary/10 rounded-lg">
+                <p className="text-sm text-primary font-medium">💡 "Inspección completa para estar 100% seguros de que tu techo no tiene fugas ni daños ocultos."</p>
               </div>
 
               <ul className="space-y-2 mb-6">
-                {pkg.standardFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center text-sm">
-                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>20 fotos desde todos los lados de la casa</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>Video de 1 min mostrando recorrido visual del techo</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>Carpeta organizada en Google Drive</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  <span>Nombre de cada ángulo</span>
+                </li>
               </ul>
 
               {selectedTier === 'standard' && (
@@ -187,21 +211,39 @@ export const ServicePackageModal = ({ isOpen, onClose, package: pkg }: ServicePa
             }`} onClick={() => setSelectedTier('pro')}>
               <div className="flex justify-between items-center mb-4">
                 <h4 className="text-xl font-semibold">Pro</h4>
-                <Badge className="bg-gradient-to-r from-neon-green to-primary text-white">Premium</Badge>
+                <Badge className="bg-gradient-to-r from-neon-green to-primary text-white">Q2,710</Badge>
               </div>
               
-              <div className="mb-6">
+              <div className="mb-4">
                 <span className="text-3xl font-bold text-neon-green">${pkg.proPrice}</span>
-                <span className="text-muted-foreground ml-2">premium</span>
+                <span className="text-muted-foreground ml-2">(Q2,710)</span>
+              </div>
+
+              <div className="mb-4 p-3 bg-neon-green/10 rounded-lg">
+                <p className="text-sm text-neon-green font-medium">💡 "La experiencia premium de inspección sin subirse al techo. Evitas riesgos, previenes reparaciones costosas."</p>
               </div>
 
               <ul className="space-y-2 mb-6">
-                {pkg.proFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center text-sm">
-                    <Check className="h-4 w-4 text-neon-green mr-2 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-neon-green mr-2 flex-shrink-0" />
+                  <span>40 fotos detalladas con acercamientos</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-neon-green mr-2 flex-shrink-0" />
+                  <span>Video de 2-3 min con etiquetas</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-neon-green mr-2 flex-shrink-0" />
+                  <span>Reporte visual con flechas y círculos</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-neon-green mr-2 flex-shrink-0" />
+                  <span>Asesoría rápida sobre qué revisar</span>
+                </li>
+                <li className="flex items-center text-sm">
+                  <Check className="h-4 w-4 text-neon-green mr-2 flex-shrink-0" />
+                  <span>Reporte completo estilo aseguradora</span>
+                </li>
               </ul>
 
               {selectedTier === 'pro' && (
