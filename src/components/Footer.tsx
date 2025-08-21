@@ -6,7 +6,6 @@ import {
   Phone, 
   MapPin,
   Instagram,
-  Youtube,
   MessageCircle,
   ArrowUp
 } from "lucide-react";
@@ -32,8 +31,8 @@ const Footer = () => {
   const handleNewsletterSubmit = () => {
     if (email) {
       toast({
-        title: "Subscribed!",
-        description: "Thank you for subscribing to our newsletter.",
+        title: "¡Suscrito!",
+        description: "Gracias por suscribirte a nuestro boletín.",
       });
       setEmail("");
     }
@@ -41,8 +40,7 @@ const Footer = () => {
 
   const openSocialLink = (platform: string) => {
     const links = {
-      instagram: "https://instagram.com/aerovision",
-      youtube: "https://youtube.com/aerovision",
+      instagram: "https://www.instagram.com/aereovision.gt?utm_source=ig_web_button_share_sheet&igsh=MTVjb3R4ZWo4ZmJ0bA==",
       whatsapp: "https://wa.me/50258221477"
     };
     window.open(links[platform as keyof typeof links], '_blank');
@@ -70,8 +68,8 @@ const Footer = () => {
             </div>
             
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Professional drone aerial and ground photography services. 
-              Capturing breathtaking moments from angles that inspire.
+              Servicios profesionales de fotografía aérea y terrestre con drones. 
+              Capturamos momentos impresionantes desde ángulos que inspiran.
             </p>
 
             <div className="space-y-3">
@@ -92,14 +90,14 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-glow">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-6 text-glow">Enlaces Rápidos</h3>
             <ul className="space-y-3">
               {[
-                { name: "Home", href: "home" },
-                { name: "Portfolio", href: "portfolio" },
-                { name: "Services", href: "services" },
-                { name: "About", href: "about" },
-                { name: "Contact", href: "contact" }
+                { name: "Inicio", href: "home" },
+                { name: "Portafolio", href: "portfolio" },
+                { name: "Servicios", href: "services" },
+                { name: "Acerca de", href: "about" },
+                { name: "Contacto", href: "contact" }
               ].map((link) => (
                 <li key={link.name}>
                   <button 
@@ -115,15 +113,15 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-glow">Services</h3>
+            <h3 className="text-lg font-semibold mb-6 text-glow">Servicios</h3>
             <ul className="space-y-3">
               {[
-                "Aerial Photography",
-                "Cinematic Videography",
-                "FPV Drone Tours",
-                "Ground Photography",
-                "Real Estate Media",
-                "Event Coverage"
+                "Fotografía Aérea",
+                "Videografía Cinematográfica",
+                "Tours FPV con Drones",
+                "Fotografía Terrestre",
+                "Medios para Bienes Raíces",
+                "Cobertura de Eventos"
               ].map((service) => (
                 <li key={service}>
                   <button 
@@ -139,15 +137,15 @@ const Footer = () => {
 
           {/* Newsletter & Social */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-glow">Stay Connected</h3>
+            <h3 className="text-lg font-semibold mb-6 text-glow">Mantente Conectado</h3>
             
             <p className="text-muted-foreground text-sm mb-4">
-              Subscribe to get updates on our latest work and exclusive offers.
+              Suscríbete para recibir actualizaciones de nuestro trabajo y ofertas exclusivas.
             </p>
             
             <div className="flex space-x-2 mb-6">
               <Input 
-                placeholder="Enter your email"
+                placeholder="Ingresa tu email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-input/50 border-border/50 focus:border-primary"
@@ -163,7 +161,7 @@ const Footer = () => {
 
             {/* Social Links */}
             <div className="space-y-4">
-              <h4 className="font-medium">Follow Our Work</h4>
+              <h4 className="font-medium">Sigue Nuestro Trabajo</h4>
               <div className="flex space-x-3">
                 <Button 
                   variant="ghost" 
@@ -172,14 +170,6 @@ const Footer = () => {
                   onClick={() => openSocialLink('instagram')}
                 >
                   <Instagram className="h-5 w-5" />
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="p-2 hover:bg-primary/10"
-                  onClick={() => openSocialLink('youtube')}
-                >
-                  <Youtube className="h-5 w-5" />
                 </Button>
                 <Button 
                   variant="ghost" 
@@ -197,15 +187,15 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © 2024 AeroVision. All rights reserved. | Professional Drone Photography
+            © 2024 AeroVision. Todos los derechos reservados. | Fotografía Profesional con Drones
           </div>
           
           <div className="flex items-center space-x-6 text-sm">
             <button className="text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
+              Política de Privacidad
             </button>
             <button className="text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
+              Términos de Servicio
             </button>
             <Button 
               variant="ghost" 
