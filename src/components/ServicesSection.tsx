@@ -145,7 +145,7 @@ const serviceData = [
   {
     id: "drone-videos",
     icon: MapPin,
-    title: "Videos de Dron",
+    title: "Video Aereo",
     description: "Videos aéreos cinemáticos profesionales para eventos, bienes raíces y promociones comerciales.",
     startingPrice: 60,
     standardPrice: 180,
