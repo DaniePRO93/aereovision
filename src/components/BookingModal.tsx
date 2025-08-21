@@ -7,16 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { 
   User, 
   Mail, 
   Phone, 
   MessageSquare, 
   Check,
-  CreditCard,
   Shield,
-  Star
+  Star,
+  MessageCircle
 } from "lucide-react";
 
 interface BookingModalProps {
@@ -39,75 +38,72 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
     phone: "",
     message: ""
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleWhatsAppBooking = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name.trim() || !formData.email.trim()) {
+    if (!formData.name.trim()) {
       toast({
         title: "Missing Information",
-        description: "Please fill in all required fields.",
+        description: "Please enter your name to continue.",
         variant: "destructive"
       });
       return;
     }
 
-    if (!formData.email.includes('@')) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-        variant: "destructive"
-      });
-      return;
+    // Build the WhatsApp message
+    let message = `¡Hola AeroVision! 👋\n\n`;
+    message += `Mi nombre es *${formData.name}*\n`;
+    
+    if (formData.email) {
+      message += `📧 Email: ${formData.email}\n`;
     }
-
-    setIsSubmitting(true);
-
-    const packagesSummary = packages.map(pkg => {
-      let summary = `${pkg.title} (${pkg.tier.toUpperCase()}) - $${pkg.price}`;
+    
+    if (formData.phone) {
+      message += `📱 Teléfono: ${formData.phone}\n`;
+    }
+    
+    message += `\n🎬 *SOLICITUD DE RESERVA*\n\n`;
+    
+    // Add package details
+    packages.forEach((pkg, index) => {
+      message += `📦 *Paquete ${index + 1}:*\n`;
+      message += `• ${pkg.title} (${pkg.tier.toUpperCase()})\n`;
+      message += `• Precio: $${pkg.price}\n`;
+      
       if (pkg.extras.length > 0) {
-        summary += '\nExtras:\n';
+        message += `• *Extras seleccionados:*\n`;
         pkg.extras.forEach(extra => {
-          summary += `  - ${extra.name} (+$${extra.price})\n`;
+          message += `  - ${extra.name} (+$${extra.price})\n`;
         });
       }
-      return summary;
-    }).join('\n\n');
-
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message || "No additional requirements specified.",
-          type: 'booking',
-          packages: packagesSummary,
-          total: total
-        }
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Booking Request Sent!",
-        description: `Your booking request for $${total} has been sent. We'll contact you within 24 hours.`,
-      });
-
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      onClose();
-      
-    } catch (error) {
-      console.error('Error sending booking request:', error);
-      toast({
-        title: "Error Sending Booking",
-        description: "Please try again or contact us directly at danielrosalesdestaracacton@gmail.com",
-        variant: "destructive"
-      });
-    } finally {
-      setIsSubmitting(false);
+      message += `\n`;
+    });
+    
+    message += `💰 *TOTAL: $${total}*\n\n`;
+    
+    if (formData.message) {
+      message += `📝 *Detalles adicionales:*\n${formData.message}\n\n`;
     }
+    
+    message += `Estoy interesado/a en reservar estos servicios. ¿Podrían confirmar disponibilidad? ✈️📸`;
+
+    // Create WhatsApp URL
+    const phoneNumber = "50258221477"; // AeroVision phone number
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    // Show success message and close modal
+    toast({
+      title: "¡Redirigiendo a WhatsApp!",
+      description: "Se abrirá WhatsApp con tu solicitud de reserva lista para enviar.",
+    });
+    
+    // Reset form and close modal
+    setFormData({ name: "", email: "", phone: "", message: "" });
+    onClose();
   };
 
   return (
@@ -167,7 +163,7 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
         </Card>
 
         {/* Booking Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleWhatsAppBooking} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Full Name */}
             <div className="space-y-2">
@@ -189,7 +185,7 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-primary" />
-                Email Address *
+                Email Address
               </Label>
               <Input
                 id="email"
@@ -198,7 +194,6 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 placeholder="your.email@example.com"
                 className="bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20"
-                required
               />
             </div>
           </div>
@@ -246,32 +241,22 @@ export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalP
               24h Response
             </div>
             <div className="flex items-center text-sm text-muted-foreground">
-              <CreditCard className="h-4 w-4 mr-2 text-neon-green" />
-              No Payment Required
+              <MessageCircle className="h-4 w-4 mr-2 text-neon-green" />
+              WhatsApp Direct
             </div>
           </div>
 
           {/* Submit Button */}
           <Button
             type="submit"
-            disabled={isSubmitting}
             className="w-full btn-hero h-14 text-lg font-semibold"
           >
-            {isSubmitting ? (
-              <>
-                <div className="animate-spin h-5 w-5 mr-3 border-2 border-white border-t-transparent rounded-full" />
-                Sending Booking Request...
-              </>
-            ) : (
-              <>
-                <Check className="h-5 w-5 mr-3" />
-                Send Booking Request - ${total}
-              </>
-            )}
+            <MessageCircle className="h-5 w-5 mr-3" />
+            Continue to WhatsApp - ${total}
           </Button>
 
           <p className="text-xs text-center text-muted-foreground">
-            By submitting this form, you agree to receive communications about your booking request.
+            This will open WhatsApp with your booking details pre-filled.
             No payment is required at this time.
           </p>
         </form>
