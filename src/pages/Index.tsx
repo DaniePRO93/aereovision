@@ -102,7 +102,7 @@ const servicePackages = [
   {
     id: "fpv-drone-tours",
     icon: Zap,
-    title: "Tours FPV con Drones",
+    title: "Video Aéreo",
     description: "Vuelos FPV dinámicos a través de espacios reducidos con rutas creativas y post-procesamiento.",
     startingPrice: 80,
     standardPrice: 240,
