@@ -21,8 +21,8 @@ interface BookingModalProps {
 
 export const BookingModal = ({ isOpen, onClose, packages, total }: BookingModalProps) => {
   const handleWhatsAppClick = () => {
-    const whatsappUrl = "https://wa.me/50236067306";
-    window.open(whatsappUrl, '_blank');
+    const whatsappUrl = "https://wa.me/50250221477";
+    window.location.href = whatsappUrl;
     onClose();
   };
 
