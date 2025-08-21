@@ -147,42 +147,37 @@ const serviceData = [
     icon: MapPin,
     title: "Videos de Dron",
     description: "Videos aéreos cinemáticos profesionales para eventos, bienes raíces y promociones comerciales.",
-    startingPrice: 40,
-    standardPrice: 100,
-    proPrice: 200,
-    features: ["Videos en 4K", "Edición cinematográfica", "Múltiples ángulos aéreos", "Entrega digital"],
+    startingPrice: 60,
+    standardPrice: 180,
+    proPrice: 350,
+    features: ["Clips aéreos profesionales", "Movimientos dinámicos", "Edición cinematográfica", "Entrega optimizada"],
     popular: false,
     startingFeatures: [
-      "Video de 1-2 minutos",
-      "Grabación en 4K",
-      "Edición básica con música",
-      "Solo entrega digital"
+      "5 clips aéreos cortos (30 seg – 1 min)",
+      "Movimientos básicos (paneo, ascenso, giro)",
+      "Entrega rápida por WhatsApp",
+      "Formato listo para redes sociales"
     ],
     standardFeatures: [
-      "Video de 3-5 minutos",
-      "Grabación en 4K con estabilización",
-      "Edición profesional con efectos",
-      "Múltiples tomas aéreas y ángulos",
-      "Música de fondo profesional",
-      "Entrega en múltiples formatos"
+      "10 clips aéreos con narrativa básica",
+      "Video editado de 1–2 min con música libre de derechos", 
+      "Tomas desde distintos ángulos y alturas",
+      "Entrega en carpeta organizada (Google Drive o WhatsApp)"
     ],
     proFeatures: [
-      "Video premium de 5-10 minutos",
-      "Grabación en 6K con múltiples drones",
-      "Edición cinemática avanzada con color grading",
-      "Tomas aéreas complejas y movimientos coreografiados",
-      "Banda sonora personalizada",
-      "Efectos visuales y transiciones avanzadas",
-      "Versión extendida + cortes para redes sociales",
-      "Derechos de uso comercial completos",
-      "Entrega de vista previa el mismo día"
+      "20 clips aéreos con enfoque en detalles importantes",
+      "Video editado de 2–3 min estilo trailer",
+      "Música y cortes dinámicos profesionales",
+      "Entrega en 2 formatos: Cinematic y Redes sociales",
+      "Formato vertical optimizado para reels",
+      "Reporte visual con marcación de puntos de interés"
     ],
     extras: [
-      { name: "Minuto extra de video", price: 25 },
-      { name: "Tomas adicionales complejas", price: 30 },
-      { name: "Versión corta para redes sociales", price: 20 },
+      { name: "Clips adicionales (por 5)", price: 25 },
+      { name: "Música personalizada", price: 50 },
+      { name: "Entrega urgente (24hrs)", price: 30 },
       { name: "Grabación en horario dorado", price: 35 },
-      { name: "Música personalizada", price: 50 }
+      { name: "Versión extendida del video", price: 40 }
     ]
   }
 ];
