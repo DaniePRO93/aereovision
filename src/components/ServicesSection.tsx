@@ -58,6 +58,50 @@ const serviceData = [
     ]
   },
   {
+    id: "bike-moto-videos",
+    icon: Bike,
+    title: "Videos de Bici y Moto",
+    description: "Sesiones dinámicas de bicicleta, motocross o downhill con ángulos aéreos y FPV que capturan la acción y emoción de la pista.",
+    startingPrice: 35,
+    standardPrice: 50,
+    proPrice: 80,
+    features: ["Grabación FPV especializada", "Seguimiento de acción", "Clips optimizados", "Entrega rápida"],
+    popular: "trending",
+    startingFeatures: [
+      "5 clips de 30 segundos cada uno",
+      "Aprox. 3 min de material total",
+      "Grabación con drone FPV o estabilizado",
+      "Entrega rápida por WhatsApp",
+      "Listo para redes sociales"
+    ],
+    standardFeatures: [
+      "10 clips de 30 segundos cada uno",
+      "Aprox. 5 min de material total",
+      "Video editado de 1–2 min",
+      "Clips en bruto entregados",
+      "Seguimiento dinámico de rider",
+      "Múltiples ángulos de acción"
+    ],
+    proFeatures: [
+      "15–20 clips de 30 segundos cada uno",
+      "Aprox. 7–10 min de material total",
+      "Video principal editado de 3–5 min",
+      "2 reels optimizados para redes",
+      "Fotos aéreas incluidas",
+      "Entrega de todo el material en bruto",
+      "Uso de varias baterías para sesión extendida",
+      "Estilo profesional y cinemático",
+      "Sincronización con música de acción"
+    ],
+    extras: [
+      { name: "Clips adicionales (por 5)", price: 20 },
+      { name: "Sesión en múltiples ubicaciones", price: 45 },
+      { name: "Grabación nocturna con luces", price: 60 },
+      { name: "Slow motion especializado", price: 30 },
+      { name: "Combo terrestre + aéreo", price: 40 }
+    ]
+  },
+  {
     id: "roof-inspections",
     icon: Building,
     title: "Inspecciones de Techos",
@@ -180,50 +224,6 @@ const serviceData = [
       { name: "Grabación en horario dorado", price: 35 },
       { name: "Versión extendida del video", price: 40 }
     ]
-  },
-  {
-    id: "bike-moto-videos",
-    icon: Bike,
-    title: "Videos de Bici y Moto",
-    description: "Sesiones dinámicas de bicicleta, motocross o downhill con ángulos aéreos y FPV que capturan la acción y emoción de la pista.",
-    startingPrice: 35,
-    standardPrice: 50,
-    proPrice: 80,
-    features: ["Grabación FPV especializada", "Seguimiento de acción", "Clips optimizados", "Entrega rápida"],
-    popular: false,
-    startingFeatures: [
-      "5 clips de 30 segundos cada uno",
-      "Aprox. 3 min de material total",
-      "Grabación con drone FPV o estabilizado",
-      "Entrega rápida por WhatsApp",
-      "Listo para redes sociales"
-    ],
-    standardFeatures: [
-      "10 clips de 30 segundos cada uno",
-      "Aprox. 5 min de material total",
-      "Video editado de 1–2 min",
-      "Clips en bruto entregados",
-      "Seguimiento dinámico de rider",
-      "Múltiples ángulos de acción"
-    ],
-    proFeatures: [
-      "15–20 clips de 30 segundos cada uno",
-      "Aprox. 7–10 min de material total",
-      "Video principal editado de 3–5 min",
-      "2 reels optimizados para redes",
-      "Fotos aéreas incluidas",
-      "Entrega de todo el material en bruto",
-      "Uso de varias baterías para sesión extendida",
-      "Estilo profesional y cinemático",
-      "Sincronización con música de acción"
-    ],
-    extras: [
-      { name: "Clips adicionales (por 5)", price: 20 },
-      { name: "Sesión en múltiples ubicaciones", price: 45 },
-      { name: "Grabación nocturna con luces", price: 60 },
-      { name: "Slow motion especializado", price: 30 },
-      { name: "Combo terrestre + aéreo", price: 40 }
-    ]
   }
 ];
 
@@ -255,7 +255,9 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
             <Card 
               key={service.id}
               className={`group hover-lift transition-all duration-500 cursor-pointer ${
-                service.popular ? 'card-neon' : 'card-glass'
+                service.popular === true ? 'card-neon' : 
+                service.popular === 'trending' ? 'card-glass border-2 border-orange-500/30' : 
+                'card-glass'
               }`}
             >
               <CardContent className="p-0">
@@ -263,17 +265,26 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
                   {/* Icon & Badge */}
                   <div className="flex justify-between items-start mb-6">
                     <div className={`inline-flex p-4 rounded-xl ${
-                      service.popular 
+                      service.popular === true
                         ? 'bg-primary/20 text-primary animate-glow' 
+                        : service.popular === 'trending'
+                        ? 'bg-orange-500/20 text-orange-500 animate-pulse'
                         : 'bg-secondary/20 text-secondary-bright'
                     }`}>
                       <service.icon className="h-8 w-8" />
                     </div>
                     
-                    {service.popular && (
+                    {service.popular === true && (
                       <Badge className="bg-gradient-to-r from-primary to-neon-green text-white animate-pulse">
                         <Star className="w-3 h-3 mr-1" />
                         Más Popular
+                      </Badge>
+                    )}
+                    
+                    {service.popular === 'trending' && (
+                      <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white animate-pulse">
+                        <Zap className="w-3 h-3 mr-1" />
+                        Trending
                       </Badge>
                     )}
                   </div>
@@ -290,10 +301,16 @@ const ServicesSection = ({ onPackageSelect }: ServicesSectionProps) => {
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="text-2xl font-bold text-primary">Desde ${service.startingPrice}</span>
-                        {service.popular && (
+                        {service.popular === true && (
                           <Badge className="bg-gradient-to-r from-primary to-neon-green text-white">
                             <Star className="w-3 h-3 mr-1" />
                             Más Popular
+                          </Badge>
+                        )}
+                        {service.popular === 'trending' && (
+                          <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
+                            <Zap className="w-3 h-3 mr-1" />
+                            Trending
                           </Badge>
                         )}
                       </div>
