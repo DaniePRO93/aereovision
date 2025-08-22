@@ -8,7 +8,8 @@ import {
   MapPin, 
   Star,
   ArrowRight,
-  Settings
+  Settings,
+  Bike
 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -178,6 +179,50 @@ const serviceData = [
       { name: "Entrega urgente (24hrs)", price: 30 },
       { name: "Grabación en horario dorado", price: 35 },
       { name: "Versión extendida del video", price: 40 }
+    ]
+  },
+  {
+    id: "bike-moto-videos",
+    icon: Bike,
+    title: "Videos de Bici y Moto",
+    description: "Sesiones dinámicas de bicicleta, motocross o downhill con ángulos aéreos y FPV que capturan la acción y emoción de la pista.",
+    startingPrice: 35,
+    standardPrice: 50,
+    proPrice: 80,
+    features: ["Grabación FPV especializada", "Seguimiento de acción", "Clips optimizados", "Entrega rápida"],
+    popular: false,
+    startingFeatures: [
+      "5 clips de 30 segundos cada uno",
+      "Aprox. 3 min de material total",
+      "Grabación con drone FPV o estabilizado",
+      "Entrega rápida por WhatsApp",
+      "Listo para redes sociales"
+    ],
+    standardFeatures: [
+      "10 clips de 30 segundos cada uno",
+      "Aprox. 5 min de material total",
+      "Video editado de 1–2 min",
+      "Clips en bruto entregados",
+      "Seguimiento dinámico de rider",
+      "Múltiples ángulos de acción"
+    ],
+    proFeatures: [
+      "15–20 clips de 30 segundos cada uno",
+      "Aprox. 7–10 min de material total",
+      "Video principal editado de 3–5 min",
+      "2 reels optimizados para redes",
+      "Fotos aéreas incluidas",
+      "Entrega de todo el material en bruto",
+      "Uso de varias baterías para sesión extendida",
+      "Estilo profesional y cinemático",
+      "Sincronización con música de acción"
+    ],
+    extras: [
+      { name: "Clips adicionales (por 5)", price: 20 },
+      { name: "Sesión en múltiples ubicaciones", price: 45 },
+      { name: "Grabación nocturna con luces", price: 60 },
+      { name: "Slow motion especializado", price: 30 },
+      { name: "Combo terrestre + aéreo", price: 40 }
     ]
   }
 ];
