@@ -26,7 +26,7 @@ const ContactSection = () => {
               </p>
               
               <Button 
-                onClick={() => window.location.href = "https://wa.me/50250221477"}
+                onClick={() => window.location.href = "https://wa.me/50250889835"}
                 className="btn-hero w-full h-14 text-lg"
               >
                 Contact via WhatsApp
@@ -49,7 +49,7 @@ const ContactSection = () => {
                 
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-primary mr-3" />
-                  <span>+502 5022-1477</span>
+                  <span>+502 5088-9835</span>
                 </div>
                 
                 <div className="flex items-center">

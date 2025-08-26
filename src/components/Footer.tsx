@@ -65,7 +65,7 @@ const Footer = () => {
   const openSocialLink = (platform: string) => {
     const links = {
       instagram: "https://www.instagram.com/aereovision.gt/",
-      whatsapp: "https://wa.me/50250221477"
+      whatsapp: "https://wa.me/50250889835"
     };
     window.location.href = links[platform as keyof typeof links];
   };
@@ -73,7 +73,7 @@ const Footer = () => {
     window.location.href = "mailto:ventas@aerovision.gt";
   };
   const openPhone = () => {
-    window.location.href = "tel:+50250221477";
+    window.location.href = "tel:+50250889835";
   };
   return <footer className="bg-background border-t border-border/50 relative">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -99,7 +99,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-sm cursor-pointer hover:text-primary transition-colors" onClick={openPhone}>
                 <Phone className="h-4 w-4 text-primary mr-3" />
-                <span>+502 5022-1477</span>
+                <span>+502 5088-9835</span>
               </div>
               <div className="flex items-center text-sm">
                 <MapPin className="h-4 w-4 text-primary mr-3" />

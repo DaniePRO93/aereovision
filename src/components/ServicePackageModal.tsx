@@ -62,7 +62,7 @@ export const ServicePackageModal = ({
       return;
     }
     
-    const whatsappUrl = "https://wa.me/50250221477";
+    const whatsappUrl = "https://wa.me/50250889835";
     window.location.href = whatsappUrl;
     handleModalClose();
   };
