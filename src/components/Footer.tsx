@@ -64,7 +64,7 @@ const Footer = () => {
   };
   const openSocialLink = (platform: string) => {
     const links = {
-      instagram: "https://www.instagram.com/aereovision.gt/",
+      instagram: "https://www.instagram.com/aerovision.gt/",
       whatsapp: "https://wa.me/50250889835"
     };
     window.location.href = links[platform as keyof typeof links];

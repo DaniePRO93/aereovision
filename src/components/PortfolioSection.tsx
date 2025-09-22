@@ -26,7 +26,7 @@ const PortfolioSection = () => {
   }, []);
 
   const openInstagram = () => {
-    window.location.href = 'https://www.instagram.com/aereovision.gt/';
+    window.location.href = 'https://www.instagram.com/aerovision.gt/';
   };
 
   return (
@@ -78,7 +78,7 @@ const PortfolioSection = () => {
               <ExternalLink className="ml-3 h-5 w-5" />
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
-              @aereovision.gt
+              @aerovision.gt
             </p>
           </div>
         </div>

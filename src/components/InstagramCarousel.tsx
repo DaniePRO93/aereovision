@@ -40,7 +40,7 @@ export const InstagramCarousel = () => {
         imageUrl: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=500&h=500&fit=crop',
         caption: '🚁 Inspección de techo con tecnología de drones. #AereoVisionGT',
         timestamp: new Date().toLocaleDateString('es-ES'),
-        postUrl: 'https://www.instagram.com/aereovision.gt/',
+        postUrl: 'https://www.instagram.com/aerovision.gt/',
         likes: 127,
         comments: 15
       }]);
@@ -78,7 +78,7 @@ export const InstagramCarousel = () => {
         </div>
         <div className="text-center py-12">
           <p className="text-muted-foreground mb-4">No se pudieron cargar los posts</p>
-          <Button onClick={() => window.location.href = 'https://www.instagram.com/aereovision.gt/'}>
+          <Button onClick={() => window.location.href = 'https://www.instagram.com/aerovision.gt/'}>
             Ver en Instagram
           </Button>
         </div>
