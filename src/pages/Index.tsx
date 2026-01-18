@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import PartnershipSection from "@/components/PartnershipSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
@@ -225,6 +226,8 @@ const Index = () => {
         <section id="home">
           <HeroSection />
         </section>
+        
+        <PartnershipSection />
         
         <PortfolioSection />
         <ServicesSection onPackageSelect={handlePackageSelect} />
