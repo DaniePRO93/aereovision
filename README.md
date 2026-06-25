@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# AeroVision
 
-## Project info
+Marketing site for **AeroVision** — professional drone aerial photography & videography services in Guatemala. Single-page React app with a Supabase backend (contact email, newsletter signup, Instagram feed).
 
-**URL**: https://lovable.dev/projects/e7954238-0657-4419-92aa-e08070a74ae0
+## Tech stack
 
-## How can I edit this code?
+- **Vite** + **React 18** + **TypeScript**
+- **Tailwind CSS** + **shadcn/ui** (Radix primitives)
+- **Framer Motion** for animation
+- **Supabase** — Postgres + Edge Functions (Deno)
+- **Resend** — transactional email
+- **Cloudflare Pages** — hosting & deploy
 
-There are several ways of editing your application.
+## Local development
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/e7954238-0657-4419-92aa-e08070a74ae0) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js 18+ and npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the dev server (http://localhost:8080)
 npm run dev
+
+# Type-check + production build
+npm run build
+
+# Lint
+npm run lint
 ```
 
-**Edit a file directly in GitHub**
+## Environment variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Copy `.env.example` to `.env` and fill in your Supabase project values:
 
-**Use GitHub Codespaces**
+```sh
+cp .env.example .env
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| Variable | Description |
+| --- | --- |
+| `VITE_SUPABASE_URL` | Supabase project URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase anon/publishable key (safe to ship to the browser) |
+| `VITE_SUPABASE_PROJECT_ID` | Supabase project ref |
 
-## What technologies are used for this project?
+> `.env` is git-ignored. Never commit secrets. The Supabase anon key is public by design, but the service-role key and the Resend API key live only in the Supabase Edge Function secrets.
 
-This project is built with:
+## Supabase backend
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Edge functions live in `supabase/functions/`:
 
-## How can I deploy this project?
+- `send-contact-email` — sends contact/booking emails via Resend
+- `newsletter-subscribe` — stores newsletter signups + sends a confirmation
+- `fetch-instagram-posts` — fetches recent Instagram posts (with fallback content)
 
-Simply open [Lovable](https://lovable.dev/projects/e7954238-0657-4419-92aa-e08070a74ae0) and click on Share -> Publish.
+Required Supabase Function secrets (set in the Supabase dashboard, **not** in this repo):
 
-## Can I connect a custom domain to my Lovable project?
+- `RESEND_API_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_URL`
 
-Yes, you can!
+Deploy a function with the Supabase CLI:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```sh
+supabase functions deploy send-contact-email
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Deployment (Cloudflare Pages)
+
+The site deploys to Cloudflare Pages and serves the production domain.
+
+**One-time setup:**
+
+1. In the Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**, select this repository.
+2. Build settings:
+   - **Framework preset:** Vite
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+3. Add the `VITE_*` environment variables (from `.env`) under **Settings → Environment variables**.
+4. Under **Custom domains**, add `aerovision.gt` (and `www`). Cloudflare provisions TLS automatically.
+
+After that, **every push to `main` auto-builds and deploys.** SPA routing is handled by `public/_redirects` (`/* /index.html 200`).
+
+To deploy manually instead of via Git integration:
+
+```sh
+npm run build
+npx wrangler pages deploy dist --project-name aerovision
+```

@@ -123,7 +123,7 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #856404;">
               <strong>Need immediate assistance?</strong><br>
-              WhatsApp: +502 5822-1477<br>
+              WhatsApp: +502 5088-9835<br>
               Email: danielrosalesdestaracacton@gmail.com
             </p>
           </div>

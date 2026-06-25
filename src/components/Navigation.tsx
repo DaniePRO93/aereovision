@@ -45,7 +45,7 @@ const Navigation = () => {
             <div className="relative hover:scale-110 transition-transform duration-300 cursor-pointer group"
                  onClick={() => scrollToSection('home')}>
               <img 
-                src="/lovable-uploads/2b7b0ec8-410f-43d4-9938-45825ed770c9.png" 
+                src="/aerovision-nav-logo.png"
                 alt="AeroVision Logo" 
                 className="h-12 w-auto object-contain"
               />

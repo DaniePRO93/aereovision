@@ -17,7 +17,7 @@ interface InstagramPost {
 
 async function fetchInstagramPosts(): Promise<InstagramPost[]> {
   try {
-    const response = await fetch('https://www.instagram.com/aereovision.gt/', {
+    const response = await fetch('https://www.instagram.com/aerovision.gt/', {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       }
@@ -52,7 +52,7 @@ async function fetchInstagramPosts(): Promise<InstagramPost[]> {
           posts = edges.map((edge: any, index: number) => ({
             id: edge.node.id || `post-${index}`,
             imageUrl: edge.node.display_url || edge.node.thumbnail_src,
-            caption: edge.node.edge_media_to_caption?.edges?.[0]?.node?.text || 'Post de @aereovision.gt',
+            caption: edge.node.edge_media_to_caption?.edges?.[0]?.node?.text || 'Post de @aerovision.gt',
             timestamp: new Date(edge.node.taken_at_timestamp * 1000).toLocaleDateString('es-ES'),
             postUrl: `https://www.instagram.com/p/${edge.node.shortcode}/`,
             likes: edge.node.edge_liked_by?.count || 0,
@@ -72,7 +72,7 @@ async function fetchInstagramPosts(): Promise<InstagramPost[]> {
           imageUrl: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=500&h=500&fit=crop',
           caption: '🚁 Inspección de techo con tecnología de drones. Detectamos problemas antes de que se conviertan en costosas reparaciones. #InspeccionDrones #AereoVisionGT #TechosGuatemala',
           timestamp: new Date().toLocaleDateString('es-ES'),
-          postUrl: 'https://www.instagram.com/aereovision.gt/',
+          postUrl: 'https://www.instagram.com/aerovision.gt/',
           likes: 127,
           comments: 15
         },
@@ -81,7 +81,7 @@ async function fetchInstagramPosts(): Promise<InstagramPost[]> {
           imageUrl: 'https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=500&h=500&fit=crop',
           caption: '🌄 Vista aérea espectacular del Lago Atitlán capturada con nuestro drone 4K. La belleza natural de Guatemala desde las alturas. #DronePhotography #Guatemala #AereoVision',
           timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toLocaleDateString('es-ES'),
-          postUrl: 'https://www.instagram.com/aereovision.gt/',
+          postUrl: 'https://www.instagram.com/aerovision.gt/',
           likes: 89,
           comments: 8
         },
@@ -90,7 +90,7 @@ async function fetchInstagramPosts(): Promise<InstagramPost[]> {
           imageUrl: 'https://images.unsplash.com/photo-1508614999368-9260051292e5?w=500&h=500&fit=crop',
           caption: '🏠✨ Fotografía aérea para bienes raíces. Mostramos tu propiedad desde ángulos únicos que destacan cada detalle. #BienesRaices #FotografiaAerea #Guatemala',
           timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toLocaleDateString('es-ES'),
-          postUrl: 'https://www.instagram.com/aereovision.gt/',
+          postUrl: 'https://www.instagram.com/aerovision.gt/',
           likes: 203,
           comments: 22
         }
@@ -107,7 +107,7 @@ async function fetchInstagramPosts(): Promise<InstagramPost[]> {
         imageUrl: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=500&h=500&fit=crop',
         caption: '🚁 Inspección de techo con tecnología de drones. #AereoVisionGT',
         timestamp: new Date().toLocaleDateString('es-ES'),
-        postUrl: 'https://www.instagram.com/aereovision.gt/',
+        postUrl: 'https://www.instagram.com/aerovision.gt/',
         likes: 127,
         comments: 15
       }
