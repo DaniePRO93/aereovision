@@ -1,0 +1,175 @@
+/* AeroVision homepage redesign — scoped styles (av-* classes).
+   Ported from the Claude Design handoff. Kept out of the global Tailwind
+   theme so the dark-themed Terms page is unaffected. */
+
+.av-root {
+  font-family: "Archivo", sans-serif;
+  background: #f6f2ea;
+  color: #1e1813;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.av-root *,
+.av-root *::before,
+.av-root *::after {
+  box-sizing: border-box;
+}
+.av-mono {
+  font-family: "Space Mono", monospace;
+}
+
+.av-root ::selection {
+  background: #e9a23b;
+  color: #221a0c;
+}
+.av-root input::placeholder,
+.av-root textarea::placeholder {
+  color: #9a917f;
+}
+
+/* ---- Keyframes ---- */
+@keyframes av-kenburns {
+  0% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1.13);
+  }
+}
+@keyframes av-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+/* ---- Scroll reveal ---- */
+.av-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.av-reveal.av-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .av-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .av-hero-img {
+    animation: none !important;
+  }
+}
+
+/* ---- Hover states (replacing the prototype's style-hover) ---- */
+.av-navlink {
+  color: #6e6556;
+  transition: color 0.25s ease;
+}
+.av-navlink:hover {
+  color: #1e1813;
+}
+.av-pill {
+  background: #e9a23b;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.av-pill:hover {
+  background: #f2b257;
+}
+.av-cta {
+  background: #e9a23b;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.av-cta:hover {
+  background: #f2b257;
+  transform: translateY(-2px);
+}
+
+.av-tile img {
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.av-tile:hover img {
+  transform: scale(1.06);
+}
+
+.av-card {
+  transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
+}
+.av-card:hover {
+  border-color: rgba(233, 162, 59, 0.5);
+  transform: translateY(-3px);
+}
+
+.av-viewpkg {
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.av-viewpkg:hover {
+  background: #e9a23b;
+  color: #221a0c;
+}
+
+.av-soft {
+  transition: background 0.25s ease;
+}
+.av-soft:hover {
+  background: rgba(28, 22, 14, 0.1);
+}
+
+.av-input {
+  transition: border-color 0.2s ease;
+}
+.av-input:focus {
+  border-color: #e9a23b;
+}
+
+/* ---- FAQ accordion ---- */
+.av-faq summary {
+  list-style: none;
+}
+.av-faq summary::-webkit-details-marker {
+  display: none;
+}
+.av-faq summary::marker {
+  content: "";
+}
+.av-plus {
+  transition: transform 0.3s ease;
+}
+.av-faq details[open] .av-plus {
+  transform: rotate(45deg);
+}
+
+/* ---- Floating WhatsApp ---- */
+.av-wa .av-wa-label {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 0;
+  transition: max-width 0.42s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.3s ease, margin-left 0.42s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.av-wa:hover .av-wa-label,
+.av-wa:focus-visible .av-wa-label {
+  max-width: 140px;
+  opacity: 1;
+  margin-left: 10px;
+  padding-right: 6px;
+}
+@media (hover: none) {
+  .av-wa .av-wa-label {
+    max-width: 140px;
+    opacity: 1;
+    margin-left: 10px;
+    padding-right: 6px;
+  }
+}
