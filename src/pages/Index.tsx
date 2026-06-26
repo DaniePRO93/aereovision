@@ -9,7 +9,7 @@ import residentialAerial from "@/assets/hero-carousel/residential-aerial.jpg";
 import coastalAerial from "@/assets/hero-carousel/coastal-aerial.jpg";
 import groupPhoto from "@/assets/hero-carousel/group-photo.jpg";
 import bikeTrail from "@/assets/hero-carousel/bike-trail.jpg";
-import groupVideo from "@/assets/hero-carousel/group-video.mov";
+import showreelVideo from "@/assets/Acton family day or sports showreel.mov";
 import actonLogo from "@/assets/clients/acton-logo.png";
 import prometheusLogo from "@/assets/clients/prometheus-logo.png";
 
@@ -512,7 +512,7 @@ const Index = () => {
             }}
           >
             <video
-              src={groupVideo}
+              src={showreelVideo}
               poster={groupPhoto}
               autoPlay
               muted
