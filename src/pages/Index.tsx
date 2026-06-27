@@ -2,14 +2,15 @@ import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import "@/styles/redesign.css";
 import Reveal from "@/components/Reveal";
 import PackageModal from "@/components/PackageModal";
+import WorkTile from "@/components/WorkTile";
 import { services, steps } from "@/data/services";
+import { workCategories } from "@/data/work";
 import { INSTAGRAM_URL, waDirect, customWaLink, waLink } from "@/lib/whatsapp";
 
 import residentialAerial from "@/assets/hero-carousel/residential-aerial.jpg";
 import coastalAerial from "@/assets/hero-carousel/coastal-aerial.jpg";
 import groupPhoto from "@/assets/hero-carousel/group-photo.jpg";
 import bikeTrail from "@/assets/hero-carousel/bike-trail.jpg";
-import showreelVideo from "@/assets/Acton family day or sports showreel.mov";
 import actonLogo from "@/assets/clients/acton-logo.png";
 import prometheusLogo from "@/assets/clients/prometheus-logo.png";
 
@@ -28,9 +29,9 @@ const eyebrow: CSSProperties = {
 const accentTick: CSSProperties = { width: 20, height: 2, background: "#E9A23B" };
 const sectionH2: CSSProperties = {
   margin: 0,
-  fontWeight: 900,
-  fontSize: "clamp(34px, 5vw, 64px)",
-  lineHeight: 0.98,
+  fontWeight: 800,
+  fontSize: "clamp(28px, 4vw, 48px)",
+  lineHeight: 1.02,
   letterSpacing: "-.015em",
 };
 
@@ -301,11 +302,11 @@ const Index = () => {
             <h1
               style={{
                 margin: 0,
-                fontWeight: 900,
-                fontSize: "clamp(46px, 8.5vw, 124px)",
-                lineHeight: 0.92,
+                fontWeight: 800,
+                fontSize: "clamp(32px, 5.2vw, 64px)",
+                lineHeight: 1.02,
                 letterSpacing: "-.02em",
-                maxWidth: "16ch",
+                maxWidth: "18ch",
                 textShadow: "0 1px 22px rgba(246,242,234,.9)",
               }}
             >
@@ -494,132 +495,17 @@ const Index = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: 16,
           }}
         >
-          {/* Showreel video */}
-          <Reveal
-            className="av-tile"
-            style={{
-              position: "relative",
-              gridColumn: "1 / -1",
-              minWidth: 0,
-              aspectRatio: "16 / 9",
-              borderRadius: 6,
-              overflow: "hidden",
-              background: "#17140F",
-            }}
-          >
-            <video
-              src={showreelVideo}
-              poster={groupPhoto}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(180deg, rgba(12,10,7,.05) 40%, rgba(12,10,7,.78) 100%)",
-                pointerEvents: "none",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: 20,
-                left: 22,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(12,10,7,.55)",
-                backdropFilter: "blur(6px)",
-                border: "1px solid rgba(255,255,255,.16)",
-                borderRadius: 100,
-                padding: "7px 14px",
-                pointerEvents: "none",
-              }}
-            >
-              <span
-                style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: "50%",
-                  background: "#E9A23B",
-                  boxShadow: "0 0 10px #E9A23B",
-                }}
-              />
-              <span
-                className="av-mono"
-                style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#fff" }}
-              >
-                Showreel
-              </span>
-            </div>
-            <div style={{ position: "absolute", left: 24, bottom: 22, right: 24, pointerEvents: "none" }}>
-              <div className="av-mono" style={{ fontSize: 11, letterSpacing: ".2em", color: "#E9A23B" }}>
-                EVENTS / SPORTS
-              </div>
-              <div
-                style={{
-                  fontWeight: 800,
-                  fontSize: "clamp(20px, 2.6vw, 28px)",
-                  marginTop: 5,
-                  color: "#FFFFFF",
-                }}
-              >
-                Acton family day &amp; sports showreel
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Image tiles */}
-          {[
-            { src: residentialAerial, span: 2, ratio: "16 / 10", cat: "REAL ESTATE", title: "Hillside residential community", delay: 0 },
-            { src: bikeTrail, span: 1, ratio: "4 / 5", cat: "FPV / ACTION", title: "Downhill trail chase", delay: 80 },
-            { src: groupPhoto, span: 1, ratio: "4 / 5", cat: "EVENTS", title: "Overhead group portrait", delay: 0 },
-            { src: coastalAerial, span: 2, ratio: "16 / 10", cat: "TOURISM", title: "Pacific coastline & mangroves", delay: 80 },
-          ].map((tile) => (
+          {workCategories.map((cat, i) => (
             <Reveal
-              key={tile.title}
-              delay={tile.delay}
-              className="av-tile"
-              style={{
-                position: "relative",
-                gridColumn: tile.span === 2 ? "span 2" : undefined,
-                minWidth: 0,
-                aspectRatio: tile.ratio,
-                borderRadius: 4,
-                overflow: "hidden",
-                background: "#FFFFFF",
-              }}
+              key={cat.slug}
+              delay={cat.feature ? 0 : (i % 3) * 80}
+              style={cat.feature ? { gridColumn: "1 / -1" } : undefined}
             >
-              <img
-                src={tile.src}
-                alt={tile.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(180deg, rgba(12,10,7,0) 45%, rgba(12,10,7,.88) 100%)",
-                }}
-              />
-              <div style={{ position: "absolute", left: 22, bottom: 20, right: 22 }}>
-                <div className="av-mono" style={{ fontSize: 11, letterSpacing: ".2em", color: "#E9A23B" }}>
-                  {tile.cat}
-                </div>
-                <div style={{ fontWeight: 800, fontSize: 19, marginTop: 4, color: "#FFFFFF" }}>
-                  {tile.title}
-                </div>
-              </div>
+              <WorkTile cat={cat} />
             </Reveal>
           ))}
         </div>
@@ -928,7 +814,7 @@ const Index = () => {
               <span style={accentTick} />
               Book your shoot
             </div>
-            <h2 style={{ ...sectionH2, fontSize: "clamp(34px, 5vw, 62px)" }}>
+            <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 46px)" }}>
               Let's get your shoot on the calendar.
             </h2>
             <p style={{ margin: "22px 0 32px", maxWidth: "44ch", fontSize: 16, lineHeight: 1.6, color: "#6E6556" }}>
@@ -1215,7 +1101,7 @@ const Index = () => {
             <span style={accentTick} />
             Questions
           </div>
-          <h2 style={{ ...sectionH2, fontSize: "clamp(34px, 5vw, 60px)" }}>Good to know.</h2>
+          <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 44px)" }}>Good to know.</h2>
         </Reveal>
         <Reveal style={{ borderTop: "1px solid rgba(28,22,14,.12)" }}>
           {faqs.map((faq) => (
