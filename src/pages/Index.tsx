@@ -281,24 +281,7 @@ const Index = () => {
             padding: "0 clamp(20px, 5vw, 64px) clamp(40px, 7vh, 84px)",
           }}
         >
-          <Reveal
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 12,
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "clamp(11px, 1.1vw, 13px)",
-              letterSpacing: ".28em",
-              textTransform: "uppercase",
-              color: "#2A2218",
-              marginBottom: 22,
-              textShadow: "0 1px 12px rgba(246,242,234,.95)",
-            }}
-          >
-            <span style={{ width: 22, height: 2, background: "#E9A23B" }} />
-            Estudio de Cine Aéreo y Drones
-          </Reveal>
-          <Reveal delay={90}>
+          <Reveal>
             <h1
               style={{
                 margin: 0,
