@@ -123,7 +123,7 @@ const WorkTile = ({ cat, style }: { cat: WorkCategory; style?: CSSProperties }) 
           className="av-mono"
           style={{ fontSize: 11, letterSpacing: ".12em", color: "rgba(255,255,255,.7)", marginTop: 8 }}
         >
-          View gallery →
+          Ver galería →
         </div>
       </div>
     </Link>

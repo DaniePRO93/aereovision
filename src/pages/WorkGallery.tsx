@@ -22,9 +22,9 @@ const WorkGallery = () => {
         className="av-root"
         style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "120px 24px", gap: 18 }}
       >
-        <h1 style={{ fontWeight: 900, fontSize: "clamp(28px,5vw,48px)", margin: 0 }}>Gallery not found</h1>
+        <h1 style={{ fontWeight: 900, fontSize: "clamp(28px,5vw,48px)", margin: 0 }}>Galería no encontrada</h1>
         <Link to="/#work" className="av-cta" style={{ color: "#221A0C", fontWeight: 800, padding: "14px 24px", borderRadius: 100, textDecoration: "none" }}>
-          ← Back to Work
+← Volver al trabajo
         </Link>
       </div>
     );
@@ -63,7 +63,7 @@ const WorkGallery = () => {
             className="av-navlink av-mono"
             style={{ fontSize: 12.5, letterSpacing: ".08em", textTransform: "uppercase", textDecoration: "none" }}
           >
-            ← All work
+← Todo el trabajo
           </Link>
           <a
             href={waDirect}
@@ -80,7 +80,7 @@ const WorkGallery = () => {
               boxShadow: "0 6px 20px rgba(233,162,59,.25)",
             }}
           >
-            Get a quote
+            Cotizar
           </a>
         </nav>
       </header>
@@ -217,9 +217,9 @@ const WorkGallery = () => {
           }}
         >
           <div style={{ flex: 1, minWidth: 220 }}>
-            <div style={{ fontWeight: 800, fontSize: 19 }}>More {cat.label.toLowerCase()} coming soon.</div>
+            <div style={{ fontWeight: 800, fontSize: 19 }}>Más {cat.label.toLowerCase()} próximamente.</div>
             <div style={{ fontSize: 14.5, color: "#6E6556", marginTop: 4 }}>
-              Want this kind of shoot for your project? Message us and we'll send recent examples.
+              ¿Quieres este tipo de grabación para tu proyecto? Escríbenos y te enviamos ejemplos recientes.
             </div>
           </div>
           <a
@@ -240,7 +240,7 @@ const WorkGallery = () => {
               whiteSpace: "nowrap",
             }}
           >
-            Book a shoot →
+Reservar grabación →
           </a>
         </Reveal>
       </section>
@@ -252,7 +252,7 @@ const WorkGallery = () => {
             className="av-mono"
             style={{ fontSize: 12, letterSpacing: ".24em", textTransform: "uppercase", color: "#8A8170", marginBottom: 24 }}
           >
-            More work
+            Más trabajo
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 12 }}>
             {otherCats.map((c) => (
@@ -311,7 +311,7 @@ const WorkGallery = () => {
               WhatsApp
             </a>
             <Link to="/" className="av-navlink av-mono" style={{ fontSize: 12.5, letterSpacing: ".08em", textTransform: "uppercase", textDecoration: "none" }}>
-              Home ↑
+              Inicio ↑
             </Link>
           </div>
         </div>

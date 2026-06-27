@@ -26,9 +26,9 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
   }, [extras, service.extras, tier.price]);
 
   const waHref = useMemo(() => {
-    let msg = `Hi AeroVision! I'm interested in ${service.title} — ${tier.name} package ($${tier.price}).`;
-    if (extras.length) msg += ` Add-ons: ${extras.join(", ")}.`;
-    msg += ` Estimated total: $${total}. When can we shoot?`;
+    let msg = `¡Hola AeroVision! Me interesa ${service.title} — paquete ${tier.name} ($${tier.price}).`;
+    if (extras.length) msg += ` Extras: ${extras.join(", ")}.`;
+    msg += ` Total estimado: $${total}. ¿Cuándo podemos grabar?`;
     return waLink(msg);
   }, [service.title, tier.name, tier.price, extras, total]);
 
@@ -70,7 +70,7 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
       }}
       role="dialog"
       aria-modal="true"
-      aria-label={`${service.title} packages`}
+      aria-label={`Paquetes de ${service.title}`}
     >
       <div
         style={{
@@ -86,7 +86,7 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
       >
         <button
           onClick={onClose}
-          aria-label="Close"
+          aria-label="Cerrar"
           style={{
             position: "absolute",
             top: 18,
@@ -189,7 +189,7 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
                         color: "#B5731A",
                       }}
                     >
-                      Most popular
+                      Más popular
                     </span>
                   )}
                 </div>
@@ -248,7 +248,7 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
             marginBottom: 14,
           }}
         >
-          Optional add-ons
+          Extras opcionales
         </div>
         <div
           style={{
@@ -320,7 +320,7 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
                 color: "#857B6A",
               }}
             >
-              Estimated total
+              Total estimado
             </div>
             <div style={{ fontWeight: 900, fontSize: 36, color: "#1E1813" }}>${total}</div>
           </div>
@@ -341,7 +341,7 @@ const PackageModal = ({ service, onClose }: PackageModalProps) => {
               textDecoration: "none",
             }}
           >
-            Request on WhatsApp <span style={mono}>→</span>
+            Pedir por WhatsApp <span style={mono}>→</span>
           </a>
         </div>
       </div>

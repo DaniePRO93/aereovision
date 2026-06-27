@@ -45,48 +45,48 @@ const heroImages = [
 const testimonials = [
   {
     quote:
-      "The aerial video made our listing stand out instantly — we had three showings booked within days of posting it. Fast, professional, and the footage looks incredible.",
+      "El video aéreo hizo que nuestra propiedad destacara al instante — tuvimos tres visitas agendadas a los pocos días de publicarlo. Rápidos, profesionales y el material se ve increíble.",
     name: "Mariana Pérez",
-    role: "Real estate agent · Antigua",
+    role: "Agente de bienes raíces · Antigua",
   },
   {
     quote:
-      "They captured our event from angles we never could have imagined. The final edit was ready in two days and performed amazingly across all our social channels.",
+      "Capturaron nuestro evento desde ángulos que jamás habríamos imaginado. La edición final estuvo lista en dos días y funcionó increíble en todas nuestras redes.",
     name: "Luis Hernández",
-    role: "Marketing manager",
+    role: "Gerente de marketing",
   },
   {
     quote:
-      "Working with AeroVision was effortless. The drone footage of our property elevated our whole brand — guests mention the video all the time.",
+      "Trabajar con AeroVision fue facilísimo. Las tomas con drone de nuestra propiedad elevaron toda nuestra marca — los huéspedes mencionan el video todo el tiempo.",
     name: "Andrea Castillo",
-    role: "Hotel owner",
+    role: "Dueña de hotel",
   },
 ];
 
 const faqs = [
   {
-    q: "How fast do you deliver?",
-    a: "Most shoots are edited and delivered within 24–72 hours of the flight. Need it sooner? A rush 24-hour delivery add-on is available on most packages.",
+    q: "¿Qué tan rápido entregan?",
+    a: "La mayoría de las grabaciones se editan y entregan dentro de 24–72 horas del vuelo. ¿La necesitas antes? Hay un extra de entrega urgente en 24 horas disponible en la mayoría de paquetes.",
   },
   {
-    q: "How do we book a shoot?",
-    a: "Message us on WhatsApp with your location, the service you want and a rough date. We confirm the scope and a fixed price, then lock the shoot date — usually within a few days.",
+    q: "¿Cómo reservamos una grabación?",
+    a: "Escríbenos por WhatsApp con tu ubicación, el servicio que quieres y una fecha aproximada. Confirmamos el alcance y un precio fijo, y agendamos la fecha — normalmente en pocos días.",
   },
   {
-    q: "Where do you shoot?",
-    a: "We're based in Guatemala and shoot nationwide, with international and destination projects available on request. Travel beyond the metro area may add a small travel fee — we'll always quote it upfront.",
+    q: "¿Dónde graban?",
+    a: "Estamos en Guatemala y grabamos a nivel nacional, con proyectos internacionales y de destino disponibles bajo solicitud. Viajar fuera del área metropolitana puede tener un pequeño costo de viaje — siempre lo cotizamos por adelantado.",
   },
   {
-    q: "What's the difference between FPV and cinematic drone?",
-    a: "FPV drones are fast and agile — perfect for immersive single-take fly-throughs and high-energy action. Cinematic drones fly smooth and stable for sweeping, polished reveals. We use both and pick the right tool for your shot.",
+    q: "¿Cuál es la diferencia entre FPV y drone cinematográfico?",
+    a: "Los drones FPV son rápidos y ágiles — perfectos para recorridos inmersivos de una sola toma y acción de alta energía. Los drones cinematográficos vuelan suaves y estables para tomas amplias y pulidas. Usamos ambos y elegimos la herramienta ideal para tu toma.",
   },
   {
-    q: "Can we request revisions?",
-    a: "Yes — one revision round is included with every edited package so we can fine-tune the cut. Additional rounds are available if you want more changes.",
+    q: "¿Podemos pedir cambios?",
+    a: "Sí — una ronda de cambios viene incluida en cada paquete editado para afinar el corte. Hay rondas adicionales disponibles si quieres más cambios.",
   },
   {
-    q: "What do we receive?",
-    a: "Depending on your package: a color-graded final film in both cinematic (16:9) and vertical (9:16) social cuts, plus high-resolution stills and raw clips on the higher tiers. Everything delivered organized over WhatsApp or Google Drive.",
+    q: "¿Qué recibimos?",
+    a: "Según tu paquete: un video final con colorización en formato cinematográfico (16:9) y vertical (9:16) para redes, además de fotos en alta resolución y clips en bruto en los niveles superiores. Todo entregado organizado por WhatsApp o Google Drive.",
   },
 ];
 
@@ -96,7 +96,7 @@ const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState({
     name: "",
-    service: "Not sure yet — help me choose",
+    service: "Aún no estoy seguro — ayúdenme a elegir",
     message: "",
   });
 
@@ -120,13 +120,13 @@ const Index = () => {
   }, []);
 
   const serviceOptions = useMemo(
-    () => ["Not sure yet — help me choose", ...services.map((s) => s.title)],
+    () => ["Aún no estoy seguro — ayúdenme a elegir", ...services.map((s) => s.title)],
     []
   );
 
   const formWaLink = useMemo(() => {
-    let msg = `Hi AeroVision! I'm ${form.name || "[name]"}. `;
-    msg += `I'm interested in: ${form.service}. `;
+    let msg = `¡Hola AeroVision! Soy ${form.name || "[nombre]"}. `;
+    msg += `Me interesa: ${form.service}. `;
     if (form.message) msg += form.message;
     return waLink(msg);
   }, [form]);
@@ -179,9 +179,9 @@ const Index = () => {
           }}
         >
           {[
-            { label: "Work", href: "#work" },
-            { label: "Services", href: "#services" },
-            { label: "Process", href: "#process" },
+            { label: "Trabajo", href: "#work" },
+            { label: "Servicios", href: "#services" },
+            { label: "Proceso", href: "#process" },
           ].map((link) => (
             <a
               key={link.href}
@@ -214,7 +214,7 @@ const Index = () => {
               boxShadow: "0 6px 20px rgba(233,162,59,.25)",
             }}
           >
-            Get a quote
+            Cotizar
           </a>
         </nav>
       </header>
@@ -296,7 +296,7 @@ const Index = () => {
             }}
           >
             <span style={{ width: 22, height: 2, background: "#E9A23B" }} />
-            Aerial Film &amp; Drone Studio
+            Estudio de Cine Aéreo y Drones
           </Reveal>
           <Reveal delay={90}>
             <h1
@@ -310,7 +310,7 @@ const Index = () => {
                 textShadow: "0 1px 22px rgba(246,242,234,.9)",
               }}
             >
-              Aerial footage that <span style={{ color: "#E9A23B" }}>sells the scene.</span>
+              Tomas aéreas que <span style={{ color: "#E9A23B" }}>venden la escena.</span>
             </h1>
           </Reveal>
           <Reveal delay={180}>
@@ -323,8 +323,8 @@ const Index = () => {
                 color: "#4A4236",
               }}
             >
-              Real estate, events, tourism and brand films — captured from the sky and
-              color-graded to stop the scroll. Booked over WhatsApp in minutes.
+              Bienes raíces, eventos, turismo y videos de marca — capturados desde el cielo
+              y con colorización profesional para detener el scroll. Reserva por WhatsApp en minutos.
             </p>
           </Reveal>
           <Reveal delay={270} style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 36 }}>
@@ -344,7 +344,7 @@ const Index = () => {
                 boxShadow: "0 10px 30px rgba(233,162,59,.3)",
               }}
             >
-              Get a quote <span style={mono}>→</span>
+              Cotizar <span style={mono}>→</span>
             </a>
           </Reveal>
         </div>
@@ -366,7 +366,7 @@ const Index = () => {
             className="av-mono"
             style={{ fontSize: 10, letterSpacing: ".3em", color: "rgba(28,22,14,.5)" }}
           >
-            SCROLL
+            DESLIZA
           </span>
           <span
             style={{
@@ -400,7 +400,7 @@ const Index = () => {
               marginBottom: 34,
             }}
           >
-            Trusted by teams across Guatemala
+            Con la confianza de equipos en Guatemala
           </div>
           <div
             style={{
@@ -431,9 +431,9 @@ const Index = () => {
             }}
           >
             {[
-              { v: "50+", l: "Projects delivered" },
-              { v: "4K·6K", l: "Cinematic capture" },
-              { v: "24–72h", l: "Typical delivery" },
+              { v: "50+", l: "Proyectos entregados" },
+              { v: "4K·6K", l: "Captura cinematográfica" },
+              { v: "24–72h", l: "Entrega típica" },
             ].map((s) => (
               <div key={s.l} style={{ textAlign: "center" }}>
                 <div className="av-mono" style={{ fontWeight: 700, fontSize: 24, color: "#1E1813" }}>
@@ -478,17 +478,17 @@ const Index = () => {
           <div>
             <div style={eyebrow}>
               <span style={accentTick} />
-              Selected Work
+              Trabajo Seleccionado
             </div>
             <h2 style={sectionH2}>
-              Shot from above,
+              Tomado desde el cielo,
               <br />
-              graded for impact.
+              editado para impactar.
             </h2>
           </div>
           <p style={{ margin: 0, maxWidth: "34ch", fontSize: 15, lineHeight: 1.6, color: "#6E6556" }}>
-            A glimpse of real AeroVision work. Every frame is captured, stabilized and
-            color-graded in-house.
+            Una muestra del trabajo real de AeroVision. Cada toma es capturada, estabilizada y
+            con colorización propia.
           </p>
         </Reveal>
 
@@ -523,14 +523,14 @@ const Index = () => {
           <Reveal style={{ marginBottom: 50 }}>
             <div style={eyebrow}>
               <span style={accentTick} />
-              Services &amp; Packages
+              Servicios y Paquetes
             </div>
             <h2 style={{ ...sectionH2, maxWidth: "18ch" }}>
-              Pick a service. See the price. Message us.
+              Elige un servicio. Mira el precio. Escríbenos.
             </h2>
             <p style={{ margin: "20px 0 0", maxWidth: "52ch", fontSize: 16, lineHeight: 1.6, color: "#6E6556" }}>
-              Transparent, tiered pricing with optional add-ons. Build your package and it lands
-              in our WhatsApp ready to book.
+              Precios transparentes por niveles con extras opcionales. Arma tu paquete y llega a
+              nuestro WhatsApp listo para reservar.
             </p>
           </Reveal>
 
@@ -626,7 +626,7 @@ const Index = () => {
                       className="av-mono"
                       style={{ fontSize: 10, letterSpacing: ".18em", textTransform: "uppercase", color: "#857B6A" }}
                     >
-                      Starting from
+                      Desde
                     </div>
                     <div style={{ fontWeight: 900, fontSize: 26, color: "#1E1813" }}>${svc.from}</div>
                   </div>
@@ -645,7 +645,7 @@ const Index = () => {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    View packages →
+                    Ver paquetes →
                   </button>
                 </div>
               </Reveal>
@@ -669,15 +669,15 @@ const Index = () => {
                   className="av-mono"
                   style={{ fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#E9A23B" }}
                 >
-                  Custom
+                  A medida
                 </span>
               </div>
               <h3 style={{ margin: "0 0 10px", fontWeight: 800, fontSize: 22, lineHeight: 1.1, color: "#FFFFFF" }}>
-                Something else in mind?
+                ¿Tienes algo más en mente?
               </h3>
               <p style={{ margin: "0 0 20px", fontSize: 14.5, lineHeight: 1.55, color: "#B7AE9D", flex: 1 }}>
-                Multi-day shoots, combined services, a campaign or a project that doesn't fit a
-                package — tell us what you need and we'll build a quote around it.
+                Grabaciones de varios días, servicios combinados, una campaña o un proyecto que no
+                encaja en un paquete — cuéntanos qué necesitas y armamos una cotización a tu medida.
               </p>
               <ul
                 style={{
@@ -689,7 +689,7 @@ const Index = () => {
                   gap: 9,
                 }}
               >
-                {["Tailored scope & pricing", "Combine any services", "Reply within a few hours"].map((it) => (
+                {["Alcance y precio a medida", "Combina cualquier servicio", "Respondemos en pocas horas"].map((it) => (
                   <li key={it} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13.5, color: "#D8CFBE" }}>
                     <span
                       style={{
@@ -720,9 +720,9 @@ const Index = () => {
                     className="av-mono"
                     style={{ fontSize: 10, letterSpacing: ".18em", textTransform: "uppercase", color: "#8A8170" }}
                   >
-                    Pricing
+                    Precio
                   </div>
-                  <div style={{ fontWeight: 900, fontSize: 26, color: "#FFFFFF" }}>Custom quote</div>
+                  <div style={{ fontWeight: 900, fontSize: 26, color: "#FFFFFF" }}>Cotización a medida</div>
                 </div>
                 <a
                   href={customWaLink}
@@ -739,7 +739,7 @@ const Index = () => {
                     textDecoration: "none",
                   }}
                 >
-                  Get a quote →
+                  Cotizar →
                 </a>
               </div>
             </Reveal>
@@ -759,9 +759,9 @@ const Index = () => {
         <Reveal style={{ marginBottom: 50 }}>
           <div style={eyebrow}>
             <span style={accentTick} />
-            How a shoot works
+            Cómo funciona una grabación
           </div>
-          <h2 style={sectionH2}>From message to final cut.</h2>
+          <h2 style={sectionH2}>Del mensaje al corte final.</h2>
         </Reveal>
         <div
           style={{
@@ -812,14 +812,14 @@ const Index = () => {
           <Reveal>
             <div style={eyebrow}>
               <span style={accentTick} />
-              Book your shoot
+              Reserva tu grabación
             </div>
             <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 46px)" }}>
-              Let's get your shoot on the calendar.
+              Agendemos tu grabación.
             </h2>
             <p style={{ margin: "22px 0 32px", maxWidth: "44ch", fontSize: 16, lineHeight: 1.6, color: "#6E6556" }}>
-              Tell us what you need and roughly when. We usually reply within a few hours and can
-              shoot within days.
+              Cuéntanos qué necesitas y más o menos cuándo. Normalmente respondemos en pocas horas
+              y podemos grabar en días.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 380 }}>
               <a
@@ -840,7 +840,7 @@ const Index = () => {
                   textDecoration: "none",
                 }}
               >
-                WhatsApp us now <span style={mono}>→</span>
+                Escríbenos por WhatsApp <span style={mono}>→</span>
               </a>
               <a
                 href={INSTAGRAM_URL}
@@ -862,14 +862,14 @@ const Index = () => {
                   border: "1px solid rgba(28,22,14,.16)",
                 }}
               >
-                See more on Instagram <span style={mono}>↗</span>
+                Ver más en Instagram <span style={mono}>↗</span>
               </a>
             </div>
             <div
               className="av-mono"
               style={{ marginTop: 30, fontSize: 12, letterSpacing: ".06em", color: "#857B6A" }}
             >
-              Typical reply: under 3 hours · Mon–Sun
+              Respuesta típica: menos de 3 horas · Lun–Dom
             </div>
           </Reveal>
 
@@ -882,7 +882,7 @@ const Index = () => {
               padding: "clamp(24px, 3vw, 36px)",
             }}
           >
-            <div style={{ fontWeight: 800, fontSize: 20, marginBottom: 22 }}>Quick quote request</div>
+            <div style={{ fontWeight: 800, fontSize: 20, marginBottom: 22 }}>Cotización rápida</div>
             <label
               className="av-mono"
               style={{
@@ -894,12 +894,12 @@ const Index = () => {
                 marginBottom: 8,
               }}
             >
-              Your name
+              Tu nombre
             </label>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              placeholder="Jane Doe"
+              placeholder="Juan Pérez"
               className="av-input"
               style={{
                 width: "100%",
@@ -924,7 +924,7 @@ const Index = () => {
                 marginBottom: 8,
               }}
             >
-              What do you need?
+              ¿Qué necesitas?
             </label>
             <select
               value={form.service}
@@ -960,12 +960,12 @@ const Index = () => {
                 marginBottom: 8,
               }}
             >
-              Details &amp; rough date
+              Detalles y fecha aproximada
             </label>
             <textarea
               value={form.message}
               onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-              placeholder="e.g. Aerial video for a house listing in Antigua, next weekend."
+              placeholder="ej. Video aéreo para una casa en venta en Antigua, el próximo fin de semana."
               rows={4}
               className="av-input"
               style={{
@@ -1000,10 +1000,10 @@ const Index = () => {
                 textDecoration: "none",
               }}
             >
-              Send via WhatsApp
+              Enviar por WhatsApp
             </a>
             <div style={{ textAlign: "center", fontSize: 12, color: "#857B6A", marginTop: 12 }}>
-              Opens WhatsApp with your message pre-filled.
+              Abre WhatsApp con tu mensaje listo.
             </div>
           </Reveal>
         </div>
@@ -1031,12 +1031,12 @@ const Index = () => {
             <div>
               <div style={eyebrow}>
                 <span style={accentTick} />
-                What clients say
+                Lo que dicen los clientes
               </div>
               <h2 style={sectionH2}>
-                Work that books
+                Trabajo que consigue
                 <br />
-                the next job.
+                el siguiente proyecto.
               </h2>
             </div>
             <div style={{ textAlign: "right" }}>
@@ -1044,7 +1044,7 @@ const Index = () => {
                 20+
               </div>
               <div style={{ fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: "#857B6A" }}>
-                Happy clients
+                Clientes satisfechos
               </div>
             </div>
           </Reveal>
@@ -1099,9 +1099,9 @@ const Index = () => {
         <Reveal style={{ marginBottom: 44 }}>
           <div style={eyebrow}>
             <span style={accentTick} />
-            Questions
+            Preguntas
           </div>
-          <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 44px)" }}>Good to know.</h2>
+          <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 44px)" }}>Bueno saberlo.</h2>
         </Reveal>
         <Reveal style={{ borderTop: "1px solid rgba(28,22,14,.12)" }}>
           {faqs.map((faq) => (
@@ -1156,9 +1156,9 @@ const Index = () => {
           }}
         >
           <div style={{ flex: 1, minWidth: 220 }}>
-            <div style={{ fontWeight: 800, fontSize: 19 }}>Still have a question?</div>
+            <div style={{ fontWeight: 800, fontSize: 19 }}>¿Aún tienes una pregunta?</div>
             <div style={{ fontSize: 14.5, color: "#6E6556", marginTop: 4 }}>
-              Ask us directly — we usually reply within a few hours.
+              Pregúntanos directamente — normalmente respondemos en pocas horas.
             </div>
           </div>
           <a
@@ -1179,7 +1179,7 @@ const Index = () => {
               whiteSpace: "nowrap",
             }}
           >
-            Ask on WhatsApp →
+            Pregunta por WhatsApp →
           </a>
         </Reveal>
       </section>
@@ -1230,11 +1230,11 @@ const Index = () => {
               className="av-navlink av-mono"
               style={{ fontSize: 12.5, letterSpacing: ".08em", textTransform: "uppercase", textDecoration: "none" }}
             >
-              Back to top ↑
+              Volver arriba ↑
             </a>
           </div>
           <div className="av-mono" style={{ fontSize: 11, color: "#A99F8F", width: "100%" }}>
-            © 2026 AeroVision — Aerial film &amp; drone studio.
+            © 2026 AeroVision — Estudio de cine aéreo y drones.
           </div>
         </div>
       </footer>
@@ -1245,7 +1245,7 @@ const Index = () => {
         href={waDirect}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Contact us on WhatsApp"
+        aria-label="Contáctanos por WhatsApp"
         style={{
           position: "fixed",
           right: "clamp(16px, 3vw, 30px)",
@@ -1277,7 +1277,7 @@ const Index = () => {
             <path d="M16.04 4C9.93 4 4.98 8.95 4.98 15.06c0 2.05.56 4.04 1.62 5.79L4.9 27.1l6.43-1.68a11.02 11.02 0 0 0 4.7 1.05h.01c6.11 0 11.06-4.95 11.06-11.06S22.15 4 16.04 4zm0 20.2h-.01c-1.5 0-2.97-.4-4.26-1.17l-.3-.18-3.82 1 1.02-3.72-.2-.31a9.16 9.16 0 0 1-1.4-4.88c0-5.06 4.12-9.18 9.18-9.18 2.45 0 4.76.96 6.49 2.69a9.13 9.13 0 0 1 2.69 6.5c0 5.06-4.12 9.17-9.18 9.17zm5.03-6.87c-.27-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.61.14-.18.27-.7.9-.86 1.08-.16.18-.32.2-.59.07-.27-.14-1.16-.43-2.21-1.36-.82-.73-1.37-1.63-1.53-1.9-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.44-.46-.61-.46-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.96.94-.96 2.3 0 1.36.98 2.67 1.12 2.85.14.18 1.93 2.95 4.68 4.14.65.28 1.16.45 1.56.58.66.21 1.25.18 1.72.11.52-.08 1.63-.67 1.86-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.18-.52-.32z" />
           </svg>
         </span>
-        <span className="av-wa-label">Contact us!</span>
+        <span className="av-wa-label">¡Escríbenos!</span>
       </a>
 
       {/* ============ PACKAGE MODAL ============ */}
