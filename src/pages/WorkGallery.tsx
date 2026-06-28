@@ -136,9 +136,9 @@ const WorkGallery = () => {
               allowFullScreen
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
             />
-          ) : cat.video ? (
+          ) : cat.featureVideo || cat.video ? (
             <video
-              src={cat.video}
+              src={cat.featureVideo ?? cat.video}
               poster={cat.cover}
               autoPlay
               muted

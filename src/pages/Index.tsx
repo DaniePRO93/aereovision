@@ -13,6 +13,7 @@ import groupPhoto from "@/assets/hero-carousel/group-photo.jpg";
 import bikeTrail from "@/assets/hero-carousel/bike-trail.jpg";
 import actonLogo from "@/assets/clients/acton-logo.png";
 import prometheusLogo from "@/assets/clients/prometheus-logo.png";
+import ufmLogo from "@/assets/clients/UFM logo.png";
 
 const mono: CSSProperties = { fontFamily: "'Space Mono', monospace" };
 const eyebrow: CSSProperties = {
@@ -400,6 +401,7 @@ const Index = () => {
               alt="PrometheusFest del CEES"
               style={{ height: 60, width: "auto", display: "block", borderRadius: 7 }}
             />
+            <img src={ufmLogo} alt="Universidad Francisco Marroquín" style={{ height: 64, width: "auto", display: "block" }} />
           </div>
           <div
             style={{

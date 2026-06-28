@@ -9,6 +9,7 @@ import actonShowreel from "@/assets/Acton family day or sports showreel.mov";
 import homeRoof from "@/assets/work/home-roof.jpg";
 import homeOutside from "@/assets/work/home-outside.jpg";
 import homePullout from "@/assets/work/home-pullout.mp4";
+import homeTour from "@/assets/work/home-tour.mp4";
 import groupWave from "@/assets/work/group-wave.mp4";
 import groupWavePoster from "@/assets/work/group-wave-poster.jpg";
 import beachNeighborhood from "@/assets/work/beach-neighborhood.jpg";
@@ -32,8 +33,10 @@ export interface WorkCategory {
   blurb: string;
   /** Imagen de portada de la tarjeta. */
   cover: string;
-  /** Video opcional que se reproduce al pasar el cursor (y encabeza la galería). */
+  /** Video opcional que se reproduce al pasar el cursor en la tarjeta. */
   video?: string;
+  /** Video que encabeza la página de galería (si difiere del de la tarjeta). */
+  featureVideo?: string;
   /** URL de YouTube/Vimeo (embed) para videos largos que no se suben al repo. */
   embedUrl?: string;
   /** Se muestra como tarjeta destacada 16:9 cuando es true. */
@@ -54,7 +57,7 @@ export const workCategories: WorkCategory[] = [
       "Recorridos aéreos y fotos que hacen imposible pasar de largo una propiedad. Mira el tour completo y más tomas abajo.",
     cover: homeRoof,
     video: homePullout,
-    // embedUrl: "https://www.youtube.com/embed/XXXX", // ← tour de 6 min (pendiente)
+    featureVideo: homeTour,
     feature: true,
     aspect: "16 / 9",
     items: [
