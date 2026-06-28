@@ -128,7 +128,15 @@ const WorkGallery = () => {
             aspectRatio: "16 / 9",
           }}
         >
-          {cat.video ? (
+          {cat.embedUrl ? (
+            <iframe
+              src={cat.embedUrl}
+              title={cat.label}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
+            />
+          ) : cat.video ? (
             <video
               src={cat.video}
               poster={cat.cover}
