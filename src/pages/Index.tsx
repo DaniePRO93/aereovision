@@ -4,7 +4,9 @@ import Reveal from "@/components/Reveal";
 import PackageModal from "@/components/PackageModal";
 import WorkTile from "@/components/WorkTile";
 import { services, steps } from "@/data/services";
-import { workCategories } from "@/data/work";
+import { workCategories, type WorkCategory } from "@/data/work";
+import accionSalto from "@/assets/work/accion-salto.mp4";
+import accionSaltoPoster from "@/assets/work/accion-salto-poster.jpg";
 import { INSTAGRAM_URL, waDirect, customWaLink, waLink } from "@/lib/whatsapp";
 
 import residentialAerial from "@/assets/hero-carousel/residential-aerial.jpg";
@@ -42,6 +44,19 @@ const heroImages = [
   { src: groupPhoto, alt: "Aerial event coverage" },
   { src: bikeTrail, alt: "Action FPV trail" },
 ];
+
+// Full-width jump highlight shown below the Casas feature; links to /work/accion.
+const saltoShowcase: WorkCategory = {
+  slug: "accion",
+  tag: "EN ACCIÓN",
+  tileTitle: "Salto en bici",
+  label: "Acción",
+  blurb: "",
+  cover: accionSaltoPoster,
+  video: accionSalto,
+  aspect: "16 / 9",
+  items: [],
+};
 
 const testimonials = [
   {
@@ -484,15 +499,28 @@ const Index = () => {
             gap: 16,
           }}
         >
-          {workCategories.map((cat, i) => (
-            <Reveal
-              key={cat.slug}
-              delay={cat.feature ? 0 : (i % 3) * 80}
-              style={cat.feature ? { gridColumn: "1 / -1" } : undefined}
-            >
-              <WorkTile cat={cat} />
-            </Reveal>
-          ))}
+          {/* Casas feature (full width) */}
+          {workCategories
+            .filter((cat) => cat.feature)
+            .map((cat) => (
+              <Reveal key={cat.slug} style={{ gridColumn: "1 / -1" }}>
+                <WorkTile cat={cat} />
+              </Reveal>
+            ))}
+
+          {/* Jump highlight, full width, right below Casas */}
+          <Reveal style={{ gridColumn: "1 / -1" }}>
+            <WorkTile cat={saltoShowcase} />
+          </Reveal>
+
+          {/* Remaining categories */}
+          {workCategories
+            .filter((cat) => !cat.feature)
+            .map((cat, i) => (
+              <Reveal key={cat.slug} delay={(i % 3) * 80}>
+                <WorkTile cat={cat} />
+              </Reveal>
+            ))}
         </div>
       </section>
 

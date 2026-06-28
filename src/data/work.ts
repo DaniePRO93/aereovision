@@ -2,10 +2,13 @@
 // Para agregar contenido: coloca archivos en src/assets/work, impórtalos aquí y
 // añádelos al array `items` de la categoría (y/o define `video` para hover).
 
-import bikeTrail from "@/assets/hero-carousel/bike-trail.jpg";
 import groupPhoto from "@/assets/hero-carousel/group-photo.jpg";
 import actonShowreel from "@/assets/Acton family day or sports showreel.mov";
 
+import accionPortada from "@/assets/work/accion-portada.mp4";
+import accionPortadaPoster from "@/assets/work/accion-portada-poster.jpg";
+import accionSalto from "@/assets/work/accion-salto.mp4";
+import accionSaltoPoster from "@/assets/work/accion-salto-poster.jpg";
 import homeRoof from "@/assets/work/home-roof.jpg";
 import homeOutside from "@/assets/work/home-outside.jpg";
 import homePullout from "@/assets/work/home-pullout.mp4";
@@ -71,9 +74,11 @@ export const workCategories: WorkCategory[] = [
     tileTitle: "Bajadas",
     label: "Acción",
     blurb: "Tomas de acción rápidas e inmersivas: bajadas, ciclismo y senderos de alta energía.",
-    cover: bikeTrail,
+    cover: accionPortadaPoster,
+    video: accionPortada,
+    featureVideo: accionPortada,
     aspect: "4 / 5",
-    items: [{ type: "image", src: bikeTrail, caption: "Bajada en sendero" }],
+    items: [{ type: "video", src: accionSalto, poster: accionSaltoPoster, caption: "Salto en bici" }],
   },
   {
     slug: "sports",
