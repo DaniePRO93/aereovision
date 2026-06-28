@@ -159,20 +159,20 @@ const WorkGallery = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: 16,
+            gridTemplateColumns: "1fr",
+            gap: 24,
           }}
         >
           {cat.items.map((item, i) => (
             <Reveal
               key={`${item.src}-${i}`}
-              delay={(i % 3) * 80}
+              delay={0}
               style={{
                 position: "relative",
-                borderRadius: 6,
+                borderRadius: 8,
                 overflow: "hidden",
                 background: "#17140F",
-                aspectRatio: "4 / 3",
+                aspectRatio: "16 / 9",
               }}
             >
               {item.type === "video" ? (
