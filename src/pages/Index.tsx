@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "@/styles/redesign.css";
 import Reveal from "@/components/Reveal";
 import PackageModal from "@/components/PackageModal";
@@ -101,6 +101,7 @@ const Index = () => {
   const [openId, setOpenId] = useState<string | null>(null);
   const [heroIndex, setHeroIndex] = useState(0);
   const [videoReady, setVideoReady] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -119,6 +120,33 @@ const Index = () => {
     );
     return () => window.clearInterval(timer);
   }, [videoReady]);
+
+  // Force-start the hero video. React doesn't render the `muted` attribute
+  // into the DOM (only the property), so browser autoplay policies can block
+  // playback — mute explicitly and kick off play(), retrying on first
+  // interaction for strict mobile browsers.
+  useEffect(() => {
+    const v = heroVideoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    const tryPlay = () => {
+      if (v.paused) void v.play().catch(() => {});
+    };
+    tryPlay();
+    // The mount-time attempt can race the media load — retry once data arrives.
+    v.addEventListener("loadedmetadata", tryPlay);
+    v.addEventListener("canplay", tryPlay);
+    const onFirstTouch = () => tryPlay();
+    window.addEventListener("pointerdown", onFirstTouch, { once: true });
+    window.addEventListener("touchstart", onFirstTouch, { once: true });
+    return () => {
+      v.removeEventListener("loadedmetadata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+      window.removeEventListener("pointerdown", onFirstTouch);
+      window.removeEventListener("touchstart", onFirstTouch);
+    };
+  }, []);
 
   // Nav background on scroll.
   useEffect(() => {
@@ -177,6 +205,7 @@ const Index = () => {
           />
         ))}
         <video
+          ref={heroVideoRef}
           className="av-hero-video"
           src={homePullout}
           autoPlay
@@ -184,7 +213,7 @@ const Index = () => {
           loop
           playsInline
           preload="auto"
-          onCanPlay={() => setVideoReady(true)}
+          onPlaying={() => setVideoReady(true)}
           style={{ opacity: videoReady ? 1 : 0 }}
         />
         <div className="av-hero-shade" />

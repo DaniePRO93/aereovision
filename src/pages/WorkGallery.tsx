@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import "@/styles/redesign.css";
 import Reveal from "@/components/Reveal";
@@ -8,9 +8,30 @@ import { waDirect, INSTAGRAM_URL } from "@/lib/whatsapp";
 const WorkGallery = () => {
   const { slug } = useParams();
   const cat = getCategory(slug);
+  const featureRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [slug]);
+
+  // React doesn't render the `muted` attribute (only the property), which can
+  // make browsers block autoplay — mute explicitly and kick off playback.
+  useEffect(() => {
+    const v = featureRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    const tryPlay = () => {
+      if (v.paused) void v.play().catch(() => {});
+    };
+    tryPlay();
+    // The mount-time attempt can race the media load — retry once data arrives.
+    v.addEventListener("loadedmetadata", tryPlay);
+    v.addEventListener("canplay", tryPlay);
+    return () => {
+      v.removeEventListener("loadedmetadata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+    };
   }, [slug]);
 
   // Unknown category → simple fallback.
@@ -110,13 +131,14 @@ const WorkGallery = () => {
             />
           ) : cat.featureVideo || cat.video ? (
             <video
+              ref={featureRef}
               src={cat.featureVideo ?? cat.video}
               poster={cat.cover}
               autoPlay
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               controls
             />
           ) : (
