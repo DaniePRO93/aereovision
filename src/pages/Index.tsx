@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "@/styles/redesign.css";
 import Reveal from "@/components/Reveal";
 import PackageModal from "@/components/PackageModal";
@@ -7,6 +7,7 @@ import { services, steps } from "@/data/services";
 import { workCategories, type WorkCategory } from "@/data/work";
 import accionSalto from "@/assets/work/accion-salto.mp4";
 import accionSaltoPoster from "@/assets/work/accion-salto-poster.jpg";
+import homePullout from "@/assets/work/home-pullout.mp4";
 import { INSTAGRAM_URL, waDirect, customWaLink, waLink } from "@/lib/whatsapp";
 
 import residentialAerial from "@/assets/hero-carousel/residential-aerial.jpg";
@@ -17,32 +18,22 @@ import actonLogo from "@/assets/clients/acton-logo.png";
 import prometheusLogo from "@/assets/clients/prometheus-logo.png";
 import ufmLogo from "@/assets/clients/UFM logo.png";
 
-const mono: CSSProperties = { fontFamily: "'Space Mono', monospace" };
-const eyebrow: CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: 11,
-  fontFamily: "'Space Mono', monospace",
-  fontSize: 12,
-  letterSpacing: ".24em",
-  textTransform: "uppercase",
-  color: "#8A8170",
-  marginBottom: 16,
-};
-const accentTick: CSSProperties = { width: 20, height: 2, background: "#E9A23B" };
-const sectionH2: CSSProperties = {
-  margin: 0,
-  fontWeight: 800,
-  fontSize: "clamp(28px, 4vw, 48px)",
-  lineHeight: 1.02,
-  letterSpacing: "-.015em",
-};
-
 const heroImages = [
-  { src: residentialAerial, alt: "Aerial real estate" },
-  { src: coastalAerial, alt: "Coastal aerial" },
-  { src: groupPhoto, alt: "Aerial event coverage" },
-  { src: bikeTrail, alt: "Action FPV trail" },
+  { src: residentialAerial, alt: "Toma aérea de bienes raíces" },
+  { src: coastalAerial, alt: "Costa desde el aire" },
+  { src: groupPhoto, alt: "Cobertura aérea de eventos" },
+  { src: bikeTrail, alt: "Sendero de acción FPV" },
+];
+
+const marqueeItems = [
+  "Bienes raíces",
+  "Eventos",
+  "Turismo",
+  "Acción FPV",
+  "Marcas",
+  "Captura 4K · 6K",
+  "Colorización de cine",
+  "Guatemala",
 ];
 
 // Full-width jump highlight shown below the Casas feature; links to /work/accion.
@@ -109,6 +100,7 @@ const faqs = [
 const Index = () => {
   const [openId, setOpenId] = useState<string | null>(null);
   const [heroIndex, setHeroIndex] = useState(0);
+  const [videoReady, setVideoReady] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -118,14 +110,15 @@ const Index = () => {
 
   const openService = services.find((s) => s.id === openId) ?? null;
 
-  // Hero crossfade rotation.
+  // Hero crossfade rotation (stops once the video takes over).
   useEffect(() => {
+    if (videoReady) return;
     const timer = window.setInterval(
       () => setHeroIndex((i) => (i + 1) % heroImages.length),
       5200
     );
     return () => window.clearInterval(timer);
-  }, []);
+  }, [videoReady]);
 
   // Nav background on scroll.
   useEffect(() => {
@@ -149,307 +142,152 @@ const Index = () => {
 
   return (
     <div className="av-root" id="top">
+      <div className="av-grain" aria-hidden="true" />
+
       {/* ============ NAV ============ */}
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-          padding: "16px clamp(20px, 5vw, 64px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(28,22,14,.1)"
-            : "1px solid rgba(28,22,14,.07)",
-          background: scrolled ? "rgba(246,242,234,.93)" : "rgba(246,242,234,.8)",
-          backdropFilter: scrolled ? "blur(14px)" : "blur(12px)",
-          boxShadow: scrolled ? "0 6px 24px rgba(20,16,10,.06)" : "none",
-          transition: "background .4s ease, border-color .4s ease, box-shadow .4s ease",
-        }}
-      >
-        <a
-          href="#top"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            textDecoration: "none",
-            color: "#1E1813",
-          }}
-        >
-          <span style={{ fontWeight: 900, fontSize: 19, letterSpacing: ".14em" }}>
-            AERO<span style={{ color: "#E9A23B" }}>VISION</span>
-          </span>
+      <header className={`av-nav ${scrolled ? "av-nav--solid" : ""}`}>
+        <a href="#top" className="av-wordmark">
+          AERO<em>VISION</em>
         </a>
-        <nav
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "clamp(14px, 2.4vw, 36px)",
-            flexWrap: "wrap",
-            justifyContent: "flex-end",
-          }}
-        >
+        <nav className="av-navlinks">
           {[
             { label: "Trabajo", href: "#work" },
             { label: "Servicios", href: "#services" },
             { label: "Proceso", href: "#process" },
           ].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="av-navlink av-mono"
-              style={{
-                fontSize: 12.5,
-                letterSpacing: ".08em",
-                textTransform: "uppercase",
-                textDecoration: "none",
-              }}
-            >
+            <a key={link.href} href={link.href} className="av-navlink">
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="av-pill"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              color: "#221A0C",
-              fontWeight: 800,
-              fontSize: 13.5,
-              letterSpacing: ".02em",
-              padding: "11px 20px",
-              borderRadius: 100,
-              textDecoration: "none",
-              boxShadow: "0 6px 20px rgba(233,162,59,.25)",
-            }}
-          >
+          <a href="#contact" className="av-cta av-cta--sm">
             Cotizar
           </a>
         </nav>
       </header>
 
       {/* ============ HERO ============ */}
-      <section
-        style={{
-          position: "relative",
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "flex-end",
-          overflow: "hidden",
-        }}
-      >
+      <section className="av-hero">
         {heroImages.map((img, i) => (
           <img
             key={img.src}
             className="av-hero-img"
             src={img.src}
             alt={img.alt}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              opacity: i === heroIndex ? 1 : 0,
-              transition: "opacity 1.6s ease",
-              animation: "av-kenburns 16s ease-in-out infinite alternate",
-            }}
+            style={{ opacity: !videoReady && i === heroIndex ? 1 : 0 }}
           />
         ))}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(246,242,234,.62) 0%, rgba(246,242,234,.12) 24%, rgba(246,242,234,.5) 56%, rgba(246,242,234,.97) 100%)",
-          }}
+        <video
+          className="av-hero-video"
+          src={homePullout}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onCanPlay={() => setVideoReady(true)}
+          style={{ opacity: videoReady ? 1 : 0 }}
         />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(120% 90% at 72% 26%, rgba(233,162,59,.07) 0%, rgba(246,242,234,0) 46%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            boxShadow: "inset 0 0 200px 36px rgba(246,242,234,.6)",
-          }}
-        />
+        <div className="av-hero-shade" />
+        <div className="av-hero-vignette" />
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 3,
-            width: "100%",
-            maxWidth: 1320,
-            margin: "0 auto",
-            padding: "0 clamp(20px, 5vw, 64px) clamp(40px, 7vh, 84px)",
-          }}
-        >
+        {/* HUD telemetry frame */}
+        <div className="av-hud" aria-hidden="true">
+          <div className="av-hud-row">
+            <span className="av-rec">
+              <i /> REC
+            </span>
+            <span className="av-hud-hide-sm">14.62°N · 90.51°O — Guatemala</span>
+            <span>4K / 6K CINE</span>
+          </div>
+        </div>
+
+        <div className="av-hero-inner">
           <Reveal>
-            <h1
-              style={{
-                margin: 0,
-                fontWeight: 800,
-                fontSize: "clamp(32px, 5.2vw, 64px)",
-                lineHeight: 1.02,
-                letterSpacing: "-.02em",
-                maxWidth: "18ch",
-                textShadow: "0 1px 22px rgba(246,242,234,.9)",
-              }}
-            >
-              Tomas aéreas que <span style={{ color: "#E9A23B" }}>venden la escena.</span>
+            <h1 className="av-hero-title">
+              Tomas aéreas que{" "}
+              <span className="av-serif av-grad-text">venden la escena.</span>
             </h1>
           </Reveal>
           <Reveal delay={180}>
-            <p
-              style={{
-                margin: "26px 0 0",
-                maxWidth: "56ch",
-                fontSize: "clamp(16px, 1.5vw, 20px)",
-                lineHeight: 1.55,
-                color: "#4A4236",
-              }}
-            >
-              Bienes raíces, eventos, turismo y videos de marca — capturados desde el cielo
-              y con colorización profesional para detener el scroll. Reserva por WhatsApp en minutos.
+            <p className="av-hero-sub">
+              Bienes raíces, eventos, turismo y videos de marca — capturados desde el cielo y
+              con colorización de cine para detener el scroll. Reserva por WhatsApp en minutos.
             </p>
           </Reveal>
-          <Reveal delay={270} style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 36 }}>
-            <a
-              href="#contact"
-              className="av-cta"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 10,
-                color: "#221A0C",
-                fontWeight: 800,
-                fontSize: 16,
-                padding: "16px 30px",
-                borderRadius: 100,
-                textDecoration: "none",
-                boxShadow: "0 10px 30px rgba(233,162,59,.3)",
-              }}
-            >
-              Cotizar <span style={mono}>→</span>
-            </a>
+          <Reveal delay={270}>
+            <div className="av-hero-ctas">
+              <a href="#contact" className="av-cta">
+                Cotizar <span className="av-mono">→</span>
+              </a>
+              <a href="#work" className="av-ghost">
+                Ver el trabajo
+              </a>
+            </div>
           </Reveal>
         </div>
 
-        <div
-          style={{
-            position: "absolute",
-            bottom: 26,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 3,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 6,
-          }}
-        >
-          <span
-            className="av-mono"
-            style={{ fontSize: 10, letterSpacing: ".3em", color: "rgba(28,22,14,.5)" }}
-          >
-            DESLIZA
-          </span>
-          <span
-            style={{
-              display: "block",
-              width: 1,
-              height: 26,
-              background: "linear-gradient(#E9A23B, transparent)",
-              animation: "av-cue 1.8s ease-in-out infinite",
-            }}
-          />
+        <div className="av-cue-wrap" aria-hidden="true">
+          <span>DESLIZA</span>
+          <span className="av-cue" />
+        </div>
+
+        {/* Marquee ribbon */}
+        <div className="av-marquee" aria-hidden="true">
+          <div className="av-marquee-track">
+            {[0, 1].map((rep) => (
+              <span key={rep}>
+                {marqueeItems.map((item) => (
+                  <span key={item}>
+                    {item} <b>✦</b>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ============ CLIENTS / TRUST ============ */}
-      <section
-        style={{
-          borderTop: "1px solid rgba(28,22,14,.09)",
-          borderBottom: "1px solid rgba(28,22,14,.09)",
-          background: "#FFFFFF",
-        }}
-      >
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "50px clamp(20px, 5vw, 64px)" }}>
+      <section className="av-band">
+        <div style={{ maxWidth: 1120, margin: "0 auto", padding: "60px var(--av-pad-x)" }}>
           <div
             className="av-mono"
             style={{
               textAlign: "center",
               fontSize: 11,
-              letterSpacing: ".24em",
+              letterSpacing: ".26em",
               textTransform: "uppercase",
-              color: "#857B6A",
+              color: "var(--av-muted)",
               marginBottom: 34,
             }}
           >
             Con la confianza de equipos en Guatemala
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "clamp(40px, 8vw, 96px)",
-            }}
-          >
-            <img src={actonLogo} alt="Acton Academy Guatemala" style={{ height: 78, width: "auto", display: "block" }} />
-            <img
-              src={prometheusLogo}
-              alt="PrometheusFest del CEES"
-              style={{ height: 60, width: "auto", display: "block", borderRadius: 7 }}
-            />
-            <img src={ufmLogo} alt="Universidad Francisco Marroquín" style={{ height: 64, width: "auto", display: "block" }} />
+          <div className="av-clients">
+            <div className="av-logochip">
+              <img src={actonLogo} alt="Acton Academy Guatemala" style={{ height: 66 }} />
+            </div>
+            <div className="av-logochip">
+              <img
+                src={prometheusLogo}
+                alt="PrometheusFest del CEES"
+                style={{ height: 56, borderRadius: 7 }}
+              />
+            </div>
+            <div className="av-logochip">
+              <img src={ufmLogo} alt="Universidad Francisco Marroquín" style={{ height: 58 }} />
+            </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "clamp(30px, 6vw, 68px)",
-              marginTop: 46,
-              paddingTop: 38,
-              borderTop: "1px solid rgba(28,22,14,.08)",
-            }}
-          >
+          <div className="av-stats">
             {[
               { v: "50+", l: "Proyectos entregados" },
-              { v: "4K·6K", l: "Captura cinematográfica" },
+              { v: "4K · 6K", l: "Captura cinematográfica" },
               { v: "24–72h", l: "Entrega típica" },
+              { v: "20+", l: "Clientes satisfechos" },
             ].map((s) => (
-              <div key={s.l} style={{ textAlign: "center" }}>
-                <div className="av-mono" style={{ fontWeight: 700, fontSize: 24, color: "#1E1813" }}>
-                  {s.v}
-                </div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: ".14em",
-                    textTransform: "uppercase",
-                    color: "#857B6A",
-                    marginTop: 4,
-                  }}
-                >
-                  {s.l}
-                </div>
+              <div key={s.l} className="av-stat">
+                <b>{s.v}</b>
+                <span>{s.l}</span>
               </div>
             ))}
           </div>
@@ -457,14 +295,7 @@ const Index = () => {
       </section>
 
       {/* ============ WORK ============ */}
-      <section
-        id="work"
-        style={{
-          maxWidth: 1320,
-          margin: "0 auto",
-          padding: "clamp(70px, 11vh, 130px) clamp(20px, 5vw, 64px)",
-        }}
-      >
+      <section id="work" className="av-section">
         <Reveal
           style={{
             display: "flex",
@@ -472,44 +303,35 @@ const Index = () => {
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: 18,
-            marginBottom: 46,
+            marginBottom: 48,
           }}
         >
           <div>
-            <div style={eyebrow}>
-              <span style={accentTick} />
-              Trabajo Seleccionado
-            </div>
-            <h2 style={sectionH2}>
+            <div className="av-eyebrow">Trabajo seleccionado</div>
+            <h2 className="av-h2">
               Tomado desde el cielo,
               <br />
-              editado para impactar.
+              <span className="av-serif av-grad-text">editado para impactar.</span>
             </h2>
           </div>
-          <p style={{ margin: 0, maxWidth: "34ch", fontSize: 15, lineHeight: 1.6, color: "#6E6556" }}>
+          <p className="av-lead" style={{ margin: 0, maxWidth: "34ch", fontSize: 15 }}>
             Una muestra del trabajo real de AeroVision. Cada toma es capturada, estabilizada y
             con colorización propia.
           </p>
         </Reveal>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 16,
-          }}
-        >
+        <div className="av-workgrid">
           {/* Casas feature (full width) */}
           {workCategories
             .filter((cat) => cat.feature)
             .map((cat) => (
-              <Reveal key={cat.slug} style={{ gridColumn: "1 / -1" }}>
+              <Reveal key={cat.slug} className="av-span-all">
                 <WorkTile cat={cat} />
               </Reveal>
             ))}
 
           {/* Jump highlight, full width, right below Casas */}
-          <Reveal style={{ gridColumn: "1 / -1" }}>
+          <Reveal className="av-span-all">
             <WorkTile cat={saltoShowcase} />
           </Reveal>
 
@@ -525,139 +347,37 @@ const Index = () => {
       </section>
 
       {/* ============ SERVICES ============ */}
-      <section id="services" style={{ background: "#FFFFFF", borderTop: "1px solid rgba(28,22,14,.09)" }}>
-        <div
-          style={{
-            maxWidth: 1320,
-            margin: "0 auto",
-            padding: "clamp(70px, 11vh, 130px) clamp(20px, 5vw, 64px)",
-          }}
-        >
-          <Reveal style={{ marginBottom: 50 }}>
-            <div style={eyebrow}>
-              <span style={accentTick} />
-              Servicios y Paquetes
-            </div>
-            <h2 style={{ ...sectionH2, maxWidth: "18ch" }}>
-              Elige un servicio. Mira el precio. Escríbenos.
+      <section id="services" className="av-band">
+        <div className="av-section">
+          <Reveal style={{ marginBottom: 52 }}>
+            <div className="av-eyebrow">Servicios y paquetes</div>
+            <h2 className="av-h2" style={{ maxWidth: "20ch" }}>
+              Elige un servicio. Mira el precio.{" "}
+              <span className="av-serif av-grad-text">Escríbenos.</span>
             </h2>
-            <p style={{ margin: "20px 0 0", maxWidth: "52ch", fontSize: 16, lineHeight: 1.6, color: "#6E6556" }}>
+            <p className="av-lead" style={{ margin: "20px 0 0", maxWidth: "52ch" }}>
               Precios transparentes por niveles con extras opcionales. Arma tu paquete y llega a
               nuestro WhatsApp listo para reservar.
             </p>
           </Reveal>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
-              gap: 16,
-            }}
-          >
+          <div className="av-svcgrid">
             {services.map((svc) => (
-              <Reveal
-                key={svc.id}
-                className="av-card"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  minWidth: 0,
-                  background: "#FFFFFF",
-                  border: "1px solid rgba(28,22,14,.10)",
-                  borderRadius: 6,
-                  padding: 26,
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 10,
-                    marginBottom: 18,
-                  }}
-                >
-                  <span
-                    className="av-mono"
-                    style={{
-                      fontSize: 10.5,
-                      letterSpacing: ".18em",
-                      textTransform: "uppercase",
-                      color: "#B5731A",
-                    }}
-                  >
-                    {svc.tag}
-                  </span>
-                </div>
-                <h3 style={{ margin: "0 0 10px", fontWeight: 800, fontSize: 22, lineHeight: 1.1 }}>
-                  {svc.title}
-                </h3>
-                <p style={{ margin: "0 0 20px", fontSize: 14.5, lineHeight: 1.55, color: "#6E6556", flex: 1 }}>
-                  {svc.blurb}
-                </p>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    margin: "0 0 22px",
-                    padding: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 9,
-                  }}
-                >
+              <Reveal key={svc.id} className="av-card">
+                <div className="av-card-tag">{svc.tag}</div>
+                <h3 className="av-card-title">{svc.title}</h3>
+                <p className="av-card-blurb">{svc.blurb}</p>
+                <ul className="av-list">
                   {svc.highlights.map((hl) => (
-                    <li
-                      key={hl}
-                      style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13.5, color: "#564C3E" }}
-                    >
-                      <span
-                        style={{
-                          width: 5,
-                          height: 5,
-                          borderRadius: "50%",
-                          background: "#E9A23B",
-                          marginTop: 7,
-                          flexShrink: 0,
-                        }}
-                      />
-                      {hl}
-                    </li>
+                    <li key={hl}>{hl}</li>
                   ))}
                 </ul>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-end",
-                    justifyContent: "space-between",
-                    gap: 12,
-                    paddingTop: 18,
-                    borderTop: "1px solid rgba(28,22,14,.09)",
-                  }}
-                >
+                <div className="av-card-foot">
                   <div>
-                    <div
-                      className="av-mono"
-                      style={{ fontSize: 10, letterSpacing: ".18em", textTransform: "uppercase", color: "#857B6A" }}
-                    >
-                      Desde
-                    </div>
-                    <div style={{ fontWeight: 900, fontSize: 26, color: "#1E1813" }}>${svc.from}</div>
+                    <div className="av-price-label">Desde</div>
+                    <div className="av-price">${svc.from}</div>
                   </div>
-                  <button
-                    onClick={() => setOpenId(svc.id)}
-                    className="av-viewpkg"
-                    style={{
-                      background: "rgba(233,162,59,.12)",
-                      color: "#E9A23B",
-                      fontWeight: 800,
-                      fontSize: 13.5,
-                      border: "1px solid rgba(233,162,59,.32)",
-                      borderRadius: 100,
-                      padding: "11px 18px",
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
+                  <button onClick={() => setOpenId(svc.id)} className="av-viewpkg">
                     Ver paquetes →
                   </button>
                 </div>
@@ -665,92 +385,35 @@ const Index = () => {
             ))}
 
             {/* Custom quote card */}
-            <Reveal
-              className="av-card"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                minWidth: 0,
-                background: "#17140F",
-                border: "1px solid #17140F",
-                borderRadius: 6,
-                padding: 26,
-              }}
-            >
-              <div style={{ marginBottom: 18 }}>
-                <span
-                  className="av-mono"
-                  style={{ fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#E9A23B" }}
-                >
-                  A medida
-                </span>
-              </div>
-              <h3 style={{ margin: "0 0 10px", fontWeight: 800, fontSize: 22, lineHeight: 1.1, color: "#FFFFFF" }}>
-                ¿Tienes algo más en mente?
-              </h3>
-              <p style={{ margin: "0 0 20px", fontSize: 14.5, lineHeight: 1.55, color: "#B7AE9D", flex: 1 }}>
-                Grabaciones de varios días, servicios combinados, una campaña o un proyecto que no
-                encaja en un paquete — cuéntanos qué necesitas y armamos una cotización a tu medida.
+            <Reveal className="av-card av-card--custom">
+              <div className="av-card-tag">A medida</div>
+              <h3 className="av-card-title">¿Tienes algo más en mente?</h3>
+              <p className="av-card-blurb">
+                Grabaciones de varios días, servicios combinados, una campaña o un proyecto que
+                no encaja en un paquete — cuéntanos qué necesitas y armamos una cotización a tu
+                medida.
               </p>
-              <ul
-                style={{
-                  listStyle: "none",
-                  margin: "0 0 22px",
-                  padding: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 9,
-                }}
-              >
-                {["Alcance y precio a medida", "Combina cualquier servicio", "Respondemos en pocas horas"].map((it) => (
-                  <li key={it} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13.5, color: "#D8CFBE" }}>
-                    <span
-                      style={{
-                        width: 5,
-                        height: 5,
-                        borderRadius: "50%",
-                        background: "#E9A23B",
-                        marginTop: 7,
-                        flexShrink: 0,
-                      }}
-                    />
-                    {it}
-                  </li>
+              <ul className="av-list">
+                {[
+                  "Alcance y precio a medida",
+                  "Combina cualquier servicio",
+                  "Respondemos en pocas horas",
+                ].map((it) => (
+                  <li key={it}>{it}</li>
                 ))}
               </ul>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-end",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  paddingTop: 18,
-                  borderTop: "1px solid rgba(255,255,255,.12)",
-                }}
-              >
+              <div className="av-card-foot">
                 <div>
-                  <div
-                    className="av-mono"
-                    style={{ fontSize: 10, letterSpacing: ".18em", textTransform: "uppercase", color: "#8A8170" }}
-                  >
-                    Precio
+                  <div className="av-price-label">Precio</div>
+                  <div className="av-price" style={{ fontSize: 21 }}>
+                    Cotización a medida
                   </div>
-                  <div style={{ fontWeight: 900, fontSize: 26, color: "#FFFFFF" }}>Cotización a medida</div>
                 </div>
                 <a
                   href={customWaLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="av-cta"
-                  style={{
-                    color: "#221A0C",
-                    fontWeight: 800,
-                    fontSize: 13.5,
-                    borderRadius: 100,
-                    padding: "11px 18px",
-                    whiteSpace: "nowrap",
-                    textDecoration: "none",
-                  }}
+                  className="av-cta av-cta--sm"
                 >
                   Cotizar →
                 </a>
@@ -761,276 +424,28 @@ const Index = () => {
       </section>
 
       {/* ============ PROCESS ============ */}
-      <section
-        id="process"
-        style={{
-          maxWidth: 1320,
-          margin: "0 auto",
-          padding: "clamp(70px, 11vh, 130px) clamp(20px, 5vw, 64px)",
-        }}
-      >
-        <Reveal style={{ marginBottom: 50 }}>
-          <div style={eyebrow}>
-            <span style={accentTick} />
-            Cómo funciona una grabación
-          </div>
-          <h2 style={sectionH2}>Del mensaje al corte final.</h2>
+      <section id="process" className="av-section">
+        <Reveal style={{ marginBottom: 52 }}>
+          <div className="av-eyebrow">Cómo funciona una grabación</div>
+          <h2 className="av-h2">
+            Del mensaje <span className="av-serif av-grad-text">al corte final.</span>
+          </h2>
         </Reveal>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
-            gap: 1,
-            background: "rgba(28,22,14,.09)",
-            border: "1px solid rgba(28,22,14,.09)",
-            borderRadius: 6,
-            overflow: "hidden",
-          }}
-        >
+        <div className="av-steps">
           {steps.map((step) => (
-            <Reveal
-              key={step.n}
-              style={{
-                background: "#FFFFFF",
-                padding: "30px 24px 34px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 14,
-                minHeight: 220,
-              }}
-            >
-              <div className="av-mono" style={{ fontSize: 13, color: "#E9A23B", letterSpacing: ".1em" }}>
-                {step.n}
-              </div>
-              <div style={{ fontWeight: 800, fontSize: 19, lineHeight: 1.15 }}>{step.title}</div>
-              <div style={{ fontSize: 14, lineHeight: 1.55, color: "#6E6556" }}>{step.desc}</div>
+            <Reveal key={step.n} className="av-step">
+              <span className="av-step-ghost">{step.n}</span>
+              <div className="av-step-n">{step.n}</div>
+              <div className="av-step-title">{step.title}</div>
+              <div className="av-step-desc">{step.desc}</div>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* ============ CONTACT ============ */}
-      <section id="contact" style={{ background: "#FFFFFF", borderTop: "1px solid rgba(28,22,14,.09)" }}>
-        <div
-          style={{
-            maxWidth: 1320,
-            margin: "0 auto",
-            padding: "clamp(70px, 11vh, 130px) clamp(20px, 5vw, 64px)",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(330px, 1fr))",
-            gap: "clamp(40px, 6vw, 90px)",
-            alignItems: "start",
-          }}
-        >
-          <Reveal>
-            <div style={eyebrow}>
-              <span style={accentTick} />
-              Reserva tu grabación
-            </div>
-            <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 46px)" }}>
-              Agendemos tu grabación.
-            </h2>
-            <p style={{ margin: "22px 0 32px", maxWidth: "44ch", fontSize: 16, lineHeight: 1.6, color: "#6E6556" }}>
-              Cuéntanos qué necesitas y más o menos cuándo. Normalmente respondemos en pocas horas
-              y podemos grabar en días.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 380 }}>
-              <a
-                href={waDirect}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="av-cta"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  color: "#221A0C",
-                  fontWeight: 800,
-                  fontSize: 16,
-                  padding: "17px 24px",
-                  borderRadius: 8,
-                  textDecoration: "none",
-                }}
-              >
-                Escríbenos por WhatsApp <span style={mono}>→</span>
-              </a>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="av-soft"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  background: "rgba(28,22,14,.05)",
-                  color: "#1E1813",
-                  fontWeight: 700,
-                  fontSize: 16,
-                  padding: "17px 24px",
-                  borderRadius: 8,
-                  textDecoration: "none",
-                  border: "1px solid rgba(28,22,14,.16)",
-                }}
-              >
-                Ver más en Instagram <span style={mono}>↗</span>
-              </a>
-            </div>
-            <div
-              className="av-mono"
-              style={{ marginTop: 30, fontSize: 12, letterSpacing: ".06em", color: "#857B6A" }}
-            >
-              Respuesta típica: menos de 3 horas · Lun–Dom
-            </div>
-          </Reveal>
-
-          <Reveal
-            delay={120}
-            style={{
-              background: "#FFFFFF",
-              border: "1px solid rgba(28,22,14,.1)",
-              borderRadius: 10,
-              padding: "clamp(24px, 3vw, 36px)",
-            }}
-          >
-            <div style={{ fontWeight: 800, fontSize: 20, marginBottom: 22 }}>Cotización rápida</div>
-            <label
-              className="av-mono"
-              style={{
-                display: "block",
-                fontSize: 11,
-                letterSpacing: ".12em",
-                textTransform: "uppercase",
-                color: "#857B6A",
-                marginBottom: 8,
-              }}
-            >
-              Tu nombre
-            </label>
-            <input
-              value={form.name}
-              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              placeholder="Juan Pérez"
-              className="av-input"
-              style={{
-                width: "100%",
-                background: "#FFFFFF",
-                border: "1px solid rgba(28,22,14,.16)",
-                borderRadius: 7,
-                color: "#1E1813",
-                fontSize: 15,
-                padding: "13px 15px",
-                marginBottom: 18,
-                outline: "none",
-              }}
-            />
-            <label
-              className="av-mono"
-              style={{
-                display: "block",
-                fontSize: 11,
-                letterSpacing: ".12em",
-                textTransform: "uppercase",
-                color: "#857B6A",
-                marginBottom: 8,
-              }}
-            >
-              ¿Qué necesitas?
-            </label>
-            <select
-              value={form.service}
-              onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
-              className="av-input"
-              style={{
-                width: "100%",
-                background: "#FFFFFF",
-                border: "1px solid rgba(28,22,14,.16)",
-                borderRadius: 7,
-                color: "#1E1813",
-                fontSize: 15,
-                padding: "13px 15px",
-                marginBottom: 18,
-                outline: "none",
-                cursor: "pointer",
-              }}
-            >
-              {serviceOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-            <label
-              className="av-mono"
-              style={{
-                display: "block",
-                fontSize: 11,
-                letterSpacing: ".12em",
-                textTransform: "uppercase",
-                color: "#857B6A",
-                marginBottom: 8,
-              }}
-            >
-              Detalles y fecha aproximada
-            </label>
-            <textarea
-              value={form.message}
-              onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-              placeholder="ej. Video aéreo para una casa en venta en Antigua, el próximo fin de semana."
-              rows={4}
-              className="av-input"
-              style={{
-                width: "100%",
-                background: "#FFFFFF",
-                border: "1px solid rgba(28,22,14,.16)",
-                borderRadius: 7,
-                color: "#1E1813",
-                fontSize: 15,
-                padding: "13px 15px",
-                marginBottom: 22,
-                outline: "none",
-                resize: "vertical",
-                lineHeight: 1.5,
-              }}
-            />
-            <a
-              href={formWaLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="av-cta"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                color: "#221A0C",
-                fontWeight: 800,
-                fontSize: 16,
-                padding: 16,
-                borderRadius: 8,
-                textDecoration: "none",
-              }}
-            >
-              Enviar por WhatsApp
-            </a>
-            <div style={{ textAlign: "center", fontSize: 12, color: "#857B6A", marginTop: 12 }}>
-              Abre WhatsApp con tu mensaje listo.
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ============ TESTIMONIALS ============ */}
-      <section style={{ background: "#FFFFFF", borderTop: "1px solid rgba(28,22,14,.09)" }}>
-        <div
-          style={{
-            maxWidth: 1320,
-            margin: "0 auto",
-            padding: "clamp(70px, 11vh, 130px) clamp(20px, 5vw, 64px)",
-          }}
-        >
+      <section className="av-band">
+        <div className="av-section">
           <Reveal
             style={{
               display: "flex",
@@ -1038,61 +453,29 @@ const Index = () => {
               justifyContent: "space-between",
               flexWrap: "wrap",
               gap: 18,
-              marginBottom: 46,
+              marginBottom: 48,
             }}
           >
             <div>
-              <div style={eyebrow}>
-                <span style={accentTick} />
-                Lo que dicen los clientes
-              </div>
-              <h2 style={sectionH2}>
+              <div className="av-eyebrow">Lo que dicen los clientes</div>
+              <h2 className="av-h2">
                 Trabajo que consigue
                 <br />
-                el siguiente proyecto.
+                <span className="av-serif av-grad-text">el siguiente proyecto.</span>
               </h2>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <div className="av-mono" style={{ fontWeight: 700, fontSize: 40, color: "#E9A23B" }}>
-                20+
-              </div>
-              <div style={{ fontSize: 12, letterSpacing: ".14em", textTransform: "uppercase", color: "#857B6A" }}>
-                Clientes satisfechos
-              </div>
             </div>
           </Reveal>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
-              gap: 16,
-            }}
-          >
+          <div className="av-quotes">
             {testimonials.map((t, i) => (
-              <Reveal
-                key={t.name}
-                delay={i * 80}
-                style={{
-                  background: "#FFFFFF",
-                  border: "1px solid rgba(28,22,14,.1)",
-                  borderRadius: 8,
-                  padding: 28,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div style={{ color: "#E9A23B", fontSize: 18, letterSpacing: 3, marginBottom: 16 }}>
+              <Reveal key={t.name} delay={i * 80} className="av-quote">
+                <div className="av-stars" aria-label="5 estrellas">
                   ★★★★★
                 </div>
-                <p style={{ margin: "0 0 22px", fontSize: 16, lineHeight: 1.6, color: "#2A2218", flex: 1 }}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div style={{ paddingTop: 18, borderTop: "1px solid rgba(28,22,14,.1)" }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, color: "#1E1813" }}>{t.name}</div>
-                  <div className="av-mono" style={{ fontSize: 12, color: "#857B6A", marginTop: 4 }}>
-                    {t.role}
-                  </div>
+                <p>&ldquo;{t.quote}&rdquo;</p>
+                <div className="av-quote-who">
+                  <b>{t.name}</b>
+                  <span>{t.role}</span>
                 </div>
               </Reveal>
             ))}
@@ -1100,77 +483,127 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ============ CONTACT ============ */}
+      <section id="contact" className="av-section">
+        <div className="av-contact">
+          <Reveal>
+            <div className="av-eyebrow">Reserva tu grabación</div>
+            <h2 className="av-h2">
+              Agendemos <span className="av-serif av-grad-text">tu grabación.</span>
+            </h2>
+            <p className="av-lead" style={{ margin: "22px 0 32px", maxWidth: "44ch" }}>
+              Cuéntanos qué necesitas y más o menos cuándo. Normalmente respondemos en pocas
+              horas y podemos grabar en días.
+            </p>
+            <div className="av-contact-links">
+              <a
+                href={waDirect}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="av-biglink av-biglink--wa"
+              >
+                Escríbenos por WhatsApp <span className="av-mono">→</span>
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="av-biglink av-biglink--soft"
+              >
+                Ver más en Instagram <span className="av-mono">↗</span>
+              </a>
+            </div>
+            <div
+              className="av-mono"
+              style={{ marginTop: 30, fontSize: 12, letterSpacing: ".06em", color: "var(--av-muted)" }}
+            >
+              Respuesta típica: menos de 3 horas · Lun–Dom
+            </div>
+          </Reveal>
+
+          <Reveal delay={120} className="av-form">
+            <div className="av-form-title">Cotización rápida</div>
+            <label className="av-label" htmlFor="av-name">
+              Tu nombre
+            </label>
+            <input
+              id="av-name"
+              value={form.name}
+              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              placeholder="Juan Pérez"
+              className="av-input"
+            />
+            <label className="av-label" htmlFor="av-service">
+              ¿Qué necesitas?
+            </label>
+            <select
+              id="av-service"
+              value={form.service}
+              onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
+              className="av-input"
+            >
+              {serviceOptions.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+            <label className="av-label" htmlFor="av-message">
+              Detalles y fecha aproximada
+            </label>
+            <textarea
+              id="av-message"
+              value={form.message}
+              onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+              placeholder="ej. Video aéreo para una casa en venta en Antigua, el próximo fin de semana."
+              rows={4}
+              className="av-input"
+            />
+            <a
+              href={formWaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="av-cta"
+              style={{ display: "flex", width: "100%" }}
+            >
+              Enviar por WhatsApp
+            </a>
+            <div className="av-form-note">Abre WhatsApp con tu mensaje listo.</div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ============ FAQ ============ */}
-      <section
-        className="av-faq"
-        style={{
-          maxWidth: 1040,
-          margin: "0 auto",
-          padding: "clamp(70px, 11vh, 130px) clamp(20px, 5vw, 64px)",
-        }}
-      >
+      <section className="av-faq" style={{ maxWidth: 1040, margin: "0 auto", padding: "clamp(70px, 11vh, 130px) var(--av-pad-x)" }}>
         <Reveal style={{ marginBottom: 44 }}>
-          <div style={eyebrow}>
-            <span style={accentTick} />
-            Preguntas
-          </div>
-          <h2 style={{ ...sectionH2, fontSize: "clamp(28px, 4vw, 44px)" }}>Bueno saberlo.</h2>
+          <div className="av-eyebrow">Preguntas</div>
+          <h2 className="av-h2" style={{ fontSize: "clamp(28px, 4vw, 44px)" }}>
+            Bueno <span className="av-serif av-grad-text">saberlo.</span>
+          </h2>
         </Reveal>
-        <Reveal style={{ borderTop: "1px solid rgba(28,22,14,.12)" }}>
+        <Reveal style={{ borderTop: "1px solid var(--av-line)" }}>
           {faqs.map((faq) => (
-            <details key={faq.q} style={{ borderBottom: "1px solid rgba(28,22,14,.12)" }}>
-              <summary
-                style={{
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 16,
-                  padding: "22px 4px",
-                  fontWeight: 700,
-                  fontSize: "clamp(17px, 2vw, 21px)",
-                  color: "#1E1813",
-                }}
-              >
+            <details key={faq.q}>
+              <summary>
                 {faq.q}
-                <span
-                  className="av-plus"
-                  style={{ color: "#E9A23B", fontSize: 26, fontWeight: 400, flexShrink: 0 }}
-                >
-                  +
-                </span>
+                <span className="av-plus">+</span>
               </summary>
-              <p
-                style={{
-                  margin: "0 0 24px",
-                  padding: "0 4px",
-                  fontSize: 16,
-                  lineHeight: 1.65,
-                  color: "#6E6556",
-                  maxWidth: "70ch",
-                }}
-              >
-                {faq.a}
-              </p>
+              <p>{faq.a}</p>
             </details>
           ))}
         </Reveal>
-        <Reveal
-          style={{
-            marginTop: 40,
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            gap: 16,
-            background: "#FFFFFF",
-            border: "1px solid rgba(28,22,14,.1)",
-            borderRadius: 10,
-            padding: "26px 28px",
-          }}
-        >
+        <Reveal className="av-askband">
           <div style={{ flex: 1, minWidth: 220 }}>
-            <div style={{ fontWeight: 800, fontSize: 19 }}>¿Aún tienes una pregunta?</div>
-            <div style={{ fontSize: 14.5, color: "#6E6556", marginTop: 4 }}>
+            <div
+              style={{
+                fontFamily: "var(--av-font-display)",
+                fontWeight: 600,
+                fontSize: 19,
+              }}
+            >
+              ¿Aún tienes una pregunta?
+            </div>
+            <div style={{ fontSize: 14.5, color: "var(--av-text2)", marginTop: 5 }}>
               Pregúntanos directamente — normalmente respondemos en pocas horas.
             </div>
           </div>
@@ -1178,19 +611,8 @@ const Index = () => {
             href={waDirect}
             target="_blank"
             rel="noopener noreferrer"
-            className="av-cta"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              color: "#221A0C",
-              fontWeight: 800,
-              fontSize: 15,
-              padding: "14px 24px",
-              borderRadius: 100,
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
+            className="av-cta av-cta--sm"
+            style={{ whiteSpace: "nowrap" }}
           >
             Pregunta por WhatsApp →
           </a>
@@ -1198,56 +620,35 @@ const Index = () => {
       </section>
 
       {/* ============ FOOTER ============ */}
-      <footer style={{ borderTop: "1px solid rgba(28,22,14,.09)", background: "#FFFFFF" }}>
-        <div
-          style={{
-            maxWidth: 1320,
-            margin: "0 auto",
-            padding: "44px clamp(20px, 5vw, 64px)",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 20,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontWeight: 900, fontSize: 17, letterSpacing: ".14em" }}>
-              AERO<span style={{ color: "#E9A23B" }}>VISION</span>
-            </span>
-            <span className="av-mono" style={{ fontSize: 12, color: "#857B6A", marginLeft: 8 }}>
-              aerovision.gt
-            </span>
-          </div>
-          <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+      <footer className="av-footer">
+        <div className="av-foot-word" aria-hidden="true">
+          AEROVISION
+        </div>
+        <div className="av-foot-row">
+          <a href="#top" className="av-wordmark" style={{ fontSize: 17 }}>
+            AERO<em>VISION</em>
+          </a>
+          <div style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="av-navlink av-mono"
-              style={{ fontSize: 12.5, letterSpacing: ".08em", textTransform: "uppercase", textDecoration: "none" }}
+              className="av-navlink"
             >
               Instagram
             </a>
-            <a
-              href={waDirect}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="av-navlink av-mono"
-              style={{ fontSize: 12.5, letterSpacing: ".08em", textTransform: "uppercase", textDecoration: "none" }}
-            >
+            <a href={waDirect} target="_blank" rel="noopener noreferrer" className="av-navlink">
               WhatsApp
             </a>
-            <a
-              href="#top"
-              className="av-navlink av-mono"
-              style={{ fontSize: 12.5, letterSpacing: ".08em", textTransform: "uppercase", textDecoration: "none" }}
-            >
+            <a href="/terms-of-service" className="av-navlink">
+              Términos
+            </a>
+            <a href="#top" className="av-navlink">
               Volver arriba ↑
             </a>
           </div>
-          <div className="av-mono" style={{ fontSize: 11, color: "#A99F8F", width: "100%" }}>
-            © 2026 AeroVision — Estudio de cine aéreo y drones.
+          <div className="av-foot-copy" style={{ width: "100%" }}>
+            © 2026 AeroVision — Estudio de cine aéreo y drones · aerovision.gt
           </div>
         </div>
       </footer>
@@ -1259,22 +660,6 @@ const Index = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contáctanos por WhatsApp"
-        style={{
-          position: "fixed",
-          right: "clamp(16px, 3vw, 30px)",
-          bottom: "clamp(16px, 3vw, 30px)",
-          zIndex: 40,
-          display: "inline-flex",
-          alignItems: "center",
-          background: "#25D366",
-          color: "#fff",
-          fontWeight: 800,
-          fontSize: 15,
-          padding: 14,
-          borderRadius: 100,
-          textDecoration: "none",
-          boxShadow: "0 12px 34px rgba(18,140,70,.4)",
-        }}
       >
         <span
           style={{

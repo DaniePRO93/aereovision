@@ -1,5 +1,6 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import "@/styles/redesign.css";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,14 +13,49 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <div
+      className="av-root"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        minHeight: "100vh",
+        padding: "40px 24px",
+        gap: 10,
+      }}
+    >
+      <div className="av-grain" aria-hidden="true" />
+      <div
+        className="av-mono"
+        style={{
+          fontSize: 11,
+          letterSpacing: ".3em",
+          textTransform: "uppercase",
+          color: "var(--av-muted)",
+        }}
+      >
+        Señal perdida
       </div>
+      <h1
+        style={{
+          fontFamily: "var(--av-font-display)",
+          fontWeight: 600,
+          fontSize: "clamp(80px, 16vw, 180px)",
+          lineHeight: 1,
+          margin: 0,
+        }}
+        className="av-grad-text"
+      >
+        404
+      </h1>
+      <p style={{ fontSize: 17, color: "var(--av-text2)", margin: "6px 0 26px" }}>
+        Este vuelo no existe — la página que buscas no está aquí.
+      </p>
+      <Link to="/" className="av-cta">
+        ← Volver al inicio
+      </Link>
     </div>
   );
 };
