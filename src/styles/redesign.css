@@ -170,6 +170,7 @@
   justify-content: space-between;
   gap: 16px;
   padding: 15px var(--av-pad-x);
+  padding-top: max(15px, env(safe-area-inset-top));
   border-bottom: 1px solid transparent;
   background: linear-gradient(180deg, rgba(10, 11, 13, 0.75), rgba(10, 11, 13, 0));
   transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
@@ -291,6 +292,7 @@
 /* ============ HERO ============ */
 .av-hero {
   position: relative;
+  min-height: 100vh; /* fallback for browsers without svh */
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
@@ -546,6 +548,14 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--av-muted);
+}
+/* Phones: flex-wrap leaves ragged rows — use an even 2×2 grid instead. */
+@media (max-width: 640px) {
+  .av-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px 16px;
+  }
 }
 
 /* ============ WORK ============ */
@@ -1065,7 +1075,7 @@ textarea.av-input {
 .av-foot-word {
   font-family: var(--av-font-display);
   font-weight: 600;
-  font-size: clamp(58px, 11vw, 160px);
+  font-size: clamp(34px, 11vw, 160px);
   line-height: 0.95;
   letter-spacing: 0.02em;
   text-align: center;
@@ -1352,7 +1362,7 @@ textarea.av-input {
 .av-wa {
   position: fixed;
   right: clamp(16px, 3vw, 30px);
-  bottom: clamp(16px, 3vw, 30px);
+  bottom: calc(clamp(16px, 3vw, 30px) + env(safe-area-inset-bottom, 0px));
   z-index: 45;
   display: inline-flex;
   align-items: center;
