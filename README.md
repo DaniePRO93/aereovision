@@ -2,6 +2,8 @@
 
 Marketing site for **AeroVision** — professional drone aerial photography & videography services in Guatemala. Single-page or multi page  React app with a Supabase backend (contact email, newsletter signup, Instagram feed).
 
+🌐 **Live:** [aerovision.gt](https://aerovision.gt) · 📓 **Build journal:** [DEVLOG.md](DEVLOG.md)
+
 ## Tech stack
 
 - **Vite** + **React 18** + **TypeScript**
