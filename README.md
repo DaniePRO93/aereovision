@@ -67,25 +67,27 @@ Deploy a function with the Supabase CLI:
 supabase functions deploy send-contact-email
 ```
 
-## Deployment (Cloudflare Pages)
+## Deployment
 
-The site deploys to Cloudflare Pages and serves the production domain.
+The site is moving from Netlify to **Cloudflare Pages**. The full runbook,
+including the DNS steps that still need doing, is in
+[`docs/cloudflare-migration.md`](docs/cloudflare-migration.md).
 
-**One-time setup:**
+**Right now:**
 
-1. In the Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**, select this repository.
-2. Build settings:
-   - **Framework preset:** Vite
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-3. Add the `VITE_*` environment variables (from `.env`) under **Settings → Environment variables**.
-4. Under **Custom domains**, add `aerovision.gt` (and `www`). Cloudflare provisions TLS automatically.
+- `aerovision.gt` is still served by **Netlify** (DNS lives in AWS Route 53).
+- The Cloudflare Pages project `aerovision` is live at
+  <https://aerovision-f0w.pages.dev> and serves the current build.
 
-After that, **every push to `main` auto-builds and deploys.** SPA routing is handled by `public/_redirects` (`/* /index.html 200`).
-
-To deploy manually instead of via Git integration:
+**To deploy:**
 
 ```sh
-npm run build
-npx wrangler pages deploy dist --project-name aerovision
+npm run deploy
 ```
+
+That builds and uploads `dist/` with `wrangler pages deploy`. The project is a
+direct-upload one, so pushing to `main` does **not** deploy on its own.
+
+SPA routing comes from `public/_redirects` (`/* /index.html 200`) and caching
+plus security headers from `public/_headers` — both formats work unchanged on
+Netlify and Cloudflare. Node version is pinned in `.nvmrc`.

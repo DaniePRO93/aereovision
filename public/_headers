@@ -1,0 +1,24 @@
+# Cabeceras para Cloudflare Pages (mismo formato que Netlify).
+# El orden importa: gana la regla más específica.
+
+# Los assets de Vite llevan hash en el nombre: se pueden cachear para siempre.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imágenes y video subidos a /public (nombre estable): caché corta y revalidación.
+/*.jpg
+  Cache-Control: public, max-age=86400
+/*.png
+  Cache-Control: public, max-age=86400
+/*.ico
+  Cache-Control: public, max-age=86400
+
+# El HTML nunca se cachea: es lo que apunta a los assets con hash.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()

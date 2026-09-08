@@ -1,0 +1,10 @@
+{
+  // Proyecto de Cloudflare Pages. El sitio es estático (Vite SPA):
+  // no hay Pages Functions, así que no lleva `main` ni bindings.
+  //
+  // Deploy manual:  npm run deploy
+  // Deploy por Git: Cloudflare toma estos mismos valores del panel.
+  "name": "aerovision",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-09-08"
+}

@@ -3,7 +3,7 @@
 // añádelos al array `items` de la categoría (y/o define `video` para hover).
 
 import groupPhoto from "@/assets/hero-carousel/group-photo.jpg";
-import actonShowreel from "@/assets/Acton family day or sports showreel.mov";
+import actonShowreel from "@/assets/work/acton-showreel.mp4";
 
 import accionPortada from "@/assets/work/accion-portada.mp4";
 import accionPortadaPoster from "@/assets/work/accion-portada-poster.jpg";
