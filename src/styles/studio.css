@@ -1,0 +1,322 @@
+/* ============================================================
+   Home corporativo — "Studio" (.st-root)
+   Tinta profunda + aurora índigo/violeta. Emparenta con el sitio
+   de drones (mismo lienzo oscuro) pero con temperatura opuesta.
+   ============================================================ */
+
+.st-root {
+  --sv-accent: #7c8cff;
+  --sv-accent2: #b06cff;
+  --sv-accent-grad: linear-gradient(96deg, #8fa2ff 0%, #7c8cff 44%, #c06cff 100%);
+  --sv-accent-glow: rgba(124, 140, 255, 0.3);
+
+  background: var(--sv-ink);
+  color: var(--sv-text);
+  font-family: var(--sv-font-body);
+  min-height: 100vh;
+  overflow-x: clip;
+  position: relative;
+}
+
+/* ------------------------------------------------------ HERO */
+.st-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 128px var(--sv-pad-x) 0;
+  overflow: hidden;
+}
+
+/* Aurora: dos manchas de color muy difusas que respiran */
+.st-aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.st-aurora::before,
+.st-aurora::after {
+  content: "";
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.42;
+}
+.st-aurora::before {
+  top: -18%;
+  left: -10%;
+  background: radial-gradient(circle, #4a5bff 0%, transparent 68%);
+  animation: st-drift 22s ease-in-out infinite alternate;
+}
+.st-aurora::after {
+  bottom: -24%;
+  right: -12%;
+  background: radial-gradient(circle, #a63dff 0%, transparent 68%);
+  animation: st-drift 26s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes st-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6%, 5%, 0) scale(1.12);
+  }
+}
+
+/* Retícula técnica sobre la aurora */
+.st-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(100% 70% at 50% 40%, #000 25%, transparent 82%);
+}
+
+.st-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+}
+
+.st-hero .sv-h1 {
+  max-width: 16ch;
+}
+.st-hero__lead {
+  margin: 26px 0 36px;
+}
+
+.st-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.st-hero__foot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1340px;
+  margin: clamp(46px, 8vh, 92px) auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--sv-muted);
+}
+
+/* Cinta infinita */
+.st-marquee {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  border-top: 1px solid var(--sv-line);
+  border-bottom: 1px solid var(--sv-line);
+  overflow: hidden;
+  padding: 15px 0;
+  margin-left: calc(var(--sv-pad-x) * -1);
+  margin-right: calc(var(--sv-pad-x) * -1);
+}
+.st-marquee__track {
+  display: flex;
+  gap: 42px;
+  width: max-content;
+  animation: st-marquee 34s linear infinite;
+}
+.st-marquee span {
+  font-family: var(--sv-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--sv-muted);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 42px;
+}
+.st-marquee span::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--sv-accent);
+  opacity: 0.7;
+}
+
+@keyframes st-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* -------------------------------------------------- PRODUCTOS */
+.st-products {
+  position: relative;
+}
+.st-products__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(38px, 5vw, 62px);
+}
+.st-products__head .sv-lead {
+  margin-top: 18px;
+}
+
+/* ----------------------------------------------------- ABOUT */
+.st-about {
+  border-top: 1px solid var(--sv-line);
+  border-bottom: 1px solid var(--sv-line);
+  background: linear-gradient(180deg, rgba(124, 140, 255, 0.05), transparent 60%);
+}
+.st-about__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 6vw, 86px);
+  align-items: start;
+}
+.st-about__body {
+  font-size: clamp(15.5px, 1.35vw, 18px);
+  line-height: 1.68;
+  color: var(--sv-text2);
+  margin: 20px 0 0;
+}
+
+.st-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.st-stat {
+  border: 1px solid var(--sv-line);
+  border-radius: 18px;
+  padding: 26px 22px;
+  background: var(--sv-surface);
+  transition: border-color 0.3s ease, transform 0.3s var(--sv-ease);
+}
+.st-stat:hover {
+  border-color: var(--sv-line-strong);
+  transform: translateY(-3px);
+}
+.st-stat strong {
+  display: block;
+  font-family: var(--sv-font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 40px);
+  letter-spacing: -0.02em;
+  background: var(--sv-accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.st-stat span {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--sv-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sv-muted);
+}
+
+/* ------------------------------------------- Lista portafolio */
+.st-worklist {
+  border-top: 1px solid var(--sv-line);
+}
+.st-workrow {
+  display: grid;
+  grid-template-columns: 40px 1.1fr 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 24px 6px;
+  border-bottom: 1px solid var(--sv-line);
+  text-decoration: none;
+  color: var(--sv-text);
+  transition: background 0.3s ease, padding-left 0.3s var(--sv-ease);
+}
+.st-workrow:hover {
+  background: rgba(255, 255, 255, 0.025);
+  padding-left: 18px;
+}
+.st-workrow__idx {
+  font-family: var(--sv-font-mono);
+  font-size: 11px;
+  color: var(--sv-muted);
+}
+.st-workrow__name {
+  font-family: var(--sv-font-display);
+  font-weight: 600;
+  font-size: clamp(19px, 2.2vw, 26px);
+  letter-spacing: -0.018em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.st-workrow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+.st-workrow__role {
+  color: var(--sv-text2);
+  font-size: 14.5px;
+}
+.st-workrow__arrow {
+  color: var(--sv-muted);
+  font-size: 18px;
+  transition: transform 0.3s var(--sv-ease), color 0.3s ease;
+}
+.st-workrow:hover .st-workrow__arrow {
+  transform: translateX(5px);
+  color: var(--sv-text);
+}
+
+/* --------------------------------------------------- CONTACTO */
+.st-contact {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.st-contact .sv-lead {
+  margin: 20px auto 32px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .st-about__grid {
+    grid-template-columns: 1fr;
+  }
+  .st-workrow {
+    grid-template-columns: 28px 1fr auto;
+  }
+  .st-workrow__role {
+    display: none;
+  }
+  .st-hero__foot {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-aurora::before,
+  .st-aurora::after,
+  .st-marquee__track {
+    animation: none;
+  }
+}

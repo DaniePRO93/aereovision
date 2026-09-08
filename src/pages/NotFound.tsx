@@ -1,9 +1,17 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import "@/styles/redesign.css";
+import { usePageSeo } from "@/lib/seo";
 
 const NotFound = () => {
   const location = useLocation();
+
+  usePageSeo({
+    title: "Página no encontrada | AeroVision",
+    description: "La página que buscas no existe. Vuelve al inicio de AeroVision.",
+    path: location.pathname,
+    robots: "noindex, follow",
+  });
 
   useEffect(() => {
     console.error(

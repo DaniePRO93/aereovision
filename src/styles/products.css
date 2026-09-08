@@ -1,0 +1,242 @@
+/* ============================================================
+   /products — catálogo (.pr-root)
+   Mismo lienzo oscuro que el home, pero con filas grandes y
+   tipografía de catálogo: cada producto ocupa su propia franja
+   y tiñe el fondo con su color.
+   ============================================================ */
+
+.pr-root {
+  --sv-accent: #7c8cff;
+  --sv-accent2: #b06cff;
+  --sv-accent-grad: linear-gradient(96deg, #8fa2ff 0%, #7c8cff 44%, #c06cff 100%);
+  --sv-accent-glow: rgba(124, 140, 255, 0.28);
+
+  background: var(--sv-ink);
+  color: var(--sv-text);
+  font-family: var(--sv-font-body);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* ------------------------------------------------------ HERO */
+.pr-hero {
+  position: relative;
+  padding: clamp(148px, 22vh, 216px) var(--sv-pad-x) clamp(52px, 8vh, 84px);
+  border-bottom: 1px solid var(--sv-line);
+  overflow: hidden;
+}
+.pr-hero::before {
+  content: "";
+  position: absolute;
+  inset: -40% 40% auto -10%;
+  height: 70vh;
+  background: radial-gradient(circle at 30% 40%, rgba(124, 140, 255, 0.24), transparent 62%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.pr-hero__inner {
+  position: relative;
+  max-width: 1340px;
+  margin: 0 auto;
+}
+.pr-hero .sv-lead {
+  margin-top: 24px;
+}
+
+/* ------------------------------------------------- Franjas */
+.pr-row {
+  position: relative;
+  border-bottom: 1px solid var(--sv-line);
+  padding: clamp(56px, 8vw, 104px) var(--sv-pad-x);
+  overflow: hidden;
+}
+/* Tinte del color del producto, muy bajo, en el borde superior */
+.pr-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 320px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--row-accent, #7c8cff) 13%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.pr-row__inner {
+  position: relative;
+  max-width: 1340px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 0.82fr;
+  gap: clamp(30px, 5vw, 78px);
+  align-items: center;
+}
+.pr-row--flip .pr-row__inner {
+  grid-template-columns: 0.82fr 1fr;
+}
+.pr-row--flip .pr-row__media {
+  order: -1;
+}
+
+.pr-row__index {
+  font-family: var(--sv-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sv-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.pr-row__index::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--sv-line);
+  max-width: 120px;
+}
+
+.pr-row__title {
+  font-family: var(--sv-font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 5.4vw, 66px);
+  line-height: 1;
+  letter-spacing: -0.028em;
+  margin: 0;
+  color: var(--sv-text);
+}
+.pr-row__kind {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--sv-font-serif);
+  font-style: italic;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: color-mix(in srgb, var(--row-accent, #7c8cff) 74%, #ffffff);
+}
+.pr-row__blurb {
+  margin: 22px 0 26px;
+  font-size: clamp(15px, 1.3vw, 17.5px);
+  line-height: 1.68;
+  color: var(--sv-text2);
+  max-width: 56ch;
+}
+
+.pr-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 26px;
+}
+.pr-row .sv-cta {
+  background: linear-gradient(
+    96deg,
+    var(--row-accent, #7c8cff),
+    var(--row-accent2, #b06cff)
+  );
+  color: #08090c;
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--row-accent, #7c8cff) 30%, transparent);
+}
+
+.pr-row__domain {
+  font-family: var(--sv-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--sv-muted);
+  margin-top: 20px;
+  word-break: break-all;
+}
+
+/* Marco del producto (versión ancha de la tarjeta) */
+.pr-row__media {
+  position: relative;
+}
+.pr-frame {
+  position: relative;
+  aspect-ratio: 4 / 3.3;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid var(--sv-line-strong);
+  background: linear-gradient(
+    162deg,
+    color-mix(in srgb, var(--row-accent, #7c8cff) 40%, #0b0d12) 0%,
+    #0a0c11 60%,
+    color-mix(in srgb, var(--row-accent2, #b06cff) 30%, #0b0d12) 100%
+  );
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  transition: transform 0.45s var(--sv-ease), box-shadow 0.45s ease;
+}
+.pr-row:hover .pr-frame {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 70px -30px color-mix(in srgb, var(--row-accent, #7c8cff) 70%, transparent);
+}
+.pr-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(110% 90% at 50% 30%, #000 15%, transparent 80%);
+}
+.pr-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pr-frame__word {
+  font-family: var(--sv-font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3.4vw, 42px);
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.94);
+  text-align: center;
+  padding: 20px;
+}
+.pr-frame__badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 100px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background: rgba(10, 12, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+/* ------------------------------------------------------- CTA */
+.pr-cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pr-cta .sv-lead {
+  margin: 20px auto 32px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .pr-row__inner,
+  .pr-row--flip .pr-row__inner {
+    grid-template-columns: 1fr;
+  }
+  .pr-row--flip .pr-row__media {
+    order: 0;
+  }
+  .pr-frame {
+    aspect-ratio: 4 / 3;
+  }
+}

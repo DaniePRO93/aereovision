@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import "@/styles/redesign.css";
 import Reveal from "@/components/Reveal";
 import { getCategory, workCategories } from "@/data/work";
 import { waDirect, INSTAGRAM_URL } from "@/lib/whatsapp";
+import { SITE_URL, usePageSeo } from "@/lib/seo";
 
 const WorkGallery = () => {
   const { slug } = useParams();
@@ -34,6 +35,56 @@ const WorkGallery = () => {
     };
   }, [slug]);
 
+  const seo = useMemo(() => {
+    if (!cat) {
+      return {
+        title: "Galería no encontrada | AeroVision",
+        description: "La galería solicitada no existe. Explora el trabajo de AeroVision en Guatemala.",
+        path: `/work/${slug ?? ""}`,
+        robots: "noindex, follow",
+      };
+    }
+
+    const path = `/work/${cat.slug}`;
+    const title = `${cat.label} con Drone en Guatemala | AeroVision`;
+    const description = `${cat.blurb} Portfolio de AeroVision para ${cat.label.toLowerCase()} con video aéreo, fotografía y edición cinematográfica.`;
+
+    return {
+      title,
+      description,
+      path,
+      image: cat.cover,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: title,
+        description,
+        url: `${SITE_URL}${path}`,
+        inLanguage: "es-GT",
+        isPartOf: {
+          "@type": "WebSite",
+          name: "AeroVision",
+          url: SITE_URL,
+        },
+        about: {
+          "@type": "Service",
+          name: cat.label,
+          provider: {
+            "@type": "ProfessionalService",
+            name: "AeroVision",
+            url: SITE_URL,
+          },
+          areaServed: {
+            "@type": "Country",
+            name: "Guatemala",
+          },
+        },
+      },
+    };
+  }, [cat, slug]);
+
+  usePageSeo(seo);
+
   // Unknown category → simple fallback.
   if (!cat) {
     return (
@@ -59,7 +110,7 @@ const WorkGallery = () => {
         >
           Galería <span className="av-serif av-grad-text">no encontrada.</span>
         </h1>
-        <Link to="/#work" className="av-cta">
+        <Link to="/drones#work" className="av-cta">
           ← Volver al trabajo
         </Link>
       </div>
@@ -74,11 +125,11 @@ const WorkGallery = () => {
 
       {/* ---- Minimal header ---- */}
       <header className="av-nav av-nav--solid">
-        <Link to="/" className="av-wordmark">
+        <Link to="/drones" className="av-wordmark">
           AERO<em>VISION</em>
         </Link>
         <nav className="av-navlinks">
-          <Link to="/#work" className="av-navlink">
+          <Link to="/drones#work" className="av-navlink">
             ← Todo el trabajo
           </Link>
           <a
@@ -138,7 +189,7 @@ const WorkGallery = () => {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               controls
             />
           ) : (
@@ -247,7 +298,7 @@ const WorkGallery = () => {
       {/* ---- Footer ---- */}
       <footer className="av-footer">
         <div className="av-foot-row">
-          <Link to="/" className="av-wordmark" style={{ fontSize: 17 }}>
+          <Link to="/drones" className="av-wordmark" style={{ fontSize: 17 }}>
             AERO<em>VISION</em>
           </Link>
           <div style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
@@ -262,7 +313,7 @@ const WorkGallery = () => {
             <a href={waDirect} target="_blank" rel="noopener noreferrer" className="av-navlink">
               WhatsApp
             </a>
-            <Link to="/" className="av-navlink">
+            <Link to="/drones" className="av-navlink">
               Inicio ↑
             </Link>
           </div>

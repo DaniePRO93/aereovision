@@ -17,6 +17,7 @@ import bikeTrail from "@/assets/hero-carousel/bike-trail.jpg";
 import actonLogo from "@/assets/clients/acton-logo.png";
 import prometheusLogo from "@/assets/clients/prometheus-logo.png";
 import ufmLogo from "@/assets/clients/UFM logo.png";
+import { createHomeJsonLd, usePageSeo } from "@/lib/seo";
 
 const heroImages = [
   { src: residentialAerial, alt: "Toma aérea de bienes raíces" },
@@ -110,6 +111,15 @@ const Index = () => {
   });
 
   const openService = services.find((s) => s.id === openId) ?? null;
+  const homeJsonLd = useMemo(() => createHomeJsonLd(), []);
+
+  usePageSeo({
+    title: "AeroVision | Video Aéreo, Fotografía con Drone y FPV en Guatemala",
+    description:
+      "AeroVision crea video aéreo cinematográfico, fotografía con drone, tours FPV y contenido para bienes raíces, eventos, turismo y marcas en Guatemala.",
+    path: "/drones",
+    jsonLd: homeJsonLd,
+  });
 
   // Hero crossfade rotation (stops once the video takes over).
   useEffect(() => {
@@ -212,7 +222,7 @@ const Index = () => {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           onPlaying={() => setVideoReady(true)}
           style={{ opacity: videoReady ? 1 : 0 }}
         />

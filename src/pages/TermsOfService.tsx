@@ -2,9 +2,17 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
+import { usePageSeo } from "@/lib/seo";
 
 const TermsOfService = () => {
   const navigate = useNavigate();
+
+  usePageSeo({
+    title: "Términos de Servicio | AeroVision Guatemala",
+    description:
+      "Consulta los términos de servicio de AeroVision.gt para reservas, pagos, cancelaciones, entrega de material y derechos de uso.",
+    path: "/terms-of-service",
+  });
 
   return (
     <div className="min-h-screen bg-background">
