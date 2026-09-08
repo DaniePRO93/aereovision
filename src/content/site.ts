@@ -3,6 +3,7 @@ import type { Bilingual } from "@/i18n/LanguageProvider";
 /** Copy compartido por el nav y el footer del sitio corporativo. */
 export const siteCopy = {
   nav: {
+    home: { es: "Inicio", en: "Home" },
     products: { es: "Productos", en: "Products" },
     portfolio: { es: "Portafolio", en: "Portfolio" },
     drones: { es: "Drones", en: "Drones" },

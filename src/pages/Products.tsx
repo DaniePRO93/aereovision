@@ -97,6 +97,12 @@ const Products = () => {
                         </a>
                       )}
 
+                      {product.pageHref && (
+                        <Link className="sv-ghost" to={product.pageHref}>
+                          {t(productsCopy.labels.more)}
+                        </Link>
+                      )}
+
                       {product.secondary && (
                         <a
                           className="sv-ghost"
@@ -115,13 +121,25 @@ const Products = () => {
 
                 <Reveal className="pr-row__media" delay={120}>
                   <div className="pr-frame">
-                    {product.image ? (
-                      <img src={product.image} alt={product.name} loading="lazy" />
-                    ) : (
-                      <span className="pr-frame__word">{product.name}</span>
+                    {product.image && (
+                      <img
+                        className="pr-frame__shot"
+                        src={product.image}
+                        alt=""
+                        loading="lazy"
+                      />
                     )}
-                    <span className="pr-frame__badge" aria-hidden="true">
-                      {product.badge}
+                    <span
+                      className={`pr-frame__logo ${
+                        product.logoOnDark ? "pr-frame__logo--dark" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      {product.logo ? (
+                        <img src={product.logo} alt="" loading="lazy" />
+                      ) : (
+                        <b>{product.name.slice(0, 2).toUpperCase()}</b>
+                      )}
                     </span>
                   </div>
                 </Reveal>

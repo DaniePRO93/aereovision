@@ -23,6 +23,7 @@ export const productsCopy = {
   labels: {
     about: { es: "Sobre el producto", en: "About the product" },
     index: { es: "Producto", en: "Product" },
+    more: { es: "Novedades y detalles", en: "News and details" },
   },
   cta: {
     eyebrow: { es: "¿Y lo siguiente?", en: "What's next?" },

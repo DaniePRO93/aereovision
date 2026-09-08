@@ -54,8 +54,8 @@ const PayCoach = () => {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       name: "PayCoach",
-      applicationCategory: "FinanceApplication",
-      operatingSystem: "iOS",
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "iOS, Web",
       url: PAYCOACH_SITE,
       downloadUrl: PAYCOACH_APPSTORE,
       author: { "@type": "Organization", name: "AeroVision", url: SITE_URL },
@@ -131,35 +131,43 @@ const PayCoach = () => {
                 <div className="pc-screen">
                   <span className="pc-screen__notch" />
                   <p className="pc-screen__hello">
-                    {lang === "en" ? "Good morning" : "Buenos días"}
+                    {lang === "en" ? "Tuesday · 4:00 PM" : "Martes · 4:00 PM"}
                   </p>
 
                   <div className="pc-balance">
-                    <small>{lang === "en" ? "Spent this month" : "Gastado este mes"}</small>
-                    <strong>Q 4,280</strong>
-                    <span>{lang === "en" ? "18% under budget" : "18% bajo tu presupuesto"}</span>
+                    <small>{lang === "en" ? "Billed this month" : "Cobrado este mes"}</small>
+                    <strong>Q 8,450</strong>
+                    <span>
+                      {lang === "en" ? "18 of 24 students paid" : "18 de 24 alumnos al día"}
+                    </span>
                   </div>
+
+                  <p className="pc-screen__hello">
+                    {lang === "en" ? "Today's class" : "Clase de hoy"}
+                  </p>
 
                   <div className="pc-rows">
                     <div className="pc-row">
-                      <i>☕</i>
-                      <b>{lang === "en" ? "Coffee" : "Café"}</b>
-                      <span>Q 38</span>
+                      <i>✓</i>
+                      <b>Ana R.</b>
+                      <span>Q 250</span>
                     </div>
                     <div className="pc-row">
-                      <i>🛒</i>
-                      <b>{lang === "en" ? "Groceries" : "Súper"}</b>
-                      <span>Q 612</span>
+                      <i>✓</i>
+                      <b>Diego M.</b>
+                      <span>Q 300</span>
                     </div>
-                    <div className="pc-row">
-                      <i>🚗</i>
-                      <b>{lang === "en" ? "Transport" : "Transporte"}</b>
-                      <span>Q 210</span>
+                    <div className="pc-row pc-row--out">
+                      <i>—</i>
+                      <b>Sofía L.</b>
+                      <span>{lang === "en" ? "Absent" : "Ausente"}</span>
                     </div>
                   </div>
 
                   <div className="pc-goal">
-                    <small>{lang === "en" ? "Savings goal" : "Meta de ahorro"}</small>
+                    <small>
+                      {lang === "en" ? "Attendance this month" : "Asistencia del mes"}
+                    </small>
                     <div className="pc-bar">
                       <i />
                     </div>

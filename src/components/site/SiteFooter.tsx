@@ -25,17 +25,20 @@ const SiteFooter = () => {
 
         <div className="sv-footcol">
           <h4>{t(siteCopy.footer.products)}</h4>
-          {products.map((product) =>
-            product.internal ? (
-              <Link key={product.id} to={product.href}>
+          {products.map((product) => {
+            // Si el producto tiene página propia, el footer lleva ahí.
+            const internalHref = product.pageHref ?? (product.internal ? product.href : null);
+
+            return internalHref ? (
+              <Link key={product.id} to={internalHref}>
                 {product.name}
               </Link>
             ) : (
               <a key={product.id} href={product.href} target="_blank" rel="noreferrer">
                 {product.name}
               </a>
-            )
-          )}
+            );
+          })}
         </div>
 
         <div className="sv-footcol">

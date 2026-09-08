@@ -22,12 +22,12 @@ export const paycoachUpdates: PayCoachUpdate[] = [
     version: "1.1",
     tag: { es: "Mejora", en: "Improvement" },
     title: {
-      es: "Resumen mensual más claro",
-      en: "A clearer monthly summary",
+      es: "Resumen del mes más claro para las familias",
+      en: "A clearer monthly summary for families",
     },
     body: {
-      es: "Rediseñamos la pantalla de resumen para que el total del mes, las categorías más pesadas y el avance de tus metas se lean de un solo vistazo.",
-      en: "We redesigned the summary screen so your month total, heaviest categories and goal progress all read at a single glance.",
+      es: "Rediseñamos el resumen que se manda por WhatsApp: ahora se ven las clases asistidas, el total por alumno y el total de la familia en un mismo mensaje.",
+      en: "We redesigned the summary you send over WhatsApp: sessions attended, each student's total and the family total now fit in a single message.",
     },
   },
   {
@@ -39,8 +39,8 @@ export const paycoachUpdates: PayCoachUpdate[] = [
       en: "PayCoach is live on the App Store",
     },
     body: {
-      es: "La primera versión pública de PayCoach ya se puede descargar para iPhone: registro de gastos, categorías y metas de ahorro.",
-      en: "The first public version of PayCoach is downloadable for iPhone: expense tracking, categories and savings goals.",
+      es: "La primera versión pública ya se puede descargar para iPhone: asistencia sin señal, precio por alumno, agrupación por familia y cobro por WhatsApp.",
+      en: "The first public version is downloadable for iPhone: offline attendance, per-student pricing, family grouping and WhatsApp billing.",
     },
   },
 ];

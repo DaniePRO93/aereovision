@@ -16,8 +16,8 @@ export const homeCopy = {
     titleA: { es: "Construimos negocios,", en: "We build businesses," },
     titleB: { es: "no sólo proyectos.", en: "not just projects." },
     lead: {
-      es: "AeroVision es un estudio guatemalteco donde cada idea termina siendo un producto real, publicado y en manos de gente: una app en el App Store, un estudio de cine aéreo operando y un taller de impresión 3D.",
-      en: "AeroVision is a Guatemalan studio where every idea ends up a real product — shipped and in people's hands: an app on the App Store, a working aerial film studio, and a 3D printing workshop.",
+      es: "AeroVision es un estudio guatemalteco donde cada idea termina siendo un producto real, publicado y en manos de gente: PayCoach en el App Store, un estudio de cine aéreo operando y un taller de impresión 3D.",
+      en: "AeroVision is a Guatemalan studio where every idea ends up a real product — shipped and in people's hands: PayCoach on the App Store, a working aerial film studio, and a 3D printing workshop.",
     },
     ctaPrimary: { es: "Ver productos", en: "See products" },
     ctaSecondary: { es: "Ver portafolio", en: "See portfolio" },

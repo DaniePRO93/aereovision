@@ -259,6 +259,9 @@
   color: var(--pc-ink);
   font-weight: 600;
 }
+.pc-row--out {
+  opacity: 0.55;
+}
 .pc-row i {
   width: 24px;
   height: 24px;

@@ -142,7 +142,8 @@ const Home = () => {
                   internal={product.internal}
                   accent={product.accent}
                   accent2={product.accent2}
-                  badge={product.badge}
+                  logo={product.logo}
+                  logoOnDark={product.logoOnDark}
                   image={product.image}
                 />
               </Reveal>

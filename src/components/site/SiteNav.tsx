@@ -11,6 +11,7 @@ interface SiteNavProps {
 }
 
 const links = [
+  { to: "/", label: siteCopy.nav.home },
   { to: "/products", label: siteCopy.nav.products },
   { to: "/portfolio", label: siteCopy.nav.portfolio },
   { to: "/drones", label: siteCopy.nav.drones },
@@ -48,7 +49,8 @@ const SiteNav = ({ theme = "dark" }: SiteNavProps) => {
     };
   }, [open]);
 
-  const isActive = (to: string) => pathname === to || pathname.startsWith(`${to}/`);
+  const isActive = (to: string) =>
+    to === "/" ? pathname === "/" : pathname === to || pathname.startsWith(`${to}/`);
 
   return (
     <>

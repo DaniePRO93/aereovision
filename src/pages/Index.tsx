@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "@/styles/redesign.css";
 import Reveal from "@/components/Reveal";
 import PackageModal from "@/components/PackageModal";
@@ -184,10 +185,13 @@ const Index = () => {
 
       {/* ============ NAV ============ */}
       <header className={`av-nav ${scrolled ? "av-nav--solid" : ""}`}>
-        <a href="#top" className="av-wordmark">
+        <Link to="/" className="av-wordmark">
           AERO<em>VISION</em>
-        </a>
+        </Link>
         <nav className="av-navlinks">
+          <Link to="/" className="av-navlink">
+            Inicio
+          </Link>
           {[
             { label: "Trabajo", href: "#work" },
             { label: "Servicios", href: "#services" },

@@ -1,4 +1,14 @@
 import type { Bilingual } from "@/i18n/LanguageProvider";
+import aerovisionMark from "@/assets/products/aerovision-mark.png";
+import paycoachLogo from "@/assets/products/paycoach-logo.png";
+import straightupLogo from "@/assets/products/straightup-logo.png";
+import shotBasecode from "@/assets/shots/basecode.jpg";
+import shotBusinessForge from "@/assets/shots/business-forge.jpg";
+import shotDarkline from "@/assets/shots/darkline.jpg";
+import shotDrones from "@/assets/shots/drones.jpg";
+import shotPawsome from "@/assets/shots/pawsome.jpg";
+import shotPaycoach from "@/assets/shots/paycoach.jpg";
+import shotStraightup from "@/assets/shots/straightup.jpg";
 
 export type PortfolioKind = "app" | "web" | "video";
 
@@ -16,7 +26,11 @@ export interface PortfolioItem {
   internal: boolean;
   accent: string;
   accent2: string;
-  badge: string;
+  /** Logo de la marca; si falta se dibuja el monograma. */
+  logo?: string;
+  /** true = el logo ya viene sobre fondo oscuro y no lleva placa clara. */
+  logoOnDark?: boolean;
+  /** Captura de la portada del sitio, de fondo en la tarjeta. */
   image?: string;
 }
 
@@ -32,17 +46,18 @@ export const portfolio: PortfolioItem[] = [
     id: "paycoach",
     name: "PayCoach",
     kind: "app",
-    role: { es: "App iOS · Finanzas personales", en: "iOS app · Personal finance" },
+    role: { es: "App iOS y web · Academias", en: "iOS and web app · Academies" },
     blurb: {
-      es: "App nativa publicada en el App Store para registrar gastos, fijar metas y entender tus finanzas mes a mes.",
-      en: "Native app shipped on the App Store to track spending, set goals and understand your finances month to month.",
+      es: "App publicada en el App Store para pasar asistencia sin señal, calcular el cobro de cada alumno y enviarlo por WhatsApp.",
+      en: "App shipped on the App Store to take attendance offline, work out each student's bill and send it over WhatsApp.",
     },
     domain: "paycoach.app",
-    href: "/products/paycoach",
-    internal: true,
+    href: "https://paycoach.app",
+    internal: false,
     accent: "#34d399",
     accent2: "#0ea5e9",
-    badge: "🇬🇹",
+    logo: paycoachLogo,
+    image: shotPaycoach,
   },
   {
     id: "drones",
@@ -58,55 +73,59 @@ export const portfolio: PortfolioItem[] = [
     internal: true,
     accent: "#f2b257",
     accent2: "#e2603f",
-    badge: "🇬🇹",
+    logo: aerovisionMark,
+    logoOnDark: true,
+    image: shotDrones,
   },
   {
     id: "straightup",
-    name: "StraightUp",
+    name: "Straight Up",
     kind: "web",
-    role: { es: "Producto web", en: "Web product" },
+    role: { es: "Calistenia · Ciudad de Guatemala", en: "Calisthenics · Guatemala City" },
     blurb: {
-      es: "Producto web enfocado en hábitos y consistencia, con una interfaz directa y sin fricción.",
-      en: "A web product built around habits and consistency, with a direct, friction-free interface.",
+      es: "Sitio para una escuela de calistenia con tres sedes: programas, entrenadores, transformaciones y reservas por WhatsApp.",
+      en: "Site for a calisthenics school with three locations: programmes, coaches, transformations and WhatsApp bookings.",
     },
     domain: "straightup.pages.dev",
     href: "https://straightup.pages.dev",
     internal: false,
     accent: "#f97316",
     accent2: "#ef4444",
-    badge: "🌐",
+    logo: straightupLogo,
+    logoOnDark: true,
+    image: shotStraightup,
   },
   {
     id: "darkline",
-    name: "Darkline Coaching",
+    name: "Darkline",
     kind: "web",
-    role: { es: "Coach personal", en: "Personal coach" },
+    role: { es: "Coaching de fuerza y físico", en: "Strength and physique coaching" },
     blurb: {
-      es: "Plataforma de coaching personal: planes, seguimiento y una identidad visual oscura y enfocada.",
-      en: "A personal coaching platform: plans, tracking, and a dark, focused visual identity.",
+      es: "Plataforma de coaching en línea de un competidor de classic physique: planes mensuales, asesoría y su línea de ropa.",
+      en: "Online coaching platform for a classic physique competitor: monthly plans, guidance and his apparel line.",
     },
     domain: "darklinecoaching.pages.dev",
     href: "https://darklinecoaching.pages.dev",
     internal: false,
     accent: "#a78bfa",
     accent2: "#6366f1",
-    badge: "🌐",
+    image: shotDarkline,
   },
   {
     id: "pawsome",
     name: "Pawsome Walks",
     kind: "web",
-    role: { es: "Paseo de perros", en: "Dog walking" },
+    role: { es: "Paseos para perros · Guatemala", en: "Dog walking · Guatemala" },
     blurb: {
-      es: "Reserva de paseos para perros: agenda, paseadores y seguimiento, con un tono cálido y amigable.",
-      en: "Dog-walking bookings: scheduling, walkers and tracking, with a warm and friendly tone.",
+      es: "Servicio de paseos grupales: recogen al perro en casa, lo pasean en grupos pequeños y mandan fotos por WhatsApp.",
+      en: "Group dog-walking service: they pick the dog up at home, walk it in small groups and send photos over WhatsApp.",
     },
     domain: "pawsomewalks.pages.dev",
     href: "https://pawsomewalks.pages.dev/",
     internal: false,
     accent: "#fbbf24",
     accent2: "#84cc16",
-    badge: "🐾",
+    image: shotPawsome,
   },
   {
     id: "basecode",
@@ -114,30 +133,30 @@ export const portfolio: PortfolioItem[] = [
     kind: "web",
     role: { es: "Juego para aprender a programar", en: "Learn-to-code game" },
     blurb: {
-      es: "Juego educativo que enseña fundamentos de programación resolviendo retos, nivel por nivel.",
-      en: "An educational game that teaches programming fundamentals through challenges, level by level.",
+      es: "Juego narrativo que enseña programación: entrás como operativo a reparar un código raíz corrupto, misión por misión.",
+      en: "A narrative game that teaches programming: you sign in as an operative to repair a corrupted root code, mission by mission.",
     },
     domain: "basecode.pages.dev",
     href: "https://basecode.pages.dev/",
     internal: false,
     accent: "#22d3ee",
     accent2: "#3b82f6",
-    badge: "🎮",
+    image: shotBasecode,
   },
   {
     id: "business-forge",
     name: "Business Forge",
     kind: "web",
-    role: { es: "Asistente de negocios", en: "Business assistant" },
+    role: { es: "Asesor de negocios con IA", en: "AI business advisor" },
     blurb: {
-      es: "Asistente que ayuda a aterrizar ideas de negocio: validación, plan y siguientes pasos concretos.",
-      en: "An assistant that helps land business ideas: validation, a plan, and concrete next steps.",
+      es: "Asistente que ayuda a aterrizar una idea de negocio y a decidir los siguientes pasos concretos.",
+      en: "An assistant that helps land a business idea and decide the concrete next steps.",
     },
     domain: "business-forge.pages.dev",
     href: "https://business-forge.pages.dev/",
     internal: false,
     accent: "#f43f5e",
     accent2: "#f59e0b",
-    badge: "⚒️",
+    image: shotBusinessForge,
   },
 ];

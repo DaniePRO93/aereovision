@@ -83,7 +83,8 @@ const Portfolio = () => {
                 internal={item.internal}
                 accent={item.accent}
                 accent2={item.accent2}
-                badge={item.badge}
+                logo={item.logo}
+                logoOnDark={item.logoOnDark}
                 image={item.image}
               />
             </Reveal>

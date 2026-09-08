@@ -14,15 +14,29 @@ interface DeviceCardProps {
   internal: boolean;
   accent: string;
   accent2: string;
-  badge: string;
+  /** Logo de la marca. Sin él se dibuja el monograma del nombre. */
+  logo?: string;
+  /** El logo ya viene sobre fondo oscuro: va suelto, sin placa clara. */
+  logoOnDark?: boolean;
+  /** Captura de la portada del sitio, de fondo. */
   image?: string;
   className?: string;
 }
 
+/** Iniciales para las marcas que todavía no tienen logo. */
+const monogram = (name: string): string =>
+  name
+    .split(/[\s-]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+
 /**
- * Tarjeta de producto/proyecto con marco tipo pantalla, insignia flotante,
- * botón y ficha de texto debajo. Es el elemento que se repite en el home,
- * /products y /portfolio.
+ * Tarjeta de producto/proyecto: captura del sitio de fondo, logo grande al
+ * centro, botón y ficha de texto debajo. Es el elemento que se repite en el
+ * home, /products y /portfolio.
  */
 const DeviceCard = ({
   name,
@@ -34,7 +48,8 @@ const DeviceCard = ({
   internal,
   accent,
   accent2,
-  badge,
+  logo,
+  logoOnDark = false,
   image,
   className = "",
 }: DeviceCardProps) => {
@@ -44,13 +59,23 @@ const DeviceCard = ({
     <>
       <div className="sv-frame">
         {image && <img className="sv-frame__img" src={image} alt="" loading="lazy" />}
-        <span className="sv-badge" aria-hidden="true">
-          {badge}
-        </span>
 
         <div className="sv-frame__mark">
+          {logo ? (
+            <span
+              className={`sv-logo ${logoOnDark ? "sv-logo--dark" : ""}`.trim()}
+              aria-hidden="true"
+            >
+              <img src={logo} alt="" loading="lazy" />
+            </span>
+          ) : (
+            <span className="sv-logo sv-logo--mono" aria-hidden="true">
+              {monogram(name)}
+            </span>
+          )}
+
           <strong>{name}</strong>
-          <span>{kind}</span>
+          <span className="sv-frame__kind">{kind}</span>
         </div>
 
         <span className="sv-frame__btn">{action}</span>

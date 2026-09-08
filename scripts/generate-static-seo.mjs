@@ -59,15 +59,15 @@ const routes = [
     priority: "0.9",
     changefreq: "weekly",
     lastmod: "2026-09-08",
-    title: "PayCoach | Tu entrenador de finanzas personales \u2014 App para iPhone",
+    title: "PayCoach | Asistencia y cobros para academias deportivas \u2014 App iOS y web",
     description:
-      "PayCoach es una app de iPhone hecha por AeroVision para registrar gastos, fijar metas y entender tus finanzas mes a mes. Desc\u00e1rgala en el App Store.",
+      "PayCoach es la app de AeroVision para entrenadores: pasa asistencia sin se\u00f1al, calcula el cobro de cada alumno o familia y lo env\u00eda por WhatsApp. Gratis en el App Store.",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       name: "PayCoach",
-      applicationCategory: "FinanceApplication",
-      operatingSystem: "iOS",
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "iOS, Web",
       url: "https://paycoach.app",
       downloadUrl: "https://apps.apple.com/gt/app/paycoach/id6799230820?l=en-GB",
       author: {
