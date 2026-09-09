@@ -99,6 +99,15 @@
   margin: 26px 0 36px;
 }
 
+/* En el home la segunda línea del titular no es una serif aparte: es el mismo
+   Clash Display, un peso más ligero. El contraste lo da el peso y el degradado,
+   no un tipo distinto. Las otras páginas conservan su itálica (.sv-serif). */
+.st-root .sv-serif {
+  font-family: var(--sv-font-display);
+  font-style: normal;
+  font-weight: 500;
+}
+
 .st-actions {
   display: flex;
   flex-wrap: wrap;
