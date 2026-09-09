@@ -1,14 +1,15 @@
 /* ============================================================
    Home corporativo — "Studio" (.st-root)
-   Tinta profunda + aurora índigo/violeta. Emparenta con el sitio
-   de drones (mismo lienzo oscuro) pero con temperatura opuesta.
+   Tinta profunda + aurora azul/turquesa, tomada del emblema.
+   Emparenta con el sitio de drones (mismo lienzo oscuro) pero con
+   la temperatura opuesta.
    ============================================================ */
 
 .st-root {
-  --sv-accent: #7c8cff;
-  --sv-accent2: #b06cff;
-  --sv-accent-grad: linear-gradient(96deg, #8fa2ff 0%, #7c8cff 44%, #c06cff 100%);
-  --sv-accent-glow: rgba(124, 140, 255, 0.3);
+  --sv-accent: #5f9dff;
+  --sv-accent2: #2fd8c3;
+  --sv-accent-grad: linear-gradient(96deg, #7cb4ff 0%, #5f9dff 44%, #22cfc0 100%);
+  --sv-accent-glow: rgba(95, 157, 255, 0.3);
 
   background: var(--sv-ink);
   color: var(--sv-text);
@@ -52,13 +53,13 @@
 .st-aurora::before {
   top: -18%;
   left: -10%;
-  background: radial-gradient(circle, #4a5bff 0%, transparent 68%);
+  background: radial-gradient(circle, #2f6bff 0%, transparent 68%);
   animation: st-drift 22s ease-in-out infinite alternate;
 }
 .st-aurora::after {
   bottom: -24%;
   right: -12%;
-  background: radial-gradient(circle, #a63dff 0%, transparent 68%);
+  background: radial-gradient(circle, #12b8a6 0%, transparent 68%);
   animation: st-drift 26s ease-in-out infinite alternate-reverse;
 }
 
@@ -181,7 +182,7 @@
 .st-about {
   border-top: 1px solid var(--sv-line);
   border-bottom: 1px solid var(--sv-line);
-  background: linear-gradient(180deg, rgba(124, 140, 255, 0.05), transparent 60%);
+  background: linear-gradient(180deg, rgba(95, 157, 255, 0.05), transparent 60%);
 }
 .st-about__grid {
   display: grid;

@@ -6,10 +6,10 @@
    ============================================================ */
 
 .pr-root {
-  --sv-accent: #7c8cff;
-  --sv-accent2: #b06cff;
-  --sv-accent-grad: linear-gradient(96deg, #8fa2ff 0%, #7c8cff 44%, #c06cff 100%);
-  --sv-accent-glow: rgba(124, 140, 255, 0.28);
+  --sv-accent: #5f9dff;
+  --sv-accent2: #2fd8c3;
+  --sv-accent-grad: linear-gradient(96deg, #7cb4ff 0%, #5f9dff 44%, #22cfc0 100%);
+  --sv-accent-glow: rgba(95, 157, 255, 0.28);
 
   background: var(--sv-ink);
   color: var(--sv-text);
@@ -30,7 +30,7 @@
   position: absolute;
   inset: -40% 40% auto -10%;
   height: 70vh;
-  background: radial-gradient(circle at 30% 40%, rgba(124, 140, 255, 0.24), transparent 62%);
+  background: radial-gradient(circle at 30% 40%, rgba(95, 157, 255, 0.24), transparent 62%);
   filter: blur(60px);
   pointer-events: none;
 }
@@ -58,7 +58,7 @@
   height: 320px;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--row-accent, #7c8cff) 13%, transparent),
+    color-mix(in srgb, var(--row-accent, #5f9dff) 13%, transparent),
     transparent
   );
   pointer-events: none;
@@ -114,7 +114,7 @@
   font-family: var(--sv-font-serif);
   font-style: italic;
   font-size: clamp(18px, 2.2vw, 26px);
-  color: color-mix(in srgb, var(--row-accent, #7c8cff) 74%, #ffffff);
+  color: color-mix(in srgb, var(--row-accent, #5f9dff) 74%, #ffffff);
 }
 .pr-row__blurb {
   margin: 22px 0 26px;
@@ -134,11 +134,11 @@
 .pr-row .sv-cta {
   background: linear-gradient(
     96deg,
-    var(--row-accent, #7c8cff),
-    var(--row-accent2, #b06cff)
+    var(--row-accent, #5f9dff),
+    var(--row-accent2, #2fd8c3)
   );
   color: #08090c;
-  box-shadow: 0 10px 34px color-mix(in srgb, var(--row-accent, #7c8cff) 30%, transparent);
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--row-accent, #5f9dff) 30%, transparent);
 }
 
 .pr-row__domain {
@@ -162,9 +162,9 @@
   border: 1px solid var(--sv-line-strong);
   background: linear-gradient(
     162deg,
-    color-mix(in srgb, var(--row-accent, #7c8cff) 40%, #0b0d12) 0%,
+    color-mix(in srgb, var(--row-accent, #5f9dff) 40%, #0b0d12) 0%,
     #0a0c11 60%,
-    color-mix(in srgb, var(--row-accent2, #b06cff) 30%, #0b0d12) 100%
+    color-mix(in srgb, var(--row-accent2, #2fd8c3) 30%, #0b0d12) 100%
   );
   display: grid;
   place-items: center;
@@ -173,7 +173,7 @@
 }
 .pr-row:hover .pr-frame {
   transform: translateY(-5px);
-  box-shadow: 0 30px 70px -30px color-mix(in srgb, var(--row-accent, #7c8cff) 70%, transparent);
+  box-shadow: 0 30px 70px -30px color-mix(in srgb, var(--row-accent, #5f9dff) 70%, transparent);
 }
 .pr-frame::before {
   content: "";
