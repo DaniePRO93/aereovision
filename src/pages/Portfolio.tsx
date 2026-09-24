@@ -3,8 +3,9 @@ import "@/styles/site.css";
 import "@/styles/portfolio.css";
 import Reveal from "@/components/Reveal";
 import DeviceCard from "@/components/site/DeviceCard";
-import SiteFooter from "@/components/site/SiteFooter";
 import SiteNav from "@/components/site/SiteNav";
+import AnimatedWaveFooter from "@/components/ui/animated-wave-footer";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import { portfolioCopy } from "@/content/portfolio";
 import { siteCopy } from "@/content/site";
 import { portfolio, portfolioFilters, type PortfolioKind } from "@/data/portfolio";
@@ -37,6 +38,7 @@ const Portfolio = () => {
 
       <main id="main">
         <section className="pf-hero">
+          <BackgroundPaths className="st-paths" />
           <div className="pf-hero__inner">
             <Reveal>
               <p className="sv-eyebrow">
@@ -104,7 +106,7 @@ const Portfolio = () => {
         </section>
       </main>
 
-      <SiteFooter />
+      <AnimatedWaveFooter />
     </div>
   );
 };

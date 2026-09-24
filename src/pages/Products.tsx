@@ -1,10 +1,10 @@
-import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import "@/styles/site.css";
 import "@/styles/products.css";
 import Reveal from "@/components/Reveal";
-import SiteFooter from "@/components/site/SiteFooter";
 import SiteNav from "@/components/site/SiteNav";
+import AnimatedWaveFooter from "@/components/ui/animated-wave-footer";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import { productsCopy } from "@/content/products";
 import { siteCopy } from "@/content/site";
 import { products } from "@/data/products";
@@ -31,6 +31,7 @@ const Products = () => {
 
       <main id="main">
         <section className="pr-hero">
+          <BackgroundPaths className="st-paths" />
           <div className="pr-hero__inner">
             <Reveal>
               <p className="sv-eyebrow">{t(productsCopy.hero.eyebrow)}</p>
@@ -48,11 +49,6 @@ const Products = () => {
         </section>
 
         {products.map((product, i) => {
-          const style = {
-            "--row-accent": product.accent,
-            "--row-accent2": product.accent2,
-          } as CSSProperties;
-
           const action = product.internal
             ? t(siteCopy.cta.viewProduct)
             : t(siteCopy.cta.visitSite);
@@ -61,7 +57,6 @@ const Products = () => {
             <section
               key={product.id}
               className={`pr-row ${i % 2 === 1 ? "pr-row--flip" : ""}`}
-              style={style}
             >
               <div className="pr-row__inner">
                 <Reveal>
@@ -162,7 +157,7 @@ const Products = () => {
         </section>
       </main>
 
-      <SiteFooter />
+      <AnimatedWaveFooter />
     </div>
   );
 };

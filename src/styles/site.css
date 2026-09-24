@@ -397,85 +397,6 @@
   }
 }
 
-/* ---------------------------------------------------- FOOTER */
-.sv-footer {
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid var(--sv-line);
-  padding: clamp(56px, 8vw, 92px) var(--sv-pad-x) 34px;
-  background: var(--sv-foot-bg, var(--sv-ink2));
-}
-.sv-footer__grid {
-  max-width: 1340px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: clamp(28px, 5vw, 64px);
-  position: relative;
-  z-index: 1;
-}
-.sv-footer__blurb {
-  color: var(--sv-text2);
-  font-size: 14.5px;
-  line-height: 1.65;
-  margin: 16px 0 22px;
-  max-width: 40ch;
-}
-.sv-footcol h4 {
-  font-family: var(--sv-font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  font-size: 10.5px;
-  color: var(--sv-muted);
-  margin: 0 0 18px;
-}
-.sv-footcol a {
-  display: block;
-  color: var(--sv-text2);
-  text-decoration: none;
-  font-size: 14.5px;
-  padding: 6px 0;
-  transition: color 0.22s ease, transform 0.22s var(--sv-ease);
-}
-.sv-footcol a:hover {
-  color: var(--sv-text);
-  transform: translateX(3px);
-}
-.sv-footer__bottom {
-  max-width: 1340px;
-  margin: clamp(38px, 5vw, 60px) auto 0;
-  padding-top: 22px;
-  border-top: 1px solid var(--sv-line);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  position: relative;
-  z-index: 1;
-  color: var(--sv-muted);
-  font-family: var(--sv-font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.sv-footer__bottom a {
-  color: var(--sv-muted);
-  text-decoration: none;
-}
-.sv-footer__bottom a:hover {
-  color: var(--sv-text2);
-}
-
-@media (max-width: 820px) {
-  .sv-footer__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .sv-footer__brand {
-    grid-column: 1 / -1;
-  }
-}
-
 /* ------------------------------------- Tarjeta tipo "device" */
 .sv-cards {
   display: grid;
@@ -714,4 +635,114 @@
   .sv-ghost:hover {
     transform: none;
   }
+}
+
+/* ============================================================
+   Tema del sitio corporativo (todo menos /drones y /work/*)
+   Paleta de cuatro colores: blanco de fondo, naranja #e9480d para
+   acentos y componentes, gris #d1d1d1 para líneas y retículas, y
+   #242424 para texto y superficies oscuras.
+   ============================================================ */
+.st-root,
+.pr-root,
+.pf-root,
+.pc-root,
+.tos-root {
+  --st-white: #ffffff;
+  --st-orange: #e9480d;
+  --st-line: #d1d1d1;
+  --st-dark: #242424;
+
+  /* Tokens compartidos, reescritos con la paleta */
+  --sv-ink: var(--st-white);
+  --sv-ink2: var(--st-white);
+  --sv-surface: var(--st-white);
+  --sv-surface2: var(--st-white);
+  --sv-text: var(--st-dark);
+  --sv-text2: color-mix(in srgb, var(--st-dark) 76%, var(--st-white));
+  --sv-muted: color-mix(in srgb, var(--st-dark) 56%, var(--st-white));
+  --sv-line: var(--st-line);
+  --sv-line-strong: var(--st-line);
+  --sv-accent: var(--st-orange);
+  --sv-accent2: var(--st-orange);
+  --sv-accent-grad: linear-gradient(var(--st-orange), var(--st-orange));
+  --sv-accent-glow: rgba(233, 72, 13, 0.24);
+  --sv-nav-fg: var(--st-dark);
+  --sv-nav-fg2: var(--sv-text2);
+
+}
+
+/* ------------------------------------ Componentes compartidos */
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-cta,
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-lang button[data-active="true"] {
+  color: var(--st-white);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-ghost:hover {
+  border-color: var(--st-dark);
+  background: transparent;
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-nav--solid {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom-color: var(--st-line);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-lang {
+  background: transparent;
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-menu {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+/* Tarjetas de producto: marco oscuro #242424 con acento naranja */
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame {
+  background: var(--st-dark);
+  border-color: var(--st-dark);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-card:hover .sv-frame {
+  border-color: var(--st-orange);
+  box-shadow: 0 26px 60px -22px rgba(233, 72, 13, 0.5);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame::after {
+  background: linear-gradient(
+    180deg,
+    rgba(36, 36, 36, 0.55) 0%,
+    rgba(36, 36, 36, 0.4) 30%,
+    rgba(36, 36, 36, 0.75) 62%,
+    rgba(36, 36, 36, 0.94) 100%
+  );
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame__img {
+  filter: grayscale(1);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-logo:not(.sv-logo--dark) {
+  background: var(--st-white);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-logo--dark {
+  background: var(--st-dark);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame__btn {
+  background: var(--st-white);
+  color: var(--st-dark);
+}
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-card:hover .sv-frame__btn {
+  background: var(--st-orange);
+  color: var(--st-white);
+}
+
+
+/* Términos de servicio: página hecha con utilidades de Tailwind/shadcn, así
+   que se reescriben sus variables HSL con la misma paleta. */
+.tos-root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 14%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 14%;
+  --border: 0 0% 82%;
+  --muted-foreground: 0 0% 38%;
+  --primary: 16 89% 48%;
+  font-family: var(--sv-font-body);
+}
+.tos-root h1,
+.tos-root h2 {
+  font-family: var(--sv-font-display);
+  letter-spacing: -0.02em;
 }

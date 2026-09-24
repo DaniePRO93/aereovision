@@ -1,32 +1,20 @@
 /* ============================================================
    /products/paycoach (.pc-root)
-   La ruptura deliberada con el resto del sitio: lienzo claro,
-   verde menta, geometría redondeada y movimiento tranquilo.
-   Debe transmitir calma y confianza, no adrenalina.
+   Lienzo blanco con la paleta del sitio, geometría redondeada y
+   movimiento tranquilo. Debe transmitir calma y confianza.
    ============================================================ */
 
 .pc-root {
-  --pc-bg: #f7faf8;
-  --pc-bg2: #eef4f1;
-  --pc-card: #ffffff;
-  --pc-ink: #0d1f1a;
-  --pc-ink2: #4a5b55;
-  --pc-muted: #8a978f;
-  --pc-line: rgba(13, 31, 26, 0.1);
-  --pc-mint: #10b981;
-  --pc-mint2: #0ea5e9;
-
-  /* Tokens compartidos, reescritos en clave clara */
-  --sv-text: #0d1f1a;
-  --sv-text2: #4a5b55;
-  --sv-muted: #8a978f;
-  --sv-line: rgba(13, 31, 26, 0.1);
-  --sv-line-strong: rgba(13, 31, 26, 0.18);
-  --sv-accent-grad: linear-gradient(96deg, #10b981 0%, #0ea5e9 100%);
-  --sv-accent-glow: rgba(16, 185, 129, 0.26);
-  --sv-nav-fg: #0d1f1a;
-  --sv-nav-fg2: #4a5b55;
-  --sv-foot-bg: #0d1f1a;
+  /* Paleta del sitio (site.css) en los tokens propios de la página */
+  --pc-bg: var(--st-white);
+  --pc-bg2: var(--st-white);
+  --pc-card: var(--st-white);
+  --pc-ink: var(--st-dark);
+  --pc-ink2: color-mix(in srgb, var(--st-dark) 76%, var(--st-white));
+  --pc-muted: color-mix(in srgb, var(--st-dark) 56%, var(--st-white));
+  --pc-line: var(--st-line);
+  --pc-mint: var(--st-orange);
+  --pc-mint2: var(--st-orange);
 
   background: var(--pc-bg);
   color: var(--pc-ink);
@@ -36,27 +24,14 @@
 }
 
 .pc-root .sv-cta {
-  color: #04140f;
+  color: var(--st-white);
 }
 .pc-root .sv-ghost {
   color: var(--pc-ink);
   border-color: var(--sv-line-strong);
 }
 .pc-root .sv-ghost:hover {
-  background: rgba(13, 31, 26, 0.04);
-}
-
-/* El footer se mantiene oscuro: cierra la página y devuelve al sitio */
-.pc-root .sv-footer {
-  --sv-text: #eef0f6;
-  --sv-text2: #a4a9b8;
-  --sv-muted: #6c7183;
-  --sv-line: rgba(232, 234, 242, 0.1);
-  --sv-line-strong: rgba(232, 234, 242, 0.2);
-  color: #eef0f6;
-}
-.pc-root .sv-footer .sv-ghost {
-  color: #eef0f6;
+  background: rgba(36, 36, 36, 0.04);
 }
 
 /* ------------------------------------------------------ HERO */
@@ -64,7 +39,7 @@
   position: relative;
   padding: clamp(136px, 20vh, 190px) var(--sv-pad-x) clamp(50px, 8vh, 90px);
   overflow: hidden;
-  background: radial-gradient(120% 90% at 78% 8%, #dff5ec 0%, var(--pc-bg) 58%);
+  background: var(--pc-bg);
 }
 .pc-hero__inner {
   max-width: 1340px;
@@ -108,15 +83,15 @@
   gap: 12px;
   padding: 12px 24px 12px 20px;
   border-radius: 100px;
-  background: #0d1f1a;
+  background: #242424;
   color: #fff;
   text-decoration: none;
   transition: transform 0.28s var(--sv-ease), box-shadow 0.28s ease;
-  box-shadow: 0 10px 30px rgba(13, 31, 26, 0.18);
+  box-shadow: 0 10px 30px rgba(36, 36, 36, 0.18);
 }
 .pc-store:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(13, 31, 26, 0.26);
+  box-shadow: 0 16px 40px rgba(36, 36, 36, 0.26);
 }
 .pc-store svg {
   width: 22px;
@@ -151,7 +126,7 @@
   width: 78%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.22), transparent 66%);
+  background: radial-gradient(circle, rgba(233, 72, 13, 0.22), transparent 66%);
   filter: blur(30px);
 }
 
@@ -161,8 +136,8 @@
   aspect-ratio: 9 / 18.6;
   border-radius: 44px;
   padding: 11px;
-  background: linear-gradient(160deg, #1d2b26, #0d1f1a);
-  box-shadow: 0 40px 90px -30px rgba(13, 31, 26, 0.5), 0 0 0 1px rgba(13, 31, 26, 0.16);
+  background: linear-gradient(160deg, #242424, #242424);
+  box-shadow: 0 40px 90px -30px rgba(36, 36, 36, 0.5), 0 0 0 1px rgba(36, 36, 36, 0.16);
   animation: pc-float 7s ease-in-out infinite alternate;
 }
 @keyframes pc-float {
@@ -179,7 +154,7 @@
   height: 100%;
   border-radius: 34px;
   overflow: hidden;
-  background: linear-gradient(180deg, #ffffff 0%, #f2f8f5 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
   display: flex;
   flex-direction: column;
   padding: 26px 18px 18px;
@@ -193,7 +168,7 @@
   width: 42%;
   height: 20px;
   border-radius: 100px;
-  background: #0d1f1a;
+  background: #242424;
 }
 .pc-screen img {
   position: absolute;
@@ -214,7 +189,7 @@
 .pc-balance {
   border-radius: 20px;
   padding: 16px;
-  background: linear-gradient(140deg, #10b981, #0ea5e9);
+  background: linear-gradient(140deg, #e9480d, #e9480d);
   color: #fff;
 }
 .pc-balance small {
@@ -278,7 +253,7 @@
   margin-top: auto;
   padding: 13px 14px;
   border-radius: 16px;
-  background: #0d1f1a;
+  background: #242424;
   color: #fff;
 }
 .pc-goal small {
@@ -299,7 +274,7 @@
   height: 100%;
   width: 68%;
   border-radius: 100px;
-  background: linear-gradient(90deg, #10b981, #0ea5e9);
+  background: linear-gradient(90deg, #e9480d, #e9480d);
 }
 
 /* ---------------------------------------------------- Pilares */
@@ -320,7 +295,7 @@
 }
 .pc-pillar:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 46px -26px rgba(13, 31, 26, 0.3);
+  box-shadow: 0 22px 46px -26px rgba(36, 36, 36, 0.3);
 }
 .pc-pillar h3 {
   font-family: var(--sv-font-display);
@@ -340,7 +315,7 @@
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  background: linear-gradient(140deg, #10b981, #0ea5e9);
+  background: linear-gradient(140deg, #e9480d, #e9480d);
   margin-bottom: 16px;
 }
 
@@ -410,14 +385,14 @@
 .pc-bars i {
   flex: 1;
   border-radius: 8px 8px 3px 3px;
-  background: linear-gradient(180deg, #10b981, #0ea5e9);
+  background: linear-gradient(180deg, #e9480d, #e9480d);
   opacity: 0.85;
 }
 .pc-ring {
   width: min(190px, 100%);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: conic-gradient(#10b981 0turn 0.68turn, rgba(13, 31, 26, 0.08) 0.68turn 1turn);
+  background: conic-gradient(#e9480d 0turn 0.68turn, rgba(36, 36, 36, 0.08) 0.68turn 1turn);
   display: grid;
   place-items: center;
 }
@@ -481,8 +456,8 @@
   text-transform: uppercase;
   padding: 6px 12px;
   border-radius: 100px;
-  background: rgba(16, 185, 129, 0.12);
-  color: #0a7f5b;
+  background: rgba(233, 72, 13, 0.12);
+  color: #e9480d;
 }
 .pc-update__version {
   font-family: var(--sv-font-mono);

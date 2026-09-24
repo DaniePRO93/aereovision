@@ -1,16 +1,10 @@
 /* ============================================================
    /products — catálogo (.pr-root)
-   Mismo lienzo oscuro que el home, pero con filas grandes y
-   tipografía de catálogo: cada producto ocupa su propia franja
-   y tiñe el fondo con su color.
+   Mismo lienzo blanco y paleta que el home (site.css), con filas
+   grandes y tipografía de catálogo: cada producto ocupa su franja.
    ============================================================ */
 
 .pr-root {
-  --sv-accent: #5f9dff;
-  --sv-accent2: #2fd8c3;
-  --sv-accent-grad: linear-gradient(96deg, #7cb4ff 0%, #5f9dff 44%, #22cfc0 100%);
-  --sv-accent-glow: rgba(95, 157, 255, 0.28);
-
   background: var(--sv-ink);
   color: var(--sv-text);
   font-family: var(--sv-font-body);
@@ -25,14 +19,8 @@
   border-bottom: 1px solid var(--sv-line);
   overflow: hidden;
 }
-.pr-hero::before {
-  content: "";
-  position: absolute;
-  inset: -40% 40% auto -10%;
-  height: 70vh;
-  background: radial-gradient(circle at 30% 40%, rgba(95, 157, 255, 0.24), transparent 62%);
-  filter: blur(60px);
-  pointer-events: none;
+.pr-hero .st-paths {
+  color: var(--st-line);
 }
 .pr-hero__inner {
   position: relative;
@@ -49,19 +37,6 @@
   border-bottom: 1px solid var(--sv-line);
   padding: clamp(56px, 8vw, 104px) var(--sv-pad-x);
   overflow: hidden;
-}
-/* Tinte del color del producto, muy bajo, en el borde superior */
-.pr-row::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 320px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--row-accent, #5f9dff) 13%, transparent),
-    transparent
-  );
-  pointer-events: none;
 }
 
 .pr-row__inner {
@@ -114,7 +89,7 @@
   font-family: var(--sv-font-serif);
   font-style: italic;
   font-size: clamp(18px, 2.2vw, 26px);
-  color: color-mix(in srgb, var(--row-accent, #5f9dff) 74%, #ffffff);
+  color: var(--st-orange);
 }
 .pr-row__blurb {
   margin: 22px 0 26px;
@@ -130,15 +105,6 @@
   gap: 12px;
   align-items: center;
   margin-top: 26px;
-}
-.pr-row .sv-cta {
-  background: linear-gradient(
-    96deg,
-    var(--row-accent, #5f9dff),
-    var(--row-accent2, #2fd8c3)
-  );
-  color: #08090c;
-  box-shadow: 0 10px 34px color-mix(in srgb, var(--row-accent, #5f9dff) 30%, transparent);
 }
 
 .pr-row__domain {
@@ -160,12 +126,7 @@
   border-radius: 26px;
   overflow: hidden;
   border: 1px solid var(--sv-line-strong);
-  background: linear-gradient(
-    162deg,
-    color-mix(in srgb, var(--row-accent, #5f9dff) 40%, #0b0d12) 0%,
-    #0a0c11 60%,
-    color-mix(in srgb, var(--row-accent2, #2fd8c3) 30%, #0b0d12) 100%
-  );
+  background: var(--st-dark);
   display: grid;
   place-items: center;
   isolation: isolate;
@@ -173,7 +134,7 @@
 }
 .pr-row:hover .pr-frame {
   transform: translateY(-5px);
-  box-shadow: 0 30px 70px -30px color-mix(in srgb, var(--row-accent, #5f9dff) 70%, transparent);
+  box-shadow: 0 30px 70px -30px rgba(233, 72, 13, 0.5);
 }
 .pr-frame::before {
   content: "";
@@ -193,6 +154,7 @@
   object-fit: cover;
   object-position: top center;
   opacity: 0.72;
+  filter: grayscale(1);
 }
 /* Velo para que el logo lea sobre la captura */
 .pr-frame::after {
@@ -202,10 +164,10 @@
   pointer-events: none;
   background: radial-gradient(
       58% 50% at 50% 50%,
-      rgba(6, 8, 12, 0.62),
-      rgba(6, 8, 12, 0.16) 76%
+      rgba(36, 36, 36, 0.62),
+      rgba(36, 36, 36, 0.16) 76%
     ),
-    linear-gradient(180deg, rgba(6, 8, 12, 0.2), rgba(6, 8, 12, 0.42));
+    linear-gradient(180deg, rgba(36, 36, 36, 0.2), rgba(36, 36, 36, 0.42));
 }
 
 .pr-frame__logo {
@@ -220,12 +182,12 @@
   transition: transform 0.45s var(--sv-ease);
 }
 .pr-frame__logo:not(.pr-frame__logo--dark) {
-  background: #f4f6fb;
+  background: var(--st-white);
   padding: 14px;
   box-shadow: 0 20px 46px -20px rgba(0, 0, 0, 0.85);
 }
 .pr-frame__logo--dark {
-  background: #06080c;
+  background: var(--st-dark);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 20px 46px -20px rgba(0, 0, 0, 0.9);
 }

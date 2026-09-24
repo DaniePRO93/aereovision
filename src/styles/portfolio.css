@@ -1,16 +1,11 @@
 /* ============================================================
    /portfolio — vitrina (.pf-root)
-   Negro puro y tarjetas tipo dispositivo sobre un foco central,
-   como la referencia: marco, insignia, botón y ficha debajo.
+   Lienzo blanco con la paleta del sitio (site.css) y tarjetas tipo
+   dispositivo: marco, insignia, botón y ficha debajo.
    ============================================================ */
 
 .pf-root {
-  --sv-accent: #ffffff;
-  --sv-accent2: #b9c0d6;
-  --sv-accent-grad: linear-gradient(96deg, #ffffff 0%, #c9cfe2 100%);
-  --sv-accent-glow: rgba(255, 255, 255, 0.16);
-
-  background: #000;
+  background: var(--sv-ink);
   color: var(--sv-text);
   font-family: var(--sv-font-body);
   min-height: 100vh;
@@ -18,32 +13,18 @@
   position: relative;
 }
 
-/* Foco superior que levanta la rejilla del fondo negro */
-.pf-root::before {
-  content: "";
-  position: fixed;
-  inset: -20% 0 auto 0;
-  height: 90vh;
-  background: radial-gradient(
-    60% 50% at 50% 0%,
-    rgba(255, 255, 255, 0.09),
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
-.pf-root > * {
-  position: relative;
-  z-index: 1;
-}
-
 /* ------------------------------------------------------ HERO */
 .pf-hero {
+  position: relative;
+  overflow: hidden;
   padding: clamp(148px, 22vh, 210px) var(--sv-pad-x) clamp(30px, 5vh, 52px);
   text-align: center;
 }
+.pf-hero .st-paths {
+  color: var(--st-line);
+}
 .pf-hero__inner {
+  position: relative;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -83,9 +64,9 @@
   transform: translateY(-2px);
 }
 .pf-chip[aria-pressed="true"] {
-  background: #eef0f6;
-  border-color: #eef0f6;
-  color: #08090c;
+  background: var(--st-orange);
+  border-color: var(--st-orange);
+  color: var(--st-white);
 }
 
 /* ----------------------------------------------------- Grid */
@@ -125,9 +106,4 @@
 .pf-cta .sv-lead {
   margin: 20px auto 32px;
   text-align: center;
-}
-.pf-cta .sv-cta {
-  background: #eef0f6;
-  color: #08090c;
-  box-shadow: 0 10px 34px rgba(255, 255, 255, 0.14);
 }

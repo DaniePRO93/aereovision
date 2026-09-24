@@ -1,97 +1,16 @@
 /* ============================================================
    Home corporativo — "Studio" (.st-root)
-   Paleta de cuatro colores: blanco de fondo, naranja #e9480d para
-   acentos y componentes, gris #d1d1d1 para líneas y retículas, y
-   #242424 para texto y superficies oscuras. Todo va scoped a .st-root:
-   las demás páginas conservan su lienzo oscuro.
+   La paleta vive en site.css (compartida por todo el sitio
+   corporativo); aquí sólo va el layout propio del home.
    ============================================================ */
 
 .st-root {
-  --st-white: #ffffff;
-  --st-orange: #e9480d;
-  --st-line: #d1d1d1;
-  --st-dark: #242424;
-
-  /* Tokens compartidos, reescritos con la paleta */
-  --sv-ink: var(--st-white);
-  --sv-ink2: var(--st-white);
-  --sv-surface: var(--st-white);
-  --sv-surface2: var(--st-white);
-  --sv-text: var(--st-dark);
-  --sv-text2: color-mix(in srgb, var(--st-dark) 76%, var(--st-white));
-  --sv-muted: color-mix(in srgb, var(--st-dark) 56%, var(--st-white));
-  --sv-line: var(--st-line);
-  --sv-line-strong: var(--st-line);
-  --sv-accent: var(--st-orange);
-  --sv-accent2: var(--st-orange);
-  --sv-accent-grad: linear-gradient(var(--st-orange), var(--st-orange));
-  --sv-accent-glow: rgba(233, 72, 13, 0.24);
-  --sv-nav-fg: var(--st-dark);
-  --sv-nav-fg2: var(--sv-text2);
-  --sv-foot-bg: var(--st-white);
-
   background: var(--sv-ink);
   color: var(--sv-text);
   font-family: var(--sv-font-body);
   min-height: 100vh;
   overflow-x: clip;
   position: relative;
-}
-
-/* ------------------------------------ Componentes compartidos */
-.st-root .sv-cta,
-.st-root .sv-lang button[data-active="true"] {
-  color: var(--st-white);
-}
-.st-root .sv-ghost:hover {
-  border-color: var(--st-dark);
-  background: transparent;
-}
-.st-root .sv-nav--solid {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom-color: var(--st-line);
-}
-.st-root .sv-lang {
-  background: transparent;
-}
-.st-root .sv-menu {
-  background: rgba(255, 255, 255, 0.98);
-}
-
-/* Tarjetas de producto: marco oscuro #242424 con acento naranja */
-.st-root .sv-frame {
-  background: var(--st-dark);
-  border-color: var(--st-dark);
-}
-.st-root .sv-card:hover .sv-frame {
-  border-color: var(--st-orange);
-  box-shadow: 0 26px 60px -22px rgba(233, 72, 13, 0.5);
-}
-.st-root .sv-frame::after {
-  background: linear-gradient(
-    180deg,
-    rgba(36, 36, 36, 0.55) 0%,
-    rgba(36, 36, 36, 0.4) 30%,
-    rgba(36, 36, 36, 0.75) 62%,
-    rgba(36, 36, 36, 0.94) 100%
-  );
-}
-.st-root .sv-frame__img {
-  filter: grayscale(1);
-}
-.st-root .sv-logo:not(.sv-logo--dark) {
-  background: var(--st-white);
-}
-.st-root .sv-logo--dark {
-  background: var(--st-dark);
-}
-.st-root .sv-frame__btn {
-  background: var(--st-white);
-  color: var(--st-dark);
-}
-.st-root .sv-card:hover .sv-frame__btn {
-  background: var(--st-orange);
-  color: var(--st-white);
 }
 
 /* ------------------------------------------------------ HERO */

@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import "@/styles/site.css";
 import "@/styles/paycoach.css";
 import Reveal from "@/components/Reveal";
-import SiteFooter from "@/components/site/SiteFooter";
 import SiteNav from "@/components/site/SiteNav";
+import AnimatedWaveFooter from "@/components/ui/animated-wave-footer";
 import {
   PAYCOACH_APPSTORE,
   PAYCOACH_SITE,
@@ -35,11 +35,11 @@ const featureArt = [
         strokeWidth="4"
         strokeLinecap="round"
       />
-      <circle cx="312" cy="20" r="7" fill="#10b981" />
+      <circle cx="312" cy="20" r="7" fill="#e9480d" />
       <defs>
         <linearGradient id="pcGrad" x1="0" y1="160" x2="320" y2="0">
-          <stop stopColor="#0ea5e9" />
-          <stop offset="1" stopColor="#10b981" />
+          <stop stopColor="#242424" />
+          <stop offset="1" stopColor="#e9480d" />
         </linearGradient>
       </defs>
     </svg>
@@ -76,7 +76,7 @@ const PayCoach = () => {
 
   return (
     <div className="pc-root">
-      <SiteNav theme="light" />
+      <SiteNav />
 
       <main id="main">
         {/* ---------------------------------------------- HERO */}
@@ -283,7 +283,7 @@ const PayCoach = () => {
         </section>
       </main>
 
-      <SiteFooter />
+      <AnimatedWaveFooter />
     </div>
   );
 };

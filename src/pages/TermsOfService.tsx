@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import AeroVisionLogo from "@/components/ui/AeroVisionLogo";
+import { Link } from "react-router-dom";
+import "@/styles/site.css";
+import SiteNav from "@/components/site/SiteNav";
+import AnimatedWaveFooter from "@/components/ui/animated-wave-footer";
 import { usePageSeo } from "@/lib/seo";
 
 const TermsOfService = () => {
-  const navigate = useNavigate();
 
   usePageSeo({
     title: "Términos de Servicio | AeroVision Guatemala",
@@ -15,31 +14,11 @@ const TermsOfService = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-to-r from-primary to-primary-glow rounded-lg">
-                <AeroVisionLogo size="small" animated />
-              </div>
-              <span className="text-xl font-bold text-metallic">AeroVision</span>
-            </div>
-            <Button 
-              variant="ghost" 
-              onClick={() => navigate('/')}
-              className="flex items-center space-x-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Volver al Inicio</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+    <div className="tos-root min-h-screen bg-background text-foreground">
+      <SiteNav />
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main id="main" className="max-w-4xl mx-auto px-6 pt-32 pb-16">
         <div className="prose prose-lg max-w-none">
           <h1 className="text-4xl font-bold text-foreground mb-4">
             AeroVision.gt – Términos de Servicio
@@ -132,15 +111,14 @@ const TermsOfService = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <Button 
-              onClick={() => navigate('/')}
-              className="btn-hero"
-            >
+            <Link to="/" className="sv-cta">
               Volver al Inicio
-            </Button>
+            </Link>
           </div>
         </div>
       </main>
+
+      <AnimatedWaveFooter />
     </div>
   );
 };
