@@ -18,6 +18,18 @@ const contactWa = waLink(
   "¡Hola AeroVision! Vi su sitio y me gustaría platicar sobre un proyecto."
 );
 
+// Cinta de líneas del hero: cada línea interpola entre dos curvas que se
+// cruzan, así el haz se abre, se tuerce en el centro y vuelve a abrirse.
+const WAVE_A = [-120, 60, 420, -60, 820, 860, 1560, 640];
+const WAVE_B = [-120, 520, 520, 980, 900, -80, 1560, 860];
+const wavePaths = Array.from({ length: 22 }, (_, i) => {
+  const t = i / 21;
+  const [x0, y0, c1x, c1y, c2x, c2y, x1, y1] = WAVE_A.map(
+    (a, k) => Math.round(a + (WAVE_B[k] - a) * t)
+  );
+  return `M${x0} ${y0} C${c1x} ${c1y} ${c2x} ${c2y} ${x1} ${y1}`;
+});
+
 const Home = () => {
   const { t } = useLang();
 
@@ -65,7 +77,16 @@ const Home = () => {
         {/* ---------------------------------------------- HERO */}
         <section className="st-hero">
           <div className="st-aurora" aria-hidden="true" />
-          <div className="st-grid" aria-hidden="true" />
+          <svg
+            className="st-waves"
+            viewBox="0 0 1440 900"
+            preserveAspectRatio="xMidYMid slice"
+            aria-hidden="true"
+          >
+            {wavePaths.map((d) => (
+              <path key={d} d={d} />
+            ))}
+          </svg>
 
           <div className="st-hero__inner">
             <Reveal>
