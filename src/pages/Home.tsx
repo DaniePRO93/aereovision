@@ -4,8 +4,10 @@ import "@/styles/site.css";
 import "@/styles/studio.css";
 import Reveal from "@/components/Reveal";
 import DeviceCard from "@/components/site/DeviceCard";
-import SiteFooter from "@/components/site/SiteFooter";
 import SiteNav from "@/components/site/SiteNav";
+import AnimatedWaveFooter from "@/components/ui/animated-wave-footer";
+import { BackgroundPaths } from "@/components/ui/background-paths";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { homeCopy } from "@/content/home";
 import { siteCopy } from "@/content/site";
 import { portfolio } from "@/data/portfolio";
@@ -13,22 +15,11 @@ import { featuredProducts } from "@/data/products";
 import { useLang } from "@/i18n/LanguageProvider";
 import { SITE_URL, usePageSeo } from "@/lib/seo";
 import { waLink } from "@/lib/whatsapp";
+import dronesLanding from "@/assets/shots/drones-landing.jpg";
 
 const contactWa = waLink(
   "¡Hola AeroVision! Vi su sitio y me gustaría platicar sobre un proyecto."
 );
-
-// Cinta de líneas del hero: cada línea interpola entre dos curvas que se
-// cruzan, así el haz se abre, se tuerce en el centro y vuelve a abrirse.
-const WAVE_A = [-120, 60, 420, -60, 820, 860, 1560, 640];
-const WAVE_B = [-120, 520, 520, 980, 900, -80, 1560, 860];
-const wavePaths = Array.from({ length: 22 }, (_, i) => {
-  const t = i / 21;
-  const [x0, y0, c1x, c1y, c2x, c2y, x1, y1] = WAVE_A.map(
-    (a, k) => Math.round(a + (WAVE_B[k] - a) * t)
-  );
-  return `M${x0} ${y0} C${c1x} ${c1y} ${c2x} ${c2y} ${x1} ${y1}`;
-});
 
 const Home = () => {
   const { t } = useLang();
@@ -77,16 +68,7 @@ const Home = () => {
         {/* ---------------------------------------------- HERO */}
         <section className="st-hero">
           <div className="st-aurora" aria-hidden="true" />
-          <svg
-            className="st-waves"
-            viewBox="0 0 1440 900"
-            preserveAspectRatio="xMidYMid slice"
-            aria-hidden="true"
-          >
-            {wavePaths.map((d) => (
-              <path key={d} d={d} />
-            ))}
-          </svg>
+          <BackgroundPaths className="st-paths" />
 
           <div className="st-hero__inner">
             <Reveal>
@@ -169,6 +151,33 @@ const Home = () => {
               </Reveal>
             ))}
           </div>
+        </section>
+
+        {/* ----------------------------------- PREVIEW DRONES */}
+        <section className="st-preview" aria-labelledby="st-preview-title">
+          <ContainerScroll
+            titleComponent={
+              <div className="st-preview__head">
+                <p className="sv-eyebrow">{t(homeCopy.dronesPreview.eyebrow)}</p>
+                <h2 className="sv-h2" id="st-preview-title">
+                  {t(homeCopy.dronesPreview.titleA)}
+                  <br />
+                  <span className="sv-grad-text">{t(homeCopy.dronesPreview.titleB)}</span>
+                </h2>
+              </div>
+            }
+          >
+            <Link to="/drones" className="st-preview__link">
+              <img
+                src={dronesLanding}
+                alt={t(homeCopy.dronesPreview.alt)}
+                className="st-preview__img"
+                loading="lazy"
+                draggable={false}
+              />
+              <span className="st-preview__cta">{t(homeCopy.dronesPreview.cta)} →</span>
+            </Link>
+          </ContainerScroll>
         </section>
 
         {/* ---------------------------------------------- ABOUT */}
@@ -266,7 +275,7 @@ const Home = () => {
         </section>
       </main>
 
-      <SiteFooter />
+      <AnimatedWaveFooter />
     </div>
   );
 };

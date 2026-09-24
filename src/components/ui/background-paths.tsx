@@ -1,0 +1,67 @@
+import { useMemo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+/**
+ * "Background Paths" (21st.dev): haz de líneas finas que fluyen en bucle.
+ * Dos capas en espejo (position 1 y -1) forman la cinta que se cruza.
+ * El color sale de `currentColor`, así que lo define el contenedor.
+ */
+function FloatingPaths({ position }: { position: number }) {
+  const reduceMotion = useReducedMotion();
+
+  // Las duraciones se sortean una sola vez para que no cambien en cada render.
+  const paths = useMemo(
+    () =>
+      Array.from({ length: 36 }, (_, i) => ({
+        id: i,
+        d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${
+          189 + i * 6
+        } -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${
+          343 - i * 6
+        }C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${
+          875 - i * 6
+        } ${684 - i * 5 * position} ${875 - i * 6}`,
+        width: 0.5 + i * 0.03,
+        duration: 20 + Math.random() * 10,
+      })),
+    [position]
+  );
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      <svg className="w-full h-full" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice">
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke="currentColor"
+            strokeWidth={path.width}
+            strokeOpacity={0.35 + path.id * 0.018}
+            initial={{ pathLength: 0.3, opacity: 0.6 }}
+            animate={
+              reduceMotion
+                ? { pathLength: 1, opacity: 0.6 }
+                : { pathLength: 1, opacity: [0.3, 0.6, 0.3], pathOffset: [0, 1, 0] }
+            }
+            transition={{
+              duration: path.duration,
+              repeat: reduceMotion ? 0 : Number.POSITIVE_INFINITY,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+export function BackgroundPaths({ className = "" }: { className?: string }) {
+  return (
+    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`} aria-hidden="true">
+      <FloatingPaths position={1} />
+      <FloatingPaths position={-1} />
+    </div>
+  );
+}
+
+export default BackgroundPaths;

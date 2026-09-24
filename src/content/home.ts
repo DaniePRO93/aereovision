@@ -58,6 +58,16 @@ export const homeCopy = {
       ],
     },
   },
+  dronesPreview: {
+    eyebrow: { es: "AeroVision Drones", en: "AeroVision Drones" },
+    titleA: { es: "Cine aéreo que vende", en: "Aerial cinema that sells" },
+    titleB: { es: "la escena.", en: "the scene." },
+    alt: {
+      es: "Vista previa del sitio de AeroVision Drones",
+      en: "Preview of the AeroVision Drones site",
+    },
+    cta: { es: "Ver el sitio de drones", en: "Visit the drones site" },
+  },
   work: {
     eyebrow: { es: "Portafolio", en: "Portfolio" },
     title: { es: "Cosas que ya están en línea.", en: "Things already live." },

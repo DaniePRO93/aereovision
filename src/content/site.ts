@@ -19,6 +19,7 @@ export const siteCopy = {
     },
     products: { es: "Productos", en: "Products" },
     company: { es: "Compañía", en: "Company" },
+    contact: { es: "Contacto", en: "Contact" },
     home: { es: "Inicio", en: "Home" },
     portfolio: { es: "Portafolio", en: "Portfolio" },
     terms: { es: "Términos de servicio", en: "Terms of service" },
