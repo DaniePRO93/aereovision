@@ -98,7 +98,6 @@ const Home = () => {
 
           <div className="st-hero__foot">
             <span className="sv-mono">{t(homeCopy.hero.scroll)} ↓</span>
-            <span className="sv-mono">14.62°N · 90.51°O</span>
           </div>
 
           <div className="st-marquee" aria-hidden="true">
@@ -193,7 +192,7 @@ const Home = () => {
                 <>
                   <span className="st-workrow__idx">{String(i + 1).padStart(2, "0")}</span>
                   <span className="st-workrow__name">
-                    <span className="st-workrow__dot" style={{ background: item.accent }} />
+                    <span className="st-workrow__dot" />
                     {item.name}
                   </span>
                   <span className="st-workrow__role">{t(item.role)}</span>

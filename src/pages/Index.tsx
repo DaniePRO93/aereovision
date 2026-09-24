@@ -239,7 +239,6 @@ const Index = () => {
             <span className="av-rec">
               <i /> REC
             </span>
-            <span className="av-hud-hide-sm">14.62°N · 90.51°O — Guatemala</span>
             <span>4K / 6K CINE</span>
           </div>
         </div>
