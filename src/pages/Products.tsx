@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import "@/styles/site.css";
 import "@/styles/products.css";
@@ -49,6 +50,12 @@ const Products = () => {
         </section>
 
         {products.map((product, i) => {
+          // El marco de la vista previa conserva los colores del producto.
+          const style = {
+            "--row-accent": product.accent,
+            "--row-accent2": product.accent2,
+          } as CSSProperties;
+
           const action = product.internal
             ? t(siteCopy.cta.viewProduct)
             : t(siteCopy.cta.visitSite);
@@ -57,6 +64,7 @@ const Products = () => {
             <section
               key={product.id}
               className={`pr-row ${i % 2 === 1 ? "pr-row--flip" : ""}`}
+              style={style}
             >
               <div className="pr-row__inner">
                 <Reveal>

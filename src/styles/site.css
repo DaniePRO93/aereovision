@@ -692,33 +692,8 @@
   background: rgba(255, 255, 255, 0.98);
 }
 
-/* Tarjetas de producto: marco oscuro #242424 con acento naranja */
-:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame {
-  background: var(--st-dark);
-  border-color: var(--st-dark);
-}
-:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-card:hover .sv-frame {
-  border-color: var(--st-orange);
-  box-shadow: 0 26px 60px -22px rgba(233, 72, 13, 0.5);
-}
-:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame::after {
-  background: linear-gradient(
-    180deg,
-    rgba(36, 36, 36, 0.55) 0%,
-    rgba(36, 36, 36, 0.4) 30%,
-    rgba(36, 36, 36, 0.75) 62%,
-    rgba(36, 36, 36, 0.94) 100%
-  );
-}
-:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame__img {
-  filter: grayscale(1);
-}
-:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-logo:not(.sv-logo--dark) {
-  background: var(--st-white);
-}
-:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-logo--dark {
-  background: var(--st-dark);
-}
+/* Tarjetas de producto: el marco conserva los colores propios de cada
+   producto (--card-accent) y su captura a color; sólo el botón usa la paleta. */
 :is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-frame__btn {
   background: var(--st-white);
   color: var(--st-dark);

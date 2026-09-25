@@ -126,7 +126,12 @@
   border-radius: 26px;
   overflow: hidden;
   border: 1px solid var(--sv-line-strong);
-  background: var(--st-dark);
+  background: linear-gradient(
+    162deg,
+    color-mix(in srgb, var(--row-accent, #5f9dff) 40%, #0b0d12) 0%,
+    #0a0c11 60%,
+    color-mix(in srgb, var(--row-accent2, #2fd8c3) 30%, #0b0d12) 100%
+  );
   display: grid;
   place-items: center;
   isolation: isolate;
@@ -134,7 +139,7 @@
 }
 .pr-row:hover .pr-frame {
   transform: translateY(-5px);
-  box-shadow: 0 30px 70px -30px rgba(233, 72, 13, 0.5);
+  box-shadow: 0 30px 70px -30px color-mix(in srgb, var(--row-accent, #5f9dff) 70%, transparent);
 }
 .pr-frame::before {
   content: "";
@@ -154,7 +159,6 @@
   object-fit: cover;
   object-position: top center;
   opacity: 0.72;
-  filter: grayscale(1);
 }
 /* Velo para que el logo lea sobre la captura */
 .pr-frame::after {
@@ -164,10 +168,10 @@
   pointer-events: none;
   background: radial-gradient(
       58% 50% at 50% 50%,
-      rgba(36, 36, 36, 0.62),
-      rgba(36, 36, 36, 0.16) 76%
+      rgba(6, 8, 12, 0.62),
+      rgba(6, 8, 12, 0.16) 76%
     ),
-    linear-gradient(180deg, rgba(36, 36, 36, 0.2), rgba(36, 36, 36, 0.42));
+    linear-gradient(180deg, rgba(6, 8, 12, 0.2), rgba(6, 8, 12, 0.42));
 }
 
 .pr-frame__logo {
@@ -187,7 +191,7 @@
   box-shadow: 0 20px 46px -20px rgba(0, 0, 0, 0.85);
 }
 .pr-frame__logo--dark {
-  background: var(--st-dark);
+  background: #06080c;
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 20px 46px -20px rgba(0, 0, 0, 0.9);
 }

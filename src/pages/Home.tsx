@@ -222,7 +222,7 @@ const Home = () => {
                 <>
                   <span className="st-workrow__idx">{String(i + 1).padStart(2, "0")}</span>
                   <span className="st-workrow__name">
-                    <span className="st-workrow__dot" />
+                    <span className="st-workrow__dot" style={{ background: item.accent }} />
                     {item.name}
                   </span>
                   <span className="st-workrow__role">{t(item.role)}</span>
