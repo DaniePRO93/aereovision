@@ -18,7 +18,7 @@ const routes = [
     title:
       "AeroVision | Estudio de producto en Guatemala \u2014 Apps, cine a\u00e9reo e impresi\u00f3n 3D",
     description:
-      "AeroVision es un estudio guatemalteco que construye y opera sus propios productos: PayCoach para iOS, cine a\u00e9reo con drones e impresi\u00f3n 3D bajo pedido.",
+      "AeroVision es un estudio guatemalteco que construye y opera sus propios productos: PayCoach para iOS, el juego Pen Strike, cine a\u00e9reo con drones e impresi\u00f3n 3D bajo pedido.",
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -50,9 +50,9 @@ const routes = [
     priority: "0.9",
     changefreq: "monthly",
     lastmod: "2026-09-08",
-    title: "Productos | AeroVision \u2014 PayCoach, cine a\u00e9reo con drones e impresi\u00f3n 3D",
+    title: "Productos | AeroVision \u2014 PayCoach, Pen Strike, cine a\u00e9reo con drones e impresi\u00f3n 3D",
     description:
-      "Los negocios que AeroVision construye y opera: PayCoach para iOS, el estudio de cine a\u00e9reo AeroVision Drones y el taller 3D Prints GT.",
+      "Los negocios que AeroVision construye y opera: PayCoach para iOS, el juego de navegador Pen Strike, el estudio de cine a\u00e9reo AeroVision Drones y el taller 3D Prints GT.",
   },
   {
     path: "/products/paycoach",

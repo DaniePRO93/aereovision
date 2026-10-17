@@ -2,8 +2,10 @@ import type { Bilingual } from "@/i18n/LanguageProvider";
 import aerovisionMark from "@/assets/products/aerovision-mark.png";
 import printsLogo from "@/assets/products/3dprints-logo.png";
 import paycoachLogo from "@/assets/products/paycoach-logo.png";
+import penstrikeLogo from "@/assets/products/penstrike-logo.svg";
 import shotDrones from "@/assets/shots/drones.jpg";
 import shotPaycoach from "@/assets/shots/paycoach.jpg";
+import shotPenstrike from "@/assets/shots/penstrike.webp";
 
 export interface ProductItem {
   id: string;
@@ -67,6 +69,32 @@ export const products: ProductItem[] = [
     accent2: "#0ea5e9",
     logo: paycoachLogo,
     image: shotPaycoach,
+    featured: true,
+  },
+  {
+    id: "penstrike",
+    name: "Pen Strike",
+    kind: { es: "Juego de navegador", en: "Browser game" },
+    tagline: {
+      es: "Dibujás a tu enemigo. Después lo borrás.",
+      en: "Draw your enemy. Then erase it.",
+    },
+    blurb: {
+      es: "Un shooter en primera persona, gratis y en el navegador, dibujado entero con lapicero azul sobre hoja de cuaderno. Dibujás un monstruo y peleás contra oleadas de él: cámara lenta, deslizadas, una espada-borrador y cinco mapas con parkour. Tiene tabla de puntajes, galería de monstruos de otros jugadores y partidas multijugador de 2 a 4 con un código.",
+      en: "A free first-person shooter that runs in the browser, drawn entirely in blue ballpoint on notebook paper. Doodle a monster, then fight waves of it: slow-mo, slides, an eraser sword and five parkour maps. It has a leaderboard, a gallery of other players' monsters, and 2–4 player multiplayer with a room code.",
+    },
+    tags: ["Web", "FPS", "Multiplayer"],
+    domain: "penstrike.paycoach.app",
+    href: "https://penstrike.paycoach.app",
+    internal: false,
+    secondary: {
+      label: { es: "Jugar ahora", en: "Play now" },
+      href: "https://penstrike.paycoach.app/play/",
+    },
+    accent: "#2a2e85",
+    accent2: "#c0392b",
+    logo: penstrikeLogo,
+    image: shotPenstrike,
     featured: true,
   },
   {

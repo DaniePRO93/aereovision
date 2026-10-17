@@ -16,6 +16,8 @@ import { useLang } from "@/i18n/LanguageProvider";
 import { SITE_URL, usePageSeo } from "@/lib/seo";
 import { waLink } from "@/lib/whatsapp";
 import dronesLanding from "@/assets/shots/drones-landing.jpg";
+import penstrikePoster from "@/assets/shots/penstrike.webp";
+import penstrikeGameplay from "@/assets/work/penstrike-gameplay.mp4";
 
 const contactWa = waLink(
   "¡Hola AeroVision! Vi su sitio y me gustaría platicar sobre un proyecto."
@@ -36,7 +38,11 @@ const Home = () => {
         description:
           "Estudio guatemalteco de producto: software, cine aéreo con drones e impresión 3D.",
         address: { "@type": "PostalAddress", addressCountry: "GT" },
-        sameAs: ["https://instagram.com/aerovision.gt", "https://paycoach.app"],
+        sameAs: [
+          "https://instagram.com/aerovision.gt",
+          "https://paycoach.app",
+          "https://penstrike.paycoach.app",
+        ],
       },
       {
         "@context": "https://schema.org",
@@ -177,6 +183,42 @@ const Home = () => {
               />
               <span className="st-preview__cta">{t(homeCopy.dronesPreview.cta)} →</span>
             </Link>
+          </ContainerScroll>
+        </section>
+
+        {/* --------------------------------- PREVIEW PEN STRIKE */}
+        <section className="st-preview" aria-labelledby="st-penstrike-title">
+          <ContainerScroll
+            titleComponent={
+              <div className="st-preview__head">
+                <p className="sv-eyebrow">{t(homeCopy.penstrikePreview.eyebrow)}</p>
+                <h2 className="sv-h2" id="st-penstrike-title">
+                  {t(homeCopy.penstrikePreview.titleA)}
+                  <br />
+                  <span className="sv-grad-text">{t(homeCopy.penstrikePreview.titleB)}</span>
+                </h2>
+              </div>
+            }
+          >
+            <a
+              href="https://penstrike.paycoach.app"
+              target="_blank"
+              rel="noreferrer"
+              className="st-preview__link"
+            >
+              <video
+                src={penstrikeGameplay}
+                poster={penstrikePoster}
+                className="st-preview__img st-preview__img--center"
+                aria-label={t(homeCopy.penstrikePreview.alt)}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+              <span className="st-preview__cta">{t(homeCopy.penstrikePreview.cta)} →</span>
+            </a>
           </ContainerScroll>
         </section>
 

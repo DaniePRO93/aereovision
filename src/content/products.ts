@@ -3,12 +3,12 @@ import type { Bilingual } from "@/i18n/LanguageProvider";
 export const productsCopy = {
   seo: {
     title: {
-      es: "Productos | AeroVision — PayCoach, cine aéreo con drones e impresión 3D",
-      en: "Products | AeroVision — PayCoach, aerial drone cinema and 3D printing",
+      es: "Productos | AeroVision — PayCoach, Pen Strike, cine aéreo con drones e impresión 3D",
+      en: "Products | AeroVision — PayCoach, Pen Strike, aerial drone cinema and 3D printing",
     },
     description: {
-      es: "Los negocios que AeroVision construye y opera: PayCoach para iOS, el estudio de cine aéreo AeroVision Drones y el taller 3D Prints GT.",
-      en: "The businesses AeroVision builds and runs: PayCoach for iOS, the AeroVision Drones aerial film studio, and the 3D Prints GT workshop.",
+      es: "Los negocios que AeroVision construye y opera: PayCoach para iOS, el juego de navegador Pen Strike, el estudio de cine aéreo AeroVision Drones y el taller 3D Prints GT.",
+      en: "The businesses AeroVision builds and runs: PayCoach for iOS, the Pen Strike browser game, the AeroVision Drones aerial film studio, and the 3D Prints GT workshop.",
     },
   },
   hero: {

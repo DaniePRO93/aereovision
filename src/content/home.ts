@@ -7,8 +7,8 @@ export const homeCopy = {
       en: "AeroVision | Product studio in Guatemala — Apps, aerial cinema and 3D printing",
     },
     description: {
-      es: "AeroVision es un estudio guatemalteco que construye y opera sus propios productos: PayCoach para iOS, cine aéreo con drones e impresión 3D bajo pedido.",
-      en: "AeroVision is a Guatemalan studio that builds and runs its own products: PayCoach for iOS, aerial drone cinema and on-demand 3D printing.",
+      es: "AeroVision es un estudio guatemalteco que construye y opera sus propios productos: PayCoach para iOS, el juego Pen Strike, cine aéreo con drones e impresión 3D bajo pedido.",
+      en: "AeroVision is a Guatemalan studio that builds and runs its own products: PayCoach for iOS, the Pen Strike game, aerial drone cinema and on-demand 3D printing.",
     },
   },
   hero: {
@@ -16,20 +16,20 @@ export const homeCopy = {
     titleA: { es: "Construimos negocios,", en: "We build businesses," },
     titleB: { es: "no sólo proyectos.", en: "not just projects." },
     lead: {
-      es: "AeroVision es un estudio guatemalteco donde cada idea termina siendo un producto real, publicado y en manos de gente: PayCoach en el App Store, un estudio de cine aéreo operando y un taller de impresión 3D.",
-      en: "AeroVision is a Guatemalan studio where every idea ends up a real product — shipped and in people's hands: PayCoach on the App Store, a working aerial film studio, and a 3D printing workshop.",
+      es: "AeroVision es un estudio guatemalteco donde cada idea termina siendo un producto real, publicado y en manos de gente: PayCoach en el App Store, Pen Strike en el navegador, un estudio de cine aéreo operando y un taller de impresión 3D.",
+      en: "AeroVision is a Guatemalan studio where every idea ends up a real product — shipped and in people's hands: PayCoach on the App Store, Pen Strike in the browser, a working aerial film studio, and a 3D printing workshop.",
     },
     ctaPrimary: { es: "Ver productos", en: "See products" },
     ctaSecondary: { es: "Ver portafolio", en: "See portfolio" },
     scroll: { es: "Desliza", en: "Scroll" },
   },
   marquee: {
-    es: ["PayCoach", "Cine aéreo", "Impresión 3D", "Producto", "Guatemala", "Diseño", "Software"],
-    en: ["PayCoach", "Aerial cinema", "3D printing", "Product", "Guatemala", "Design", "Software"],
+    es: ["PayCoach", "Pen Strike", "Cine aéreo", "Impresión 3D", "Producto", "Guatemala", "Diseño", "Software"],
+    en: ["PayCoach", "Pen Strike", "Aerial cinema", "3D printing", "Product", "Guatemala", "Design", "Software"],
   },
   products: {
     eyebrow: { es: "Lo que construimos", en: "What we build" },
-    title: { es: "Tres negocios, una misma casa.", en: "Three businesses, one house." },
+    title: { es: "Cuatro productos, una misma casa.", en: "Four products, one house." },
     lead: {
       es: "Cada uno tiene su propio equipo, su propio ritmo y su propia manera de verse. Lo que comparten es cómo trabajamos: prototipo rápido, detalle obsesivo y una fecha de salida real.",
       en: "Each has its own team, its own pace and its own look. What they share is how we work: fast prototypes, obsessive detail, and a real ship date.",
@@ -67,6 +67,16 @@ export const homeCopy = {
       en: "Preview of the AeroVision Drones site",
     },
     cta: { es: "Ver el sitio de drones", en: "Visit the drones site" },
+  },
+  penstrikePreview: {
+    eyebrow: { es: "Pen Strike · Juego de navegador", en: "Pen Strike · Browser game" },
+    titleA: { es: "Dibujás a tu enemigo.", en: "Draw your enemy." },
+    titleB: { es: "Después lo borrás.", en: "Then erase it." },
+    alt: {
+      es: "Partida de Pen Strike: un shooter dibujado con lapicero sobre hoja de cuaderno",
+      en: "Pen Strike gameplay: a shooter drawn in ballpoint on notebook paper",
+    },
+    cta: { es: "Jugar gratis", en: "Play free" },
   },
   work: {
     eyebrow: { es: "Portafolio", en: "Portfolio" },
