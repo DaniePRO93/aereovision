@@ -237,3 +237,60 @@
     aspect-ratio: 4 / 3;
   }
 }
+
+/* ============================================================
+   Móvil — /products
+   ============================================================ */
+@media (max-width: 900px) {
+  /* La imagen va primero: en móvil se lee "ver, luego leer" */
+  .pr-row__media,
+  .pr-row--flip .pr-row__media {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .pr-hero {
+    padding-top: 132px;
+    padding-bottom: 48px;
+  }
+  .pr-row {
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+  .pr-row__inner {
+    gap: 28px;
+  }
+  .pr-frame {
+    border-radius: 22px;
+  }
+  .pr-row__title {
+    font-size: clamp(38px, 11vw, 46px);
+  }
+  .pr-row__blurb {
+    font-size: 16px;
+    margin: 18px 0 22px;
+  }
+
+  /* Botones: el principal a todo el ancho, los secundarios repartidos */
+  .pr-row__actions {
+    gap: 10px;
+  }
+  .pr-row__actions > * {
+    flex: 1 1 auto;
+  }
+  .pr-row__actions > .sv-cta {
+    flex-basis: 100%;
+  }
+  .pr-row__domain {
+    text-align: center;
+  }
+}
+
+@media (hover: none) {
+  .pr-row:hover .pr-frame,
+  .pr-row:hover .pr-frame__logo {
+    transform: none;
+    box-shadow: none;
+  }
+}

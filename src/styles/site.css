@@ -721,3 +721,178 @@
   font-family: var(--sv-font-display);
   letter-spacing: -0.02em;
 }
+
+/* ============================================================
+   Móvil — ajustes compartidos del sitio corporativo
+   Áreas táctiles de 44px+, respeto al notch (safe areas), sin
+   hover "pegado" en pantallas táctiles y feedback al tocar.
+   ============================================================ */
+:is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) {
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+.sv-nav {
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-left: max(var(--sv-pad-x), env(safe-area-inset-left));
+  padding-right: max(var(--sv-pad-x), env(safe-area-inset-right));
+}
+
+.sv-menu {
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(40px, calc(env(safe-area-inset-bottom) + 24px));
+  animation: sv-menu-in 0.32s var(--sv-ease) both;
+}
+.sv-menu__links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: sv-menu-link 0.5s var(--sv-ease) both;
+}
+.sv-menu__links a::after {
+  content: "→";
+  font-size: 0.55em;
+  color: var(--sv-muted);
+  transition: transform 0.28s var(--sv-ease), color 0.28s ease;
+}
+.sv-menu__links a[aria-current="page"],
+.sv-menu__links a[aria-current="page"]::after {
+  color: var(--sv-accent, var(--sv-text));
+}
+.sv-menu__links a:active::after {
+  transform: translateX(6px);
+  color: var(--sv-accent, var(--sv-text));
+}
+.sv-menu__links a:nth-child(1) { animation-delay: 0.04s; }
+.sv-menu__links a:nth-child(2) { animation-delay: 0.08s; }
+.sv-menu__links a:nth-child(3) { animation-delay: 0.12s; }
+.sv-menu__links a:nth-child(4) { animation-delay: 0.16s; }
+.sv-menu__foot {
+  animation: sv-menu-link 0.5s var(--sv-ease) 0.22s both;
+}
+.sv-menu__foot .sv-cta {
+  padding: 14px 24px;
+  font-size: 15px;
+}
+
+@keyframes sv-menu-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes sv-menu-link {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+  .sv-nav {
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+  .sv-navright {
+    gap: 10px;
+  }
+  /* Toggle y hamburguesa con área táctil cómoda */
+  .sv-lang button {
+    min-width: 40px;
+    min-height: 34px;
+    padding: 6px 10px;
+  }
+  .sv-burger,
+  .sv-menu__close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sv-h2 {
+    font-size: clamp(30px, 8.6vw, 38px);
+  }
+  .sv-lead {
+    font-size: 16px;
+  }
+
+  .sv-cta,
+  .sv-ghost {
+    min-height: 50px;
+    padding: 14px 24px;
+  }
+  .sv-cta--sm,
+  .sv-ghost--sm {
+    min-height: 44px;
+    padding: 10px 20px;
+  }
+
+  .sv-section {
+    padding-top: clamp(64px, 10vh, 96px);
+    padding-bottom: clamp(64px, 10vh, 96px);
+  }
+
+  /* Tarjetas: marco menos alto para que la captura no quede recortada
+     y cada tarjeta quepa casi entera en pantalla. */
+  .sv-cards {
+    gap: 40px;
+  }
+  .sv-frame {
+    aspect-ratio: 4 / 4.7;
+    border-radius: 24px;
+    padding: 22px;
+  }
+  .sv-logo {
+    width: 104px;
+    border-radius: 24px;
+    margin-bottom: 14px;
+  }
+  .sv-frame__btn {
+    margin-top: 20px;
+    min-height: 46px;
+  }
+  .sv-card__meta {
+    padding-top: 16px;
+  }
+  .sv-card__meta p {
+    font-size: 15px;
+  }
+}
+
+/* En pantallas táctiles el hover se queda "pegado" tras tocar: lo
+   neutralizamos y usamos :active como respuesta inmediata al dedo. */
+@media (hover: none) {
+  .sv-card:hover .sv-frame,
+  .sv-card:hover .sv-logo,
+  .sv-card:hover .sv-frame__btn,
+  .sv-cta:hover,
+  .sv-ghost:hover {
+    transform: none;
+  }
+  .sv-card:hover .sv-frame__img {
+    opacity: 0.34;
+    transform: none;
+  }
+  :is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-card:hover .sv-frame__btn {
+    background: var(--st-white);
+    color: var(--st-dark);
+  }
+
+  .sv-card:active .sv-frame {
+    transform: scale(0.985);
+    transition-duration: 0.12s;
+  }
+  :is(.st-root, .pr-root, .pf-root, .pc-root, .tos-root) .sv-card:active .sv-frame__btn {
+    background: var(--st-orange);
+    color: var(--st-white);
+  }
+  .sv-cta:active,
+  .sv-ghost:active {
+    transform: scale(0.97);
+    transition-duration: 0.12s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sv-menu,
+  .sv-menu__links a,
+  .sv-menu__foot {
+    animation: none;
+  }
+}

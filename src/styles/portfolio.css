@@ -107,3 +107,44 @@
   margin: 20px auto 32px;
   text-align: center;
 }
+
+/* ============================================================
+   Móvil — /portfolio
+   ============================================================ */
+@media (max-width: 640px) {
+  .pf-hero {
+    padding-top: 132px;
+  }
+  /* Filtros en una sola fila deslizable, sin saltos de línea */
+  .pf-filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 36px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .pf-filters::-webkit-scrollbar {
+    display: none;
+  }
+  .pf-chip {
+    flex: none;
+    min-height: 42px;
+  }
+  .pf-chip:first-child {
+    margin-left: auto;
+  }
+  .pf-chip:last-child {
+    margin-right: auto;
+  }
+  .pf-grid {
+    gap: 44px;
+  }
+}
+
+@media (hover: none) {
+  .pf-chip:hover {
+    transform: none;
+  }
+}

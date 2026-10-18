@@ -51,8 +51,8 @@ export default function AnimatedWaveFooter() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1340px] px-[var(--sv-pad-x)]">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+          <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="sv-wordmark">
               AERO<em>VISION</em>
             </Link>
@@ -107,7 +107,7 @@ export default function AnimatedWaveFooter() {
             </Link>
           </nav>
 
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h3 className={colTitle}>{t(siteCopy.footer.contact)}</h3>
             <address className="space-y-2 text-[14.5px] not-italic text-[#242424]/80">
               <p className="flex items-center gap-2">
@@ -148,7 +148,7 @@ export default function AnimatedWaveFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-[#d1d1d1] py-8 text-[10.5px] uppercase tracking-[0.16em] text-[#242424]/60 [font-family:var(--sv-font-mono)]">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-[#d1d1d1] py-8 pb-[max(2rem,env(safe-area-inset-bottom))] text-[10.5px] uppercase tracking-[0.16em] text-[#242424]/60 [font-family:var(--sv-font-mono)]">
           <span>© {year} AeroVision</span>
           <span>{t(siteCopy.footer.rights)}</span>
           <Link to="/terms-of-service" className="text-inherit no-underline hover:text-[#e9480d]">

@@ -34,6 +34,18 @@ const SiteNav = ({ theme = "dark" }: SiteNavProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // La barra del navegador móvil toma el blanco del sitio corporativo y
+  // regresa al color oscuro original (el del sitio de drones) al salir.
+  useEffect(() => {
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (!meta) return;
+    const prev = meta.content;
+    meta.content = "#ffffff";
+    return () => {
+      meta.content = prev;
+    };
+  }, []);
+
   // Cierra el menú al cambiar de ruta y bloquea el scroll mientras está abierto.
   useEffect(() => setOpen(false), [pathname]);
 
@@ -119,7 +131,12 @@ const SiteNav = ({ theme = "dark" }: SiteNavProps) => {
 
           <nav className="sv-menu__links" aria-label="Principal">
             {links.map((link) => (
-              <Link key={link.to} to={link.to} onClick={() => setOpen(false)}>
+              <Link
+                key={link.to}
+                to={link.to}
+                aria-current={isActive(link.to) ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
                 {t(link.label)}
               </Link>
             ))}

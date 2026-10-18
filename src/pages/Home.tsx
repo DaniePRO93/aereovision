@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "@/styles/site.css";
 import "@/styles/studio.css";
@@ -62,6 +62,29 @@ const Home = () => {
     path: "/",
     jsonLd,
   });
+
+  // En móvil las tarjetas de producto son un carrusel horizontal; los puntos
+  // marcan cuál se ve y permiten saltar a otra.
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const track = cardsRef.current;
+    if (!track) return;
+    const onScroll = () => {
+      const first = track.firstElementChild as HTMLElement | null;
+      if (!first) return;
+      const step = first.offsetWidth + parseFloat(getComputedStyle(track).columnGap || "0");
+      setActiveCard(Math.round(track.scrollLeft / Math.max(step, 1)));
+    };
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const goToCard = (index: number) => {
+    const card = cardsRef.current?.children[index] as HTMLElement | undefined;
+    card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  };
 
   const marquee = t(homeCopy.marquee);
   const stats = t(homeCopy.about.stats);
@@ -135,7 +158,7 @@ const Home = () => {
             </Reveal>
           </div>
 
-          <div className="sv-cards">
+          <div className="sv-cards" ref={cardsRef}>
             {featuredProducts.map((product, i) => (
               <Reveal key={product.id} delay={i * 110}>
                 <DeviceCard
@@ -155,6 +178,19 @@ const Home = () => {
                   image={product.image}
                 />
               </Reveal>
+            ))}
+          </div>
+
+          <div className="st-dots" aria-hidden="true">
+            {featuredProducts.map((product, i) => (
+              <button
+                key={product.id}
+                type="button"
+                tabIndex={-1}
+                className="st-dot"
+                data-active={i === activeCard}
+                onClick={() => goToCard(i)}
+              />
             ))}
           </div>
         </section>
