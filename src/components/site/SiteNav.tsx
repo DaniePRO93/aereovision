@@ -14,6 +14,7 @@ const links = [
   { to: "/", label: siteCopy.nav.home },
   { to: "/products", label: siteCopy.nav.products },
   { to: "/portfolio", label: siteCopy.nav.portfolio },
+  { to: "/games", label: siteCopy.nav.games },
   { to: "/drones", label: siteCopy.nav.drones },
 ];
 

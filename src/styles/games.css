@@ -1,0 +1,163 @@
+/* ============================================================
+   /games — tarjetas de juegos (.gm-*). Usa el lienzo de .pf-root
+   (portfolio.css) y la paleta blanca/naranja de site.css.
+   ============================================================ */
+
+.gm-grid {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 var(--sv-pad-x) clamp(70px, 10vw, 120px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: clamp(36px, 3.6vw, 56px) clamp(24px, 3vw, 44px);
+}
+
+/* El primer juego ocupa todo el ancho en pantallas grandes. */
+@media (min-width: 900px) {
+  /* Destacado arriba + los demás en 2×2. */
+  .gm-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gm-grid > :first-child {
+    grid-column: 1 / -1;
+  }
+  .gm-card.gm-card--feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 60px);
+  }
+  .gm-card--feature .gm-card__body {
+    padding: 0;
+  }
+  .gm-card--feature .gm-card__name {
+    font-size: clamp(32px, 3.4vw, 46px);
+  }
+  .gm-card--feature .gm-card__blurb {
+    font-size: 17px;
+  }
+}
+
+.gm-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.gm-card__frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0c10;
+  border: 1px solid var(--sv-line);
+  box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.45);
+  transition: transform 0.4s var(--sv-ease), box-shadow 0.4s var(--sv-ease);
+}
+.gm-card__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--sv-ease);
+}
+
+.gm-card__play {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  background: var(--st-orange);
+  color: var(--st-white);
+  font-family: var(--sv-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s var(--sv-ease);
+}
+
+.gm-card:hover .gm-card__frame,
+.gm-card:focus-visible .gm-card__frame {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 50px -26px color-mix(in srgb, var(--gm-accent) 70%, black);
+}
+.gm-card:hover .gm-card__frame img {
+  transform: scale(1.04);
+}
+.gm-card:hover .gm-card__play {
+  transform: translateY(-2px);
+}
+.gm-card:focus-visible {
+  outline: none;
+}
+.gm-card:focus-visible .gm-card__frame {
+  outline: 2px solid var(--st-orange);
+  outline-offset: 4px;
+}
+
+.gm-card__body {
+  padding: 18px 4px 0;
+}
+.gm-card__genre {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sv-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sv-text2);
+}
+.gm-card__genre::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gm-accent);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.gm-card__name {
+  margin-top: 8px;
+  font-family: var(--sv-font-display);
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.1;
+  color: var(--sv-text);
+}
+.gm-card__blurb {
+  margin-top: 8px;
+  max-width: 48ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--sv-text2);
+}
+.gm-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.gm-card__tags li {
+  font-family: var(--sv-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--sv-line-strong);
+  color: var(--sv-text2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gm-card__frame,
+  .gm-card__frame img,
+  .gm-card__play {
+    transition: none;
+  }
+}

@@ -92,6 +92,15 @@ const routes = [
       "Proyectos dise\u00f1ados y publicados por AeroVision: PayCoach, AeroVision Drones, StraightUp, Darkline Coaching, Pawsome Walks, BaseCode y Business Forge.",
   },
   {
+    path: "/games",
+    priority: "0.8",
+    changefreq: "monthly",
+    lastmod: "2026-11-25",
+    title: "Juegos | AeroVision \u2014 Juega en el navegador",
+    description:
+      "Juegos originales hechos por AeroVision: Grand Theft Xela, Solar System, Midnight Take, Loopfire y Raze & Raise. Gratis, sin descargas, directo en el navegador.",
+  },
+  {
     path: "/drones",
     priority: "0.9",
     changefreq: "weekly",

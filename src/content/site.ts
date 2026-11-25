@@ -6,6 +6,7 @@ export const siteCopy = {
     home: { es: "Inicio", en: "Home" },
     products: { es: "Productos", en: "Products" },
     portfolio: { es: "Portafolio", en: "Portfolio" },
+    games: { es: "Juegos", en: "Games" },
     drones: { es: "Drones", en: "Drones" },
     contact: { es: "Contacto", en: "Contact" },
     menu: { es: "Menú", en: "Menu" },

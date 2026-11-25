@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import Games from "./pages/Games";
 import Home from "./pages/Home";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/products" element={<Products />} />
             <Route path="/products/paycoach" element={<PayCoach />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/games" element={<Games />} />
             {/* El sitio de drones, sin cambios, ahora vive en /drones */}
             <Route path="/drones" element={<Index />} />
             <Route path="/work/:slug" element={<WorkGallery />} />
