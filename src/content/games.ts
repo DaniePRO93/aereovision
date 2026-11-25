@@ -7,8 +7,8 @@ export const gamesCopy = {
       en: "Games | AeroVision — Play in your browser",
     },
     description: {
-      es: "Juegos originales hechos por AeroVision: Grand Theft Xela, Solar System, Midnight Take, Loopfire y Raze & Raise. Gratis, sin descargas, directo en el navegador.",
-      en: "Original games made by AeroVision: Grand Theft Xela, Solar System, Midnight Take, Loopfire and Raze & Raise. Free, no downloads, right in your browser.",
+      es: "Juegos originales hechos por AeroVision: Grand Theft Xela, Pen Strike, Solar System, Midnight Take, Loopfire y Raze & Raise. Gratis, sin descargas, directo en el navegador.",
+      en: "Original games made by AeroVision: Grand Theft Xela, Pen Strike, Solar System, Midnight Take, Loopfire and Raze & Raise. Free, no downloads, right in your browser.",
     },
   },
   hero: {
@@ -23,5 +23,6 @@ export const gamesCopy = {
   },
   play: { es: "Jugar", en: "Play" },
   desktopOnly: { es: "Teclado y mouse", en: "Keyboard & mouse" },
+  multiplayer: { es: "Multijugador", en: "Multiplayer" },
   external: { es: "Abre en otro sitio", en: "Opens on another site" },
 } satisfies { seo: Record<string, Bilingual<string>> } & Record<string, unknown>;

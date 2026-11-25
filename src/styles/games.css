@@ -18,8 +18,15 @@
   .gm-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .gm-grid > :first-child {
+  .gm-grid > .gm-feature {
     grid-column: 1 / -1;
+  }
+  /* Los destacados alternan el lado de la imagen. */
+  .gm-feature:nth-child(even) .gm-card--feature {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  }
+  .gm-feature:nth-child(even) .gm-card__frame {
+    order: 2;
   }
   .gm-card.gm-card--feature {
     display: grid;

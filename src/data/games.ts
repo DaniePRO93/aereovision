@@ -1,8 +1,9 @@
 // Juegos publicados en /games. Los juegos propios son HTML independientes en
 // public/play/<slug>.html; los que viven en otro dominio usan `externalUrl`.
-// La portada es una captura en src/assets/games.
+// La portada es una captura en src/assets/games (Pen Strike reusa la de src/assets/shots).
 
 import type { Bilingual } from "@/i18n/LanguageProvider";
+import penStrikeCover from "@/assets/shots/penstrike.webp";
 import gtaXelaCover from "@/assets/games/gta-xela.jpg";
 import loopfireCover from "@/assets/games/loopfire.jpg";
 import midnightTakeCover from "@/assets/games/midnight-take.jpg";
@@ -21,6 +22,10 @@ export interface Game {
   externalUrl?: string;
   /** Solo se puede jugar con teclado y mouse. */
   desktopOnly?: boolean;
+  /** Se puede jugar con otras personas. */
+  multiplayer?: boolean;
+  /** Tarjeta grande a todo el ancho (pantallas grandes). */
+  feature?: boolean;
 }
 
 export const games: Game[] = [
@@ -36,6 +41,21 @@ export const games: Game[] = [
     accent: "#ffd23f",
     externalUrl: "https://gta-xela.pages.dev",
     desktopOnly: true,
+    feature: true,
+  },
+  {
+    slug: "pen-strike",
+    name: "Pen Strike",
+    genre: { es: "Shooter en primera persona", en: "First-person shooter" },
+    blurb: {
+      es: "Un shooter dibujado entero con lapicero azul sobre hoja de cuaderno. Dibujás tu monstruo y después peleás contra oleadas de él, con cámara lenta, deslizadas y una espada-borrador.",
+      en: "A shooter drawn entirely in blue ballpoint on notebook paper. Doodle your monster, then fight waves of it with slow-mo, slides and an eraser sword.",
+    },
+    cover: penStrikeCover,
+    accent: "#2a2e85",
+    externalUrl: "https://penstrike.paycoach.app/play/",
+    multiplayer: true,
+    feature: true,
   },
   {
     slug: "solar-system",

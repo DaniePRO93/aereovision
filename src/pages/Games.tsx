@@ -47,9 +47,9 @@ const Games = () => {
 
         <div className="gm-grid">
           {games.map((game, i) => (
-            <Reveal key={game.slug} delay={(i % 3) * 70}>
+            <Reveal key={game.slug} delay={(i % 2) * 70} className={game.feature ? "gm-feature" : undefined}>
               <a
-                className={i === 0 ? "gm-card gm-card--feature" : "gm-card"}
+                className={game.feature ? "gm-card gm-card--feature" : "gm-card"}
                 href={gameUrl(game)}
                 target="_blank"
                 rel={game.externalUrl ? "noopener noreferrer" : "noopener"}
@@ -71,8 +71,9 @@ const Games = () => {
                   <p className="gm-card__genre">{t(game.genre)}</p>
                   <h2 className="gm-card__name">{game.name}</h2>
                   <p className="gm-card__blurb">{t(game.blurb)}</p>
-                  {(game.desktopOnly || game.externalUrl) && (
+                  {(game.desktopOnly || game.multiplayer || game.externalUrl) && (
                     <ul className="gm-card__tags">
+                      {game.multiplayer && <li>{t(gamesCopy.multiplayer)}</li>}
                       {game.desktopOnly && <li>{t(gamesCopy.desktopOnly)}</li>}
                       {game.externalUrl && <li>{t(gamesCopy.external)}</li>}
                     </ul>

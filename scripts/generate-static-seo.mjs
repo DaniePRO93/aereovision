@@ -98,7 +98,7 @@ const routes = [
     lastmod: "2026-11-25",
     title: "Juegos | AeroVision \u2014 Juega en el navegador",
     description:
-      "Juegos originales hechos por AeroVision: Grand Theft Xela, Solar System, Midnight Take, Loopfire y Raze & Raise. Gratis, sin descargas, directo en el navegador.",
+      "Juegos originales hechos por AeroVision: Grand Theft Xela, Pen Strike, Solar System, Midnight Take, Loopfire y Raze & Raise. Gratis, sin descargas, directo en el navegador.",
   },
   {
     path: "/drones",
