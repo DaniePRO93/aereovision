@@ -6,6 +6,7 @@ import shotBasecode from "@/assets/shots/basecode.jpg";
 import shotBusinessForge from "@/assets/shots/business-forge.jpg";
 import shotDarkline from "@/assets/shots/darkline.jpg";
 import shotDrones from "@/assets/shots/drones.jpg";
+import shotJetTestRig from "@/assets/shots/jet-test-rig.jpg";
 import shotPawsome from "@/assets/shots/pawsome.jpg";
 import shotPaycoach from "@/assets/shots/paycoach.jpg";
 import shotStraightup from "@/assets/shots/straightup.jpg";
@@ -158,5 +159,21 @@ export const portfolio: PortfolioItem[] = [
     accent: "#f43f5e",
     accent2: "#f59e0b",
     image: shotBusinessForge,
+  },
+  {
+    id: "jet-test-rig",
+    name: "Overwing Jet Test Rig",
+    kind: "web",
+    role: { es: "Simulador de vuelo 3D", en: "3D flight simulator" },
+    blurb: {
+      es: "Un jet biplaza diseñado a mano, llevado a 3D y puesto a prueba: túnel de viento, vuelo simulado, escape y un veredicto de si vuela.",
+      en: "A hand-drawn two-seat jet lofted into 3D and put to the test: wind tunnel, simulated flight, exhaust and a verdict on whether it flies.",
+    },
+    domain: "aerovision.gt/lab",
+    href: "/lab/jet-test-rig.html",
+    internal: false,
+    accent: "#d9430c",
+    accent2: "#1b78ad",
+    image: shotJetTestRig,
   },
 ];
