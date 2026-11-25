@@ -11,6 +11,8 @@ import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { homeCopy } from "@/content/home";
 import { siteCopy } from "@/content/site";
 import { portfolio } from "@/data/portfolio";
+
+const homeWork = portfolio.filter((item) => item.kind !== "game");
 import { featuredProducts } from "@/data/products";
 import { useLang } from "@/i18n/LanguageProvider";
 import { SITE_URL, usePageSeo } from "@/lib/seo";
@@ -295,7 +297,8 @@ const Home = () => {
           </div>
 
           <div className="st-worklist">
-            {portfolio.map((item, i) => {
+            {/* Los juegos tienen su propia página (/games); aquí solo van los proyectos. */}
+            {homeWork.map((item, i) => {
               const body = (
                 <>
                   <span className="st-workrow__idx">{String(i + 1).padStart(2, "0")}</span>

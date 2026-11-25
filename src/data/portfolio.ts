@@ -1,4 +1,5 @@
 import type { Bilingual } from "@/i18n/LanguageProvider";
+import { gameUrl, games } from "@/data/games";
 import aerovisionMark from "@/assets/products/aerovision-mark.png";
 import paycoachLogo from "@/assets/products/paycoach-logo.png";
 import straightupLogo from "@/assets/products/straightup-logo.png";
@@ -11,7 +12,7 @@ import shotPawsome from "@/assets/shots/pawsome.jpg";
 import shotPaycoach from "@/assets/shots/paycoach.jpg";
 import shotStraightup from "@/assets/shots/straightup.jpg";
 
-export type PortfolioKind = "app" | "web" | "video";
+export type PortfolioKind = "app" | "web" | "video" | "game";
 
 export interface PortfolioItem {
   id: string;
@@ -40,6 +41,7 @@ export const portfolioFilters: { id: "all" | PortfolioKind; label: Bilingual<str
   { id: "app", label: { es: "Apps", en: "Apps" } },
   { id: "web", label: { es: "Web", en: "Web" } },
   { id: "video", label: { es: "Video", en: "Video" } },
+  { id: "game", label: { es: "Juegos", en: "Games" } },
 ];
 
 export const portfolio: PortfolioItem[] = [
@@ -176,4 +178,20 @@ export const portfolio: PortfolioItem[] = [
     accent2: "#1b78ad",
     image: shotJetTestRig,
   },
+  // Los juegos de /games también se muestran aquí, con su propio filtro.
+  ...games.map(
+    (game): PortfolioItem => ({
+      id: `game-${game.slug}`,
+      name: game.name,
+      kind: "game",
+      role: game.genre,
+      blurb: game.blurb,
+      domain: game.externalUrl ? new URL(game.externalUrl).host : "aerovision.gt/games",
+      href: gameUrl(game),
+      internal: false,
+      accent: game.accent,
+      accent2: game.accent,
+      image: game.cover,
+    })
+  ),
 ];
